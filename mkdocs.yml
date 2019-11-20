@@ -18,7 +18,7 @@ theme:
     code: 'Ubuntu Mono'
   feature:
     tabs: true
-  # favicon: 'favicon.ico'
+  favicon: 'images/favicon.png'
 extra:
   search:
     tokenizer: '[\s\-\.]+'
@@ -29,13 +29,10 @@ repo_url: 'https://github.com/deepgorthi/dg-notes'
 markdown_extensions:
   - toc:
       permalink: true
-
 markdown_extensions:
   - footnotes
-
 markdown_extensions:
   - meta
-
 markdown_extensions:
   - admonition
 markdown_extensions:
