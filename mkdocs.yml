@@ -1,6 +1,6 @@
 # Project Information
 site_name: DeepGorthi Notes
-site_description: 'All things DevOps, Infra, Linux and networking'
+site_description: 'All things DevOps, Infrastructure, Linux and networking'
 site_author: 'Pradeep Gorthi'
 site_url: 'https://docs.deepgorthi.com'
 
@@ -13,9 +13,9 @@ theme:
   logo: 'images/icon.png'
   # logo:
   #   icon: 'local_library'
-  font:
-    text: 'Ubuntu'
-    code: 'Ubuntu Mono'
+  # font:
+  #   text: 'Ubuntu'
+  #   code: 'Ubuntu Mono'
   feature:
     tabs: true
   favicon: 'images/favicon.png'
@@ -29,13 +29,9 @@ repo_url: 'https://github.com/deepgorthi/dg-notes'
 markdown_extensions:
   - toc:
       permalink: true
-markdown_extensions:
   - footnotes
-markdown_extensions:
   - meta
-markdown_extensions:
   - admonition
-markdown_extensions:
   - pymdownx.betterem:
       smart_enable: all
   - pymdownx.caret
@@ -52,7 +48,6 @@ markdown_extensions:
 
 # Customization
 extra:
-  # manifest: 'manifest.webmanifest'
   social:
     - type: 'github'
       link: 'https://github.com/deepgorthi'
@@ -62,9 +57,9 @@ extra:
       link: 'https://linkedin.com/in/deepgorthi'
 
 # Google Analytics
-# google_analytics:
-#   - 'UA-XXXXXXXX-X'
-#   - 'auto'
+google_analytics:
+  - 'UA-153019680-1'
+  - 'auto'
 
 # Copyright
-copyright: 'Copyright &copy; Pradeep Gorthi'
+copyright: 'Content Copyright &copy; Pradeep Gorthi'
