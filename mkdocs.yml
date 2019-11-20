@@ -15,3 +15,6 @@ theme:
 extra:
   search:
     tokenizer: '[\s\-\.]+'
+
+repo_name: 'squidfunk/mkdocs-material'
+repo_url: 'https://github.com/squidfunk/mkdocs-material'
