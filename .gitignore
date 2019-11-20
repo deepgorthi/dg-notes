@@ -21,3 +21,5 @@ mkdocs-project/site/
 # PowerPoint
 #~$*.ppt*
 ~$*
+.DS_Store
+site/
