@@ -10,9 +10,9 @@ theme:
   palette:
     primary: 'deep orange'
     accent: 'deep orange'
-  # logo: 'images/logo.svg'
-  logo:
-    icon: 'local_library'
+  logo: 'images/icon.png'
+  # logo:
+  #   icon: 'local_library'
   font:
     text: 'Ubuntu'
     code: 'Ubuntu Mono'
