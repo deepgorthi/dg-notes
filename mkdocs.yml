@@ -4,7 +4,7 @@ theme:
   palette:
     primary: 'deep orange'
     accent: 'deep orange'
-#  logo: 'images/logo.svg'
+  # logo: 'images/logo.svg'
   logo:
     icon: 'local_library'
   font:
@@ -12,9 +12,10 @@ theme:
     code: 'Ubuntu Mono'
   # feature:
   #   tabs: true
+  # favicon: 'favicon.ico'
 extra:
   search:
     tokenizer: '[\s\-\.]+'
 
-repo_name: 'squidfunk/mkdocs-material'
-repo_url: 'https://github.com/squidfunk/mkdocs-material'
+repo_name: 'deepgorthi/dg-notes'
+repo_url: 'https://github.com/deepgorthi/dg-notes'
