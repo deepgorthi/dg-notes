@@ -6,7 +6,7 @@ Install MkDocs using:
 
     pip3 install mkdocs
 
-Once MkDocs is installed, this material can be installed using:
+Once MkDocs is installed, this material theme can be installed using:
 
     pip3 install mkdocs-material
 
