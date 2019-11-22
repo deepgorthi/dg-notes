@@ -6,11 +6,12 @@ site_url: 'https://docs.deepgorthi.com'
 
 theme:
   name: 'material'
+  custom_dir: custom_theme/
   language: 'en'
   palette:
     primary: 'deep orange'
     accent: 'deep orange'
-  logo: 'images/icon.png'
+  logo: 'img/icon.png'
   # logo:
   #   icon: 'local_library'
   # font:
@@ -18,7 +19,7 @@ theme:
   #   code: 'Ubuntu Mono'
   feature:
     tabs: true
-  favicon: 'images/favicon.png'
+  favicon: 'img/favicon.png'
 extra:
   search:
     tokenizer: '[\s\-\.]+'
