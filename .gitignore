@@ -23,3 +23,5 @@ mkdocs-project/site/
 ~$*
 .DS_Store
 site/
+custom_theme/.DS_Store
+custom_theme/partials/.DS_Store
