@@ -1,4 +1,4 @@
-# AWSLOGS
+# AWSLogs
 
 AWSLogs can be used in place of Logstash when working with AWS Cloud and ELK stack. 
 
