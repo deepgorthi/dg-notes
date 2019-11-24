@@ -34,7 +34,7 @@
 |---------------------------------------------------------------------------|
 ```
 
-# Running Jekyll in Docker container
+## Running Jekyll in Docker container
 
 Jekyll might require a different version of ruby and gem than the one installed on your computer and when working on MacOSX, it is difficult to work with a different version than the one already pre-installed. Rather than corrupting the PATH and ruby versions, it is best to run jekyll in a container. 
 
