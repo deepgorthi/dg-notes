@@ -79,6 +79,10 @@ aws> ecs delete-cluster --cluster deepdive
 
 ## ECS Container Agent
 
+Here is an outline of how the AWS ECS objects relate:
+
+![aws-ecs-outline](img/aws-ecs-outline.png)
+
 A container agent is ran on an EC2 instance and it helps EC2 instance in joining a cluster. 
 The container agent is open-source and can be found [here](https://github.com/aws/amazon-ecs-agent).
 The agent runs on ECS optimized or custom AMIs.
@@ -331,7 +335,7 @@ Services and tasks have 3 states:
 The container agent is responsible for state tracking
 
 **Task LifeCycle**
-![TaskLifeCycle](images/TaskLifeCycle.png)
+![TaskLifeCycle](img/TaskLifeCycle.png)
 
 
 ```bash

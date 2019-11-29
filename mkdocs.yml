@@ -11,7 +11,7 @@ theme:
   palette:
     primary: 'deep orange'
     accent: 'deep orange'
-  logo: 'img/icon.png'
+  logo: 'assets/images/icon.png'
   # logo:
   #   icon: 'local_library'
   # font:
@@ -19,7 +19,7 @@ theme:
   #   code: 'Ubuntu Mono'
   feature:
     tabs: true
-  favicon: 'img/favicon.png'
+  favicon: 'assets/images/favicon.png'
 extra:
   search:
     tokenizer: '[\s\-\.]+'
