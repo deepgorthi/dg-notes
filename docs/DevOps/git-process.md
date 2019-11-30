@@ -151,7 +151,7 @@ index 0000000..264a5be
 
 Here is an interesting image to refer to when using git.
 
-![image](gitimage.jpg)
+![image](img/gitimage.jpg)
 
 ---
 ## Working Remotely
