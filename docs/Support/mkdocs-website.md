@@ -1,4 +1,4 @@
-# MkDocs Website Support
+# Docs Website Setup
 
 ## Installation
 
