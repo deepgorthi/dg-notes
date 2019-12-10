@@ -1,4 +1,4 @@
-# Docs Website Setup
+# MkDocs Website Setup
 
 ## Installation
 

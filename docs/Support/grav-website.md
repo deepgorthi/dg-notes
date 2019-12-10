@@ -1,4 +1,4 @@
-# Grav Resume Website
+# Grav Website Setup
 
 ## Setup from GitHub
 

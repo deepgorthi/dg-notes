@@ -1,4 +1,4 @@
-# Guide to SSH Key pair
+# SSH Key pair
 
 This is on Linux.
 

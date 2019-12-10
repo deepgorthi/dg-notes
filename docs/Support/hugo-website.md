@@ -1,4 +1,4 @@
-# Resume Website Setup
+# Hugo Website Setup
 
 ## Installation
 

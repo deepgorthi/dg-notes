@@ -1,4 +1,4 @@
-# Jekyll on AWS with CI/CD
+# Jekyll Website Setup
 
 
 ## Jekyll Website
