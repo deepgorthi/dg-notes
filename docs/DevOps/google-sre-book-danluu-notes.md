@@ -187,3 +187,8 @@
     - Faster non-repair actions
     - Time savings
 
+
+
+
+## Source
+- Danluu's take on SRE book is an amazing resource => [Reference Link](https://danluu.com/google-sre-book/)
