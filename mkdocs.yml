@@ -24,8 +24,8 @@ extra:
   search:
     tokenizer: '[\s\-\.]+'
 
-repo_name: 'deepgorthi/dg-notes'
-repo_url: 'https://github.com/deepgorthi/dg-notes'
+repo_name: 'DeepGorthi.com'
+repo_url: 'https://deepgorthi.com'
 
 markdown_extensions:
   - toc:
@@ -56,6 +56,10 @@ extra:
       link: 'https://twitter.com/deepgorthi'
     - type: 'linkedin'
       link: 'https://linkedin.com/in/deepgorthi'
+    - type: 'address-book'
+      link: 'https://resume.deepgorthi.com'
+    - type: 'globe'
+      link: 'https://deepgorthi.com'
 
 # Google Analytics
 google_analytics:
@@ -63,4 +67,4 @@ google_analytics:
   - 'auto'
 
 # Copyright
-copyright: 'Content Copyright &copy; Pradeep Gorthi'
+# copyright: 'Content Copyright &copy; Pradeep Gorthi'
