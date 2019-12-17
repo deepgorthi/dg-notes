@@ -1110,3 +1110,16 @@ Ansible provides variables and metadata about the host that we interact with whe
     $ ansible-playbook setup-app.yml --skip-tags <tag_name>
     ```
 
+## Ansible Vault
+
+- Ansible vault is a way to keep sensitive information in encrypted files and not plain text in playbooks. 
+- Keeps passwords, keys and other sensitive variables in encrypted vault files. 
+- Vault files can be shared through source control. 
+- Password protected and default cipher is AES. 
+- Encrypted data file can be created using:
+    ```bash
+    $ ansible-vault create secret-variables.yml # create encrypted file
+    $ ansible-vault edit secret-variables.yml # edit encrypted file
+    $ ansible-playbook setup-app.yml --ask-vault-pass # prompt for password to use the encrypted secret variables file
+    ```
+
