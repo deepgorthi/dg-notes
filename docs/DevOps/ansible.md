@@ -1103,8 +1103,10 @@ Ansible provides variables and metadata about the host that we interact with whe
 - Assigning tags to specific tasks in playbooks allows you to only call certain tasks in a very long playbook. 
 - It only runs specific parts of a playbook rather than all of the plays.
 - Add tags to any tasks and re-use if needed. 
-- Specify the tags you want to run on the command line. 
-- After adding `tags: <tag_name>` to any of the tasks, it can be called using:
+- Specify the tags you want to run (or not to) on the command line. 
+- After adding `tags: <tag_name>` to any of the tasks, it can be called (or not) using:
     ```bash
     $ ansible-playbook setup-app.yml --tags <tag_name>
+    $ ansible-playbook setup-app.yml --skip-tags <tag_name>
     ```
+
