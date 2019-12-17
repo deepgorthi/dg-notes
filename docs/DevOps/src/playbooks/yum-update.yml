@@ -1,0 +1,8 @@
+# yum-update.yml
+
+---
+  - hosts: webservers:loadbalancers
+    become: true # to become sudo
+    tasks:
+      - name: Updating yum packages
+        yum: name=* state=latest

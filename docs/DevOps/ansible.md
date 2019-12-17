@@ -227,3 +227,189 @@ $ ansible --list-hosts webservers[0]
         # As a command ran on the remote node, status is shown as CHANGED.
     ```
 
+## Playbooks 
+
+To contruct a system using playbooks:
+- Package Management - packages the system needs.
+    - package manager
+    - patching
+    - Example playbook:
+    ```yaml
+    ---
+      - hosts: loadbalancers
+        tasks:
+        - name: Install apache
+          yum: name=httpd state=latest
+    ```
+- Configuration - configure the system with necessary application files/configuration files needed.
+    - copy files or folders from control machine to nodes
+    - edit configuration files
+    - Example playbook:
+    ```yaml
+    ---
+      - hosts: loadbalancers
+        tasks:
+        - name: Copy config file
+          copy: src=./config.cfg dest=/etc/config.cfg
+        
+      - hosts: webservers
+        tasks:
+        - name: Sync folders
+          synchronize: src=./app dest=/var/www/html/app
+    ```
+- Service Handlers - we can create service handlers to start, stop or restart out system when changes are made. 
+    - command
+    - service
+    - handlers
+    - Example playbook:
+    ```yaml
+    ---
+      - hosts: loadbalancers
+        tasks:
+        - name: Configure port number
+          lineinfile: path=/etc/config.cfg regexp='^port' line='port=80'
+          notify: Restart apache
+    # apache will be restarted only if the line is changed to port=80
+        handlers:
+        - name: Restart apache
+          service: name=httpd status=restarted
+    
+    ```
+
+To do `yum update`:
+```yaml
+# yum-update.yml
+
+---
+  - hosts: webservers:loadbalancers
+    become: true # to become sudo
+    tasks:
+      - name: Updating yum packages
+        yum: name=* state=latest
+```
+
+To install `apache` and `php`:
+```yaml
+# install-services.yml
+
+---
+# install-services.yml
+
+---
+  - hosts: loadbalancers
+    become: true
+    tasks:
+      - name: Installing apache
+        yum: name=httpd state=present # It will check the system to see if apache is already installed, if it is nothing will be done and if it is not, apache will be installed.
+      - name: Ensure apache starts
+        service: name=httpd state=started enabled=yes
+
+  - hosts: webservers
+    become: true
+    tasks:
+      - name: Installing services
+        yum: 
+          name:
+            - httpd
+            - php
+          state: present
+      - name: Ensure apache starts
+        service: 
+          name: httpd 
+          state: started # start httpd service
+          enabled: yes # to configure it to start on every boot
+```
+
+```bash
+$ ansible-playbook playbooks/install-services.yml 
+
+PLAY [loadbalancers] ***********************************************************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************************************************
+ok: [lb]
+
+TASK [Installing apache] *******************************************************************************************************************************************************
+ok: [lb]
+
+TASK [Ensure apache starts] ****************************************************************************************************************************************************
+changed: [lb]
+
+PLAY [webservers] **************************************************************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************************************************
+ok: [app1]
+ok: [app2]
+
+TASK [Installing services] *****************************************************************************************************************************************************
+ok: [app1]
+ok: [app2]
+
+TASK [Ensure apache starts] ****************************************************************************************************************************************************
+changed: [app1]
+changed: [app2]
+
+PLAY RECAP *********************************************************************************************************************************************************************
+app1                       : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+app2                       : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+lb                         : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```
+
+To upload files to node servers:
+
+```yaml
+# setup-app.yml
+
+---
+  - hosts: webservers
+    become: true
+    tasks:
+      - name: Upload index file
+        copy: 
+          src: ../index.php
+          dest: /var/www/html
+          mode: 0755
+        
+      - name: Configure php.ini file
+        lineinfile: # Change a line in a config file matching the regex to the line value.
+          path: /etc/php.ini
+          regexp: ^short_open_tag
+          line: 'short_open_tag=On'
+      
+      # restart apache
+      - name: restart apache
+        service: 
+          name: httpd 
+          state: restarted
+```
+
+Load balance playbook using the template file:
+```yaml
+# setup-lb.yml
+
+---
+  - hosts: loadbalancers
+    become: true
+    tasks: 
+      - name: Creating template
+        template: 
+          src: ../config/lb-config.j2
+          dest: /etc/httpd/conf.d/lb.conf
+          owner: bin
+          group: wheel
+          mode: 064
+        
+      - name: restart apache
+        service: name=httpd state=restarted
+```
+Template file to be used by Ansible to dynamically configure the Loadbalancer:
+```jinja
+# Loadbalancer config that can be read by Ansible is written in Jinja2
+
+ProxyRequests off
+<Proxy balancer://webcluster >
+  {% for hosts in groups['webservers'] %}
+    BalancerMember http://{{hostvars[hosts]['ansible_host']}}
+  {% endfor %}
+    ProxySet lbmethod=byrequests
+</Proxy>
+```

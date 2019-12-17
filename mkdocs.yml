@@ -68,3 +68,7 @@ google_analytics:
 
 # Copyright
 # copyright: 'Content Copyright &copy; Pradeep Gorthi'
+
+plugins:
+  - git-revision-date-localized:
+      type: timeago
