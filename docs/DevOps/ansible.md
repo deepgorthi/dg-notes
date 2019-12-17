@@ -229,6 +229,13 @@ $ ansible --list-hosts webservers[0]
 
 ## Playbooks 
 
+- Playbooks are a way to combine ordered processess and manage configuration needed to build out a remote system. 
+- Makes configuration management easy and gives us the ability to deploy a multi-machine setup.
+- Playbooks can declare configurations and orchestrate steps and can ensure our remote system is configured as expected when run. 
+- The written tasks in playbook can be run synchronously or asynchronously.
+- Gives us the ability to infra as code and manage in source control. 
+
+
 To contruct a system using playbooks:
 - Package Management - packages the system needs.
     - package manager
