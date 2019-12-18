@@ -1,4 +1,4 @@
-# Docker
+# Docker Basics
 
 ## Install with script
 
@@ -451,3 +451,13 @@ $ docker push deepgorthi/ubu-python3
     latest: digest: sha256:f348584be25aa65a0d266d77eadfeaad955385736462cea5efd68d1a4473760d size: 1574
 ```
 
+!!! info "Links"
+    - [List of Docker commands](https://geekflare.com/docker-commands/)
+    - [VMs, Containers and Docker](https://www.freecodecamp.org/news/a-beginner-friendly-introduction-to-containers-vms-and-docker-79a9e3e119b/)
+    - Learn enough useful Docker series
+        - [Part 1](https://towardsdatascience.com/learn-enough-docker-to-be-useful-b7ba70caeb4b)
+        - [Part 2](https://towardsdatascience.com/learn-enough-docker-to-be-useful-1c40ea269fa8)
+        - [Part 3](https://towardsdatascience.com/learn-enough-docker-to-be-useful-b0b44222eef5)
+        - [Part 4](https://towardsdatascience.com/slimming-down-your-docker-images-275f0ca9337e)
+        - [Part 5](https://towardsdatascience.com/15-docker-commands-you-should-know-970ea5203421)
+        - [Part 6](https://towardsdatascience.com/pump-up-the-volumes-data-in-docker-a21950a8cd8)
