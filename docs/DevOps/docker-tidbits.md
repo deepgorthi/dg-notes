@@ -1,4 +1,4 @@
-# [Notes] Learn enough Docker series
+# Docker - Learn enough series
 
 ## Containers
 - Containers are hugely helpful for improving security, reproducibility, and scalability in software development.
