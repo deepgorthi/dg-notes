@@ -1,6 +1,6 @@
 # Docker Deepdive
 
-!!! info "[Link to Course Notes by Nick on aCloudGuru](https://deepgorthi.github.io/notes-docker/notes)"
+!!! info "[Link to Notes](https://deepgorthi.github.io/notes-docker/notes)"
 
 ## VMs vs Containers
 
