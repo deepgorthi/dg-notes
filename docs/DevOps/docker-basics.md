@@ -57,7 +57,7 @@
 # Giving cloud_user permissions to run docker by adding it to docker group
     $ sudo usermod -a -G docker cloud_user
     $ exit
-    $ docker run hello-world
+    $ docker container run hello-world
 ```
 
 ## DockerHub and Docker repository
@@ -165,16 +165,16 @@ As an example, building a docker image with Ubuntu 16.04 as the base OS image, u
 To build the docker image, we need to run 
 ```bash
 # '.' specifies to look for the dockerfile in the current directory
-$ docker build .
+$ docker image build .
 ```
 If the name of the dockerfile is different, we can build the image by doing 
 ```bash
-$ docker build <docker file name>
+$ docker image build <docker file name>
 ```
 
 ??? "Build output"
     ```bash
-    $ docker build .
+    $ docker image build .
         Sending build context to Docker daemon  2.048kB
         Step 1/4 : FROM ubuntu:16.04
         ---> 56bab49eef2e
@@ -397,14 +397,14 @@ $ docker container rm db3e7658a34b python-container python-container_v2
 $ docker container ls -a
     CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 ```
-## Removing Images (rmi)
+## Removing Images
 ```bash
 $ docker image ls
     REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
     <none>              <none>              a41c41ef3ce9        34 minutes ago      186MB
     ubuntu              16.04               56bab49eef2e        2 weeks ago         123MB
     hello-world         latest              fce289e99eb9        11 months ago       1.84kB
-$ docker rmi fce289e99eb9
+$ docker image rm fce289e99eb9
     Untagged: hello-world:latest
     Untagged: hello-world@sha256:4fe721ccc2e8dc7362278a29dc660d833570ec2682f4e4194f4ee23e415e1064
     Deleted: sha256:fce289e99eb9bca977dae136fbe2a82b6b7d4c372474c9235adc1741675f587e
@@ -433,14 +433,14 @@ $ docker image ls
     <none>              <none>              a41c41ef3ce9        37 minutes ago      186MB
     ubuntu              16.04               56bab49eef2e        2 weeks ago         123MB
 
-$ docker tag a41c41ef3ce9 deepgorthi/ubu-python3
+$ docker image tag a41c41ef3ce9 deepgorthi/ubu-python3
 
 $ docker image ls
     REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
     deepgorthi/ubu-python3   latest              a41c41ef3ce9        38 minutes ago      186MB
     ubuntu                   16.04               56bab49eef2e        2 weeks ago         123MB
 
-$ docker push deepgorthi/ubu-python3
+$ docker image push deepgorthi/ubu-python3
     The push refers to repository [docker.io/deepgorthi/ubu-python3]
     fc529f7b8eec: Pushed
     c992de3f99a0: Pushed
