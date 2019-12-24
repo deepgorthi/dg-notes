@@ -1,6 +1,7 @@
-# Docker - Learn enough series
+# Docker Tidbits
 
 ## Containers
+
 - Containers are hugely helpful for improving security, reproducibility, and scalability in software development.
 - Docker is a platform to develop, deploy, and run applications inside containers.
 - A Docker container:
@@ -10,6 +11,7 @@
     - `Can be obtained from a remote location` — An offsite registry keeps an image for your container.
 
 ## Containers vs VMs
+
 The main difference between containers and VMs is in their architectural approach. The one big difference between containers and VMs is that containers *share* the host system’s kernel with other containers.
 
 - VM
@@ -61,9 +63,13 @@ It is a collection of Docker images with the same name and different tags. The t
 ## Docker Networking 
 It allows you to connect Docker containers together that are either on the same host or multiple hosts.
 
+A Docker container needs a host to run on. This can either be a physical machine or a VM, either on-prem or in the cloud. The host has the Docker daemon and client running which enables you to interact with a Docker registry on the one hand (to pull/push Docker images), and on the other hand, allows you to start, stop and inspect containers.
+
 ![Docker flow](img/docker-flow.png)
 
-!!! info "Learn enough Docker"
+
+
+!!! info "Source: Learn enough Docker"
     - [Part 1](https://towardsdatascience.com/learn-enough-docker-to-be-useful-b7ba70caeb4b)
     - [Part 2](https://towardsdatascience.com/learn-enough-docker-to-be-useful-1c40ea269fa8)
     - [Part 3](https://towardsdatascience.com/learn-enough-docker-to-be-useful-b0b44222eef5)

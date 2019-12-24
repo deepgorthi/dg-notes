@@ -53,6 +53,7 @@
             For more examples and ideas, visit:
             https://docs.docker.com/get-started/
     ```
+
 ```bash
 # Giving cloud_user permissions to run docker by adding it to docker group
     $ sudo usermod -a -G docker cloud_user
@@ -135,7 +136,6 @@ Here is the dockerfile from Ubuntu [16.04 image](https://hub.docker.com/_/ubuntu
     RUN mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
 
     CMD ["/bin/bash"]
-
     ```
 
 To run the docker image, 
