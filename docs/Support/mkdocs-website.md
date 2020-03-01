@@ -8,7 +8,7 @@ Install MkDocs using:
 
 Once MkDocs is installed, this material theme can be installed using:
 
-    pip3 install mkdocs-material
+    pip install mkdocs mkdocs-material pymdown-extensions pygments mkdocs-git-revision-date-localized-plugin mkdocs-minify-plugin
 
 Alternatively, we can use Docker by pulling the image with all dependencies included from Docker repo and running the Docker image locally in the root folder of the project:
 
@@ -31,3 +31,32 @@ To deploy the site to GH pages, we can run this:
     mkdocs gh-deploy
 
 For further configuration and other support related documentaiton, here is the [best source](https://squidfunk.github.io/mkdocs-material/getting-started/)
+
+
+## TravisCI
+
+The site is built using TravisCI.
+
+```YAML
+language: python
+
+python: 3.6
+
+branches: master
+
+install:
+    - pip install mkdocs mkdocs-material pymdown-extensions pygments mkdocs-git-revision-date-localized-plugin mkdocs-minify-plugin  # Install the required dependencies
+
+script: true
+
+before_deploy:
+    - mkdocs build --verbose --clean --strict
+
+deploy:
+    provider: pages
+    skip_cleanup: true
+    github_token: $github_token
+    local_dir: site
+    on:
+        branch: master
+```
