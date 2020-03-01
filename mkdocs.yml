@@ -70,5 +70,7 @@ google_analytics:
 # copyright: 'Content Copyright &copy; Pradeep Gorthi'
 
 plugins:
-  - git-revision-date-localized:
-      type: timeago
+  - search
+  - git-revision-date-localized
+  - minify:
+      minify_html: true
