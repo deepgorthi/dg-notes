@@ -46,4 +46,11 @@ sqs = boto3.client('sqs')
     - ACCESS_KEY: The access key for AWS account
     - SECRET_KEY: The secret key for AWS account
     - SESSION_TOKEN: Used with temporary credentials
+- Botocore package provides a low-level interface to AWS services. It is responsible for:
+    - Providing access to all available services. 
+    - Providing access to all operations within a service. 
+    - Marshaling all parameters for a particular operation in the correct format (serialization)
+    - Signing the request with the correct authentication signature. 
+    - Receiving the response and returning the data in native python data structures (deserialization).
+-  
 
