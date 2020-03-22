@@ -20,4 +20,11 @@ In addition to credentials, you can also configure non-credential values. In gen
 - Environment variables
 - ~/.aws/config
 
+## Resources
 
+Resources represent an object-oriented interface to AWS services. They provide a higher-level abstraction than the raw, low-level calls made by service clients. 
+
+```python
+import boto3
+s3 = boto3.resource('s3')
+```
