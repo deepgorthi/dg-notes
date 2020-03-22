@@ -61,5 +61,8 @@ resource "null_resource" "third" {
 terraform apply -target=null_resource.deployment
 ```
 
+## Terraform State
 
-[^1]: https://medium.com/galvanize/docker-deployments-using-terraform-d2bf36ec7bdf
+
+
+[^1]: [Reference](https://medium.com/galvanize/docker-deployments-using-terraform-d2bf36ec7bdf)

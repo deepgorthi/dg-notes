@@ -1,0 +1,25 @@
+# VPC Best Practices
+
+- Choose proper VPC configuration based on present and future needs
+    - It is advisable to design your Amazon VPC implementation based on your expansion requirements looking ahead at least two years. 
+- Choose proper CIDR block for VPC.
+    - The permissible size of the CIDR block ranges between /16 netmask and a /28 netmask.
+    - While designing your Amazon VPC architecture to communicate with the on-premises data center, it is required that the CIDR range used in Amazon VPC does not overlap or cause a conflict with the CIDR block in the on-premises data center.
+- Isolate dev, testing and prod environments
+    - It is always better to create a distinct Amazon VPC for development, production, and staging – or one Amazon VPC with Separate Security/Subnets/isolated NW groups for staging, production, and development.
+- Securing your AWS VPC implementation
+    - web application firewall or a firewall virtual appliance.
+    - configure intrusion detection systems and intrusion prevention virtual appliances.
+    - IAM, you can audit and monitor Administrator access to your VPC.
+- Create Disaster recovery plan
+    - Developing a disaster recovery plan with respect to your VPC implementation is of critical importance
+- Traffic control and Security
+- VPC peering
+    - Interconnected applications requiring private and secure access inside AWS.
+    - Systems have been deployed in different AWS accounts by some business units and are required to be either shared or consumed privately
+    - Better integrated access of systems, such as when a customer can peer their VPC with their core suppliers.
+- EC2 instances in private subnets
+    - While using ELB for web applications, ensure that you place all other EC2 instances in private subnets wherever possible. 
+    - secure practice dictates that only ELBs must be in the public subnet.
+- Tagging
+    - use a tagging policy to efficiently organize resources for reporting. 

@@ -2,7 +2,7 @@
 
 ## Handler 
 
-Handler is the function AWS Lambda calls to start execution of your Lambda function. You identify the handler when you create your Lambda function. When a Lambda function is invoked, AWS Lambda starts executing your code by calling the handler function. 
+[^1] Handler is the function AWS Lambda calls to start execution of your Lambda function. You identify the handler when you create your Lambda function. When a Lambda function is invoked, AWS Lambda starts executing your code by calling the handler function. 
 
 ## Context
 
@@ -23,12 +23,12 @@ When your function is invoked more quickly than a single instance of your functi
 
 ## Bootstrapping
 
-- Your Lambda function code must be written in a stateless style, and have no affinity with the underlying compute infrastructure.
+- Your Lambda function code must be written in a stateless style, and have no affinity with the underlying compute infrastructure. [^2] 
 - Bootstrapping refers to the process of preparing the environment before an application starts to resolve and process an incoming request. 
 - Bootstrapping is done in two places: 
     - in the entry script 
     - in the application
 
-## !Source
-- [AWS Lambda Docs](https://docs.aws.amazon.com/lambda/latest/dg/programming-model-v2.html)
-- [Runtime bootstrapping](https://www.yiiframework.com/doc/guide/2.0/en/runtime-bootstrapping)
+
+[^1]: [AWS Lambda Docs](https://docs.aws.amazon.com/lambda/latest/dg/programming-model-v2.html)
+[^2]: [Runtime bootstrapping](https://www.yiiframework.com/doc/guide/2.0/en/runtime-bootstrapping)
