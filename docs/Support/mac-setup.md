@@ -1,52 +1,39 @@
 # MacOS Setup
 
-## Install Homebrew
+```bash
+# Make sure Xcode Command Line tools are installed
+$ xcode-select --install
 
-Make sure Xcode Command Line tools are installed
-```
-xcode-select --install
-```
+# Install Homebrew by running this command
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-Install Homebrew by running this command
-```
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-```
+# Add the following line to ~/.profile
+$ echo "export PATH='/usr/local/opt/python/libexec/bin:$PATH'" >> ~/.profile; source ~/.profile
 
-## Install Docker
+# Install Docker
+$ brew install docker
 
-```
-brew install docker
-```
+# Install Python3
+$ brew install python3
 
+# Install Pipenv
+$ pip install --user pipenv
 
-## Install Python3
-```
-brew install python3
-```
+# When you cd into a directory containing a .env, direnv automagically activates the environment.
+$ brew install direnv
 
+# Install wget with IRI support.
+$ brew install wget --with-iri
 
-## Install wget with IRI support.
-```
-brew install wget --with-iri
-```
+# Install awscli and configure AWS with Secret Access Keys
+$ pip3 install awscli
+$ aws configure
 
+# Install boto3
+$ pip3 install boto3
 
-## Install AWS CLI and Shell
-
-Install awscli and configure AWS with Secret Access Keys
-```
-pip3 install awscli
-aws configure
-```
-
-Install boto
-```
-pip3 install boto
-```
-
-Install [AWS Shell](https://github.com/awslabs/aws-shell)
-```
-pip3 install aws-shell
+# Install [AWS Shell](https://github.com/awslabs/aws-shell)
+$ pip3 install aws-shell
 ```
 
 
@@ -54,8 +41,8 @@ pip3 install aws-shell
 Virtualenv is a tool that creates an isolated Python environment for each of your projects. For a particular project, instead of installing required packages globally, it is best to install them in an isolated folder in the project (say a folder named venv), that will be managed by virtualenv. The advantage is that different projects might require different versions of packages, and it would be hard to manage that if you install packages globally.
 
 **Installation**
-```
-pip3 install virtualenv
+```bash
+$ pip3 install virtualenv
 ```
 
 **Usage**
@@ -117,86 +104,31 @@ deactivate
 
 ## Adding SSH key to GitHub 
 
-To generate and add SSH keys to github, first create a ssh key with passphrase and it will be placed in ~/.ssh 
-```
-Pradeeps-MBP:github-repos pradeepgorthi$ ssh-keygen -t rsa -b 4096 -C "my@email.com"
-```
+```bash
+# To generate and add SSH keys to github, first create a ssh key with passphrase and it will be placed in ~/.ssh 
+$ ssh-keygen -t rsa -b 4096 -C "my@email.com"
 
-Run `ssh-agent` in the background
-``` 
-Pradeeps-MBP:github-repos pradeepgorthi$ eval "$(ssh-agent -s)"
-```
+# Run `ssh-agent` in the background
+$ eval "$(ssh-agent -s)"
 
-Create a config file and add the following lines to the file for automatically loading keys and storing passphrase in keychain
-```
-Pradeeps-MBP:github-repos pradeepgorthi$ vi ~/.ssh/config
+# Create a config file and add the following lines to the file for automatically loading keys and storing passphrase in keychain
+$ vi ~/.ssh/config
 Host *
   AddKeysToAgent yes
   UseKeychain yes
   IdentityFile ~/.ssh/id_rsa
-```
 
-Add SSH private key to ssh-agent
-```
-Pradeeps-MBP:github-repos pradeepgorthi$ ssh-add -K ~/.ssh/id_rsa
+# Add SSH private key to ssh-agent
+$ ssh-add -K ~/.ssh/id_rsa
 Enter passphrase for /Users/pradeepgorthi/.ssh/id_rsa:
 Identity added: /Users/pradeepgorthi/.ssh/id_rsa
-```
 
-Copy the public key to add it to GitHub account via the website in the Settings section. 
-```
-Pradeeps-MBP:github-repos pradeepgorthi$ pbcopy < ~/.ssh/id_rsa.pub
-```
+# Copy the public key to add it to GitHub account via the website in the Settings section. 
+$ pbcopy < ~/.ssh/id_rsa.pub
 
-Check if it is working
-```
-Pradeeps-MBP:github-repos pradeepgorthi$ ssh -T git@github.com
+# Check if it is working
+$ ssh -T git@github.com
 The authenticity of host 'github.com (192.30.253.112)' can't be established.
 RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
 Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added 'github.com,192.30.253.112' (RSA) to the list of known hosts.
-Hi deepgorthi! You've successfully authenticated, but GitHub does not provide shell access.
-```
-
-
-## VSCode
-
-After installing VSCode, need to change the user settings to support CloudFormation and easy coding!
-
-Press F1 to search for User settings and open settings.json file to add the following lines. 
-
-```json
-{
-    "python.dataScience.askForKernelRestart": false,
-    "files.autoSave": "afterDelay",
-    "gitlens.views.repositories.files.layout": "tree",
-    "window.zoomLevel": 1,
-    "yaml.schemas": {
-        "file:///Users/pradeepgorthi/.vscode/extensions/docsmsft.docs-yaml-0.2.3/schemas/toc.schema.json": "/toc\\.yml/i"
-    },
-    "yaml.customTags": [
-        "!And",
-        "!If",
-        "!Not",
-        "!Equals",
-        "!Or",
-        "!FindInMap sequence",
-        "!Base64",
-        "!Cidr",
-        "!Ref",
-        "!Sub",
-        "!GetAtt",
-        "!GetAZs",
-        "!ImportValue",
-        "!Select",
-        "!Select sequence",
-        "!Split",
-        "!Join sequence"
-    ],
-    "yaml.format.enable": true,
-    "aws.telemetry": "Disable",
-    "aws.profile": "default",
-    "aws.onDefaultRegionMissing": "add",
-    "indenticator.inner.showHighlight": true,
-}
 ```
