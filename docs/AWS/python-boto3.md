@@ -52,5 +52,21 @@ sqs = boto3.client('sqs')
     - Marshaling all parameters for a particular operation in the correct format (serialization)
     - Signing the request with the correct authentication signature. 
     - Receiving the response and returning the data in native python data structures (deserialization).
--  
+-  Handling higher level abstractions on top of these services is left to the application layer. 
+- Botocore package is mainly data-driven. 
+- Each service has a JSON description which specifies:  
+    - all of the operations the services supports, 
+    - all of the parameters the operations accepts, 
+    - all of the documentaion related to the service,
+    - information about supported regions and endpoints.
+
+## Client vs Resource
+
+|                     Client                     |                    Resource                   |
+|:----------------------------------------------:|:---------------------------------------------:|
+|  - Exposes Botocore clients to developers      |  - Generated from JSON resource descriptions  |
+| - Generated from JSON service descriptions     | - Object-oriented API                         |
+| - Provides low-level service access            | - Identifiers and attributes                  |
+| - Typically maps one-to-one with service API   | - Actions, References, Sub-resources          |
+| - Method names are sname-cases, `list_buckets` | - Collections                                 |
 
