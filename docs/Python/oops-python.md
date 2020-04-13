@@ -124,3 +124,5 @@ print(Employee.num_of_emps)
             return False
         return True
     ```
+
+## Inheritance - Creating Subclasses
