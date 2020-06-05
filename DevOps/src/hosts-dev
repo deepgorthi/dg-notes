@@ -1,0 +1,12 @@
+# hosts-dev
+
+[webservers]
+app1 ansible_host=54.152.194.112
+app2 ansible_host=3.211.181.182
+
+[loadbalancers]
+lb ansible_host=54.89.101.67
+
+[local] 
+control ansible_connection=local
+# above 2 lines code is the way Ansible communicates back to the control host and so this is important

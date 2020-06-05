@@ -1,0 +1,897 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="All things DevOps, Infrastructure, Linux and networking"><link href=https://docs.deepgorthi.com/DevOps/ansible/ rel=canonical><meta name=author content="Pradeep Gorthi"><link rel="shortcut icon" href=../../assets/images/favicon.png><meta name=generator content="mkdocs-1.1.2, mkdocs-material-5.2.2"><title>Ansible - Docs | Pradeep Gorthi</title><link rel=stylesheet href=../../assets/stylesheets/main.a2408e81.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.a46bcfb3.min.css><meta name=theme-color content=#ff7043><link href=https://fonts.gstatic.com rel=preconnect crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style><link rel="preconnect dns-prefetch" href=https://www.google-analytics.com><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-153019680-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview")})</script><script async src=https://www.google-analytics.com/analytics.js></script><style>
+html {scroll-behavior: smooth;}
+</style><meta name=robots content=noindex></head> <body dir=ltr data-md-color-scheme data-md-color-primary=deep-orange data-md-color-accent=deep-orange> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#ansible class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header-nav md-grid" aria-label=Header> <a href=https://docs.deepgorthi.com title="Docs | Pradeep Gorthi" class="md-header-nav__button md-logo" aria-label="Docs | Pradeep Gorthi"> <img src=../../assets/images/icon.png alt=logo> </a> <label class="md-header-nav__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header-nav__title data-md-component=header-title> <div class=md-header-nav__ellipsis> <span class="md-header-nav__topic md-ellipsis"> Docs | Pradeep Gorthi </span> <span class="md-header-nav__topic md-ellipsis"> Ansible </span> </div> </div> <label class="md-header-nav__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear data-md-component=search-reset tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> <div class=md-header-nav__source> <a href=https://deepgorthi.com target=_blank title="Go to repository" class=md-source data-md-source> <div class=md-source__repository> DeepGorthi.com </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://docs.deepgorthi.com title="Docs | Pradeep Gorthi" class="md-nav__button md-logo" aria-label="Docs | Pradeep Gorthi"> <img src=../../assets/images/icon.png alt=logo> </a> Docs | Pradeep Gorthi </label> <div class=md-nav__source> <a href=https://deepgorthi.com target=_blank title="Go to repository" class=md-source data-md-source> <div class=md-source__repository> DeepGorthi.com </div> </a> </div> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. title=Home class=md-nav__link> Home </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-2 type=checkbox id=nav-2> <label class=md-nav__link for=nav-2> AWS <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=AWS data-md-level=1> <label class=md-nav__title for=nav-2> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> AWS </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../AWS/aws-developer-cert/ title="AWS Certfied Developer Associate (DVA-C01)" class=md-nav__link> AWS Certfied Developer Associate (DVA-C01) </a> </li> <li class=md-nav__item> <a href=../../AWS/aws-ecs/ title="Amazon Elastic Container Service" class=md-nav__link> Amazon Elastic Container Service </a> </li> <li class=md-nav__item> <a href=../../AWS/awslogs/ title=AWSLogs class=md-nav__link> AWSLogs </a> </li> <li class=md-nav__item> <a href=../../AWS/ec2-security-groups-notes/ title="EC2 Security Groups" class=md-nav__link> EC2 Security Groups </a> </li> <li class=md-nav__item> <a href=../../AWS/elk-on-ecs/ title="ELK stack on AWS ECS" class=md-nav__link> ELK stack on AWS ECS </a> </li> <li class=md-nav__item> <a href=../../AWS/lambda-programming-model/ title="Lambda Programming Model" class=md-nav__link> Lambda Programming Model </a> </li> <li class=md-nav__item> <a href=../../AWS/python-boto3/ title="Python Boto3" class=md-nav__link> Python Boto3 </a> </li> <li class=md-nav__item> <a href=../../AWS/vpc-best-practices/ title="VPC Best Practices" class=md-nav__link> VPC Best Practices </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-3 type=checkbox id=nav-3> <label class=md-nav__link for=nav-3> CKAD <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=CKAD data-md-level=1> <label class=md-nav__title for=nav-3> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> CKAD </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../CKAD/Containers/ title=Container class=md-nav__link> Container </a> </li> <li class=md-nav__item> <a href=../../CKAD/exam-prep/ title="About the exam" class=md-nav__link> About the exam </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-4 type=checkbox id=nav-4 checked> <label class=md-nav__link for=nav-4> DevOps <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=DevOps data-md-level=1> <label class=md-nav__title for=nav-4> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> DevOps </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> Ansible <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg> </span> </label> <a href=./ title=Ansible class="md-nav__link md-nav__link--active"> Ansible </a> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Table of contents </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=#intro class=md-nav__link> Intro </a> </li> <li class=md-nav__item> <a href=#setup-inventory-machines class=md-nav__link> Setup inventory machines </a> </li> <li class=md-nav__item> <a href=#install-ansible class=md-nav__link> Install Ansible </a> </li> <li class=md-nav__item> <a href=#setup-inventory-file class=md-nav__link> Setup inventory file </a> </li> <li class=md-nav__item> <a href=#ansible-configuration class=md-nav__link> Ansible Configuration </a> </li> <li class=md-nav__item> <a href=#ansible-tasks class=md-nav__link> Ansible Tasks </a> </li> <li class=md-nav__item> <a href=#playbooks class=md-nav__link> Playbooks </a> </li> <li class=md-nav__item> <a href=#roles class=md-nav__link> Roles </a> </li> <li class=md-nav__item> <a href=#check-mode-dry-run class=md-nav__link> Check Mode (Dry run) </a> </li> <li class=md-nav__item> <a href=#error-handling-in-playbooks class=md-nav__link> Error Handling in playbooks </a> </li> <li class=md-nav__item> <a href=#tags class=md-nav__link> Tags </a> </li> <li class=md-nav__item> <a href=#ansible-vault class=md-nav__link> Ansible Vault </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../deployment-processes/ title="Deployment Processes" class=md-nav__link> Deployment Processes </a> </li> <li class=md-nav__item> <a href=../devops-handbook-summary/ title="DevOps Handbook Summary" class=md-nav__link> DevOps Handbook Summary </a> </li> <li class=md-nav__item> <a href=../docker-basics/ title="Docker Basics" class=md-nav__link> Docker Basics </a> </li> <li class=md-nav__item> <a href=../docker-deepdive/ title="Docker Deepdive" class=md-nav__link> Docker Deepdive </a> </li> <li class=md-nav__item> <a href=../docker-tidbits/ title="Docker Tidbits" class=md-nav__link> Docker Tidbits </a> </li> <li class=md-nav__item> <a href=../git-commands-to-know/ title="Git commands to know" class=md-nav__link> Git commands to know </a> </li> <li class=md-nav__item> <a href=../git-process/ title="Git Process" class=md-nav__link> Git Process </a> </li> <li class=md-nav__item> <a href=../google-sre-book-danluu-notes/ title="Notes on Google SRE" class=md-nav__link> Notes on Google SRE </a> </li> <li class=md-nav__item> <a href=../k8s/ title=Kubernetes class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../sre-overview/ title="SRE Overview" class=md-nav__link> SRE Overview </a> </li> <li class=md-nav__item> <a href=../terraform-basics/ title="Terraform Basics" class=md-nav__link> Terraform Basics </a> </li> <li class=md-nav__item> <a href=../twelve-factor-app/ title="Twelve Factor App" class=md-nav__link> Twelve Factor App </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-5 type=checkbox id=nav-5> <label class=md-nav__link for=nav-5> Interview Notes <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label="Interview Notes" data-md-level=1> <label class=md-nav__title for=nav-5> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Interview Notes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Interview%20Notes/ansible/ title=Ansible class=md-nav__link> Ansible </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/aws/ title=AWS class=md-nav__link> AWS </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/behavorial-questions/ title="Behavorial Questions" class=md-nav__link> Behavorial Questions </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/docker/ title=Docker class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/jenkins/ title=Jenkins class=md-nav__link> Jenkins </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/k8s/ title=Kubernetes class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/python/ title=Python class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/terraform/ title=Terraform class=md-nav__link> Terraform </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-6 type=checkbox id=nav-6> <label class=md-nav__link for=nav-6> Linux <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Linux data-md-level=1> <label class=md-nav__title for=nav-6> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Linux </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Linux/support/ title="Support Documentation" class=md-nav__link> Support Documentation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-7 type=checkbox id=nav-7> <label class=md-nav__link for=nav-7> Projects <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Projects data-md-level=1> <label class=md-nav__title for=nav-7> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Projects </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Projects/project1-ci-cd-pipeline-website/ title="CI/CD Pipeline for Website" class=md-nav__link> CI/CD Pipeline for Website </a> </li> <li class=md-nav__item> <a href=../../Projects/project2-elk-aws-ecs/ title="ELK on AWS ECS" class=md-nav__link> ELK on AWS ECS </a> </li> <li class=md-nav__item> <a href=../../Projects/project3-video-sharing/ title="Video Sharing Website" class=md-nav__link> Video Sharing Website </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-8 type=checkbox id=nav-8> <label class=md-nav__link for=nav-8> Python <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Python data-md-level=1> <label class=md-nav__title for=nav-8> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Python </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Python/key-points/ title=Notes class=md-nav__link> Notes </a> </li> <li class=md-nav__item> <a href=../../Python/oops-python/ title="Python Object-Oriented Programming" class=md-nav__link> Python Object-Oriented Programming </a> </li> <li class=md-nav__item> <a href=../../Python/python-virtual-env/ title="VirtualEnv for Python" class=md-nav__link> VirtualEnv for Python </a> </li> <li class=md-nav__item> <a href=../../Python/python-webscraper/ title="Web Scraping" class=md-nav__link> Web Scraping </a> </li> <li class=md-nav__item> <a href=../../Python/useful-python-code/ title="Useful Python Code" class=md-nav__link> Useful Python Code </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-9 type=checkbox id=nav-9> <label class=md-nav__link for=nav-9> Support <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Support data-md-level=1> <label class=md-nav__title for=nav-9> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Support </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Support/grav-website/ title="Grav Website Setup" class=md-nav__link> Grav Website Setup </a> </li> <li class=md-nav__item> <a href=../../Support/hugo-website/ title="Hugo Website Setup" class=md-nav__link> Hugo Website Setup </a> </li> <li class=md-nav__item> <a href=../../Support/jekyll-website/ title="Jekyll Website Setup" class=md-nav__link> Jekyll Website Setup </a> </li> <li class=md-nav__item> <a href=../../Support/mac-setup/ title="MacOS Setup" class=md-nav__link> MacOS Setup </a> </li> <li class=md-nav__item> <a href=../../Support/mkdocs-website/ title="MkDocs Website Setup" class=md-nav__link> MkDocs Website Setup </a> </li> <li class=md-nav__item> <a href=../../Support/ssh-key-pair/ title="SSH Key pair" class=md-nav__link> SSH Key pair </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Table of contents </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=#intro class=md-nav__link> Intro </a> </li> <li class=md-nav__item> <a href=#setup-inventory-machines class=md-nav__link> Setup inventory machines </a> </li> <li class=md-nav__item> <a href=#install-ansible class=md-nav__link> Install Ansible </a> </li> <li class=md-nav__item> <a href=#setup-inventory-file class=md-nav__link> Setup inventory file </a> </li> <li class=md-nav__item> <a href=#ansible-configuration class=md-nav__link> Ansible Configuration </a> </li> <li class=md-nav__item> <a href=#ansible-tasks class=md-nav__link> Ansible Tasks </a> </li> <li class=md-nav__item> <a href=#playbooks class=md-nav__link> Playbooks </a> </li> <li class=md-nav__item> <a href=#roles class=md-nav__link> Roles </a> </li> <li class=md-nav__item> <a href=#check-mode-dry-run class=md-nav__link> Check Mode (Dry run) </a> </li> <li class=md-nav__item> <a href=#error-handling-in-playbooks class=md-nav__link> Error Handling in playbooks </a> </li> <li class=md-nav__item> <a href=#tags class=md-nav__link> Tags </a> </li> <li class=md-nav__item> <a href=#ansible-vault class=md-nav__link> Ansible Vault </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content> <article class="md-content__inner md-typeset"> <h1 id=ansible>Ansible<a class=headerlink href=#ansible title="Permanent link">&para;</a></h1> <h2 id=intro>Intro<a class=headerlink href=#intro title="Permanent link">&para;</a></h2> <ul> <li>Ansible is an open source tool that enables autoamtion, configuration and orchestration of infrastructure. Helps in:<ul> <li>Automation of app deployment</li> <li>Manage multi server systems</li> <li>Reduce complexity</li> </ul> </li> <li>When using Ansible, we build out the entire system in code and store the code in source control. Rollbacks will be available when needed and the code can be shared with other team members. </li> <li>Produces reliable and repeatable systems and reduces human error in spinning up the infrastructure multiple times. </li> <li>Written in <code>Python</code> and the scripting language used is YAML. </li> <li>Commands are sent to nodes (in parallel) via <code>SSH</code> and executed sequentially on each respective node.</li> <li>Ansible can be used in:<ul> <li><em>Mass deployments</em></li> <li>As a configuration management tool to ensure identical environments when <em>scaling</em> to meet demands (during high spikes of traffic)</li> <li><em>Migrating environments</em> from integration, testing and production in a reliable and dependable way. </li> <li><em>Failure prevention</em> - As a tool for reviewing change logs and rolling back applications if failures do occur.</li> </ul> </li> </ul> <p><img alt="Ansible is better" src=../img/ansible-better.png></p> <h2 id=setup-inventory-machines>Setup inventory machines<a class=headerlink href=#setup-inventory-machines title="Permanent link">&para;</a></h2> <ul> <li>Create sandbox servers that will need to be configured and managed.</li> <li>Inventory, child and node servers naming can be used interchangeably.</li> <li>These are the servers we will configure using Ansible.</li> <li>Can create 3 VMs using <a href=../src/setup-env.yml>this</a> template.</li> </ul> <h2 id=install-ansible>Install Ansible<a class=headerlink href=#install-ansible title="Permanent link">&para;</a></h2> <p>Ansible can be installed via pip. <div class=highlight><pre><span></span><code>    $ sudo pip3 install ansible
+    $ ansible --version
+        ansible <span class=m>2</span>.9.2
+        config <span class=nv>file</span> <span class=o>=</span> None
+        configured module search <span class=nv>path</span> <span class=o>=</span> <span class=o>[</span><span class=s1>&#39;~/.ansible/plugins/modules&#39;</span>, <span class=s1>&#39;/usr/share/ansible/plugins/modules&#39;</span><span class=o>]</span>
+        ansible python module <span class=nv>location</span> <span class=o>=</span> /usr/local/lib/python3.7/site-packages/ansible
+        executable <span class=nv>location</span> <span class=o>=</span> /usr/local/bin/ansible
+        python <span class=nv>version</span> <span class=o>=</span> <span class=m>3</span>.7.5 <span class=o>(</span>default, Nov  <span class=m>1</span> <span class=m>2019</span>, <span class=m>02</span>:16:23<span class=o>)</span> <span class=o>[</span>Clang <span class=m>11</span>.0.0 <span class=o>(</span>clang-1100.0.33.8<span class=o>)]</span>
+</code></pre></div></p> <p>To check that the control machine (Laptop) has access to the node VMs, we can SSH into those systems and confirm access to the machines. </p> <div class=highlight><pre><span></span><code>    $ ssh -i ~/.ssh/ansible-2020.pem ec2-user@54.152.194.112
+    $ ssh -i ~/.ssh/ansible-2020.pem ec2-user@3.211.181.182
+    $ ssh -i ~/.ssh/ansible-2020.pem ec2-user@54.89.101.67
+</code></pre></div> <h2 id=setup-inventory-file>Setup inventory file<a class=headerlink href=#setup-inventory-file title="Permanent link">&para;</a></h2> <ul> <li>Ansible must be given information on the inventory servers before we can execute commands on the node machines.</li> <li>The file can either be static or dynamic.<ul> <li><strong>Static inventory file:</strong> <a href=src/hosts-dev>Create</a> an <code>inventory file</code> containing the node/inventory server information. This file lists the hostnames and groups. <div class=highlight><pre><span></span><code><span class=c1># hosts-dev</span>
+
+<span class=o>[</span>webservers<span class=o>]</span>
+<span class=m>54</span>.152.194.112
+<span class=m>3</span>.211.181.182
+
+<span class=o>[</span>loadbalancers<span class=o>]</span>
+lb <span class=nv>ansible_host</span><span class=o>=</span><span class=m>54</span>.89.101.67
+
+<span class=o>[</span>local<span class=o>]</span> 
+control <span class=nv>ansible_connection</span><span class=o>=</span><span class=nb>local</span>
+<span class=c1># above 2 lines code is the way Ansible communicates back to the control host. Also, this tells Ansible not to SSH into it as it is the localhost</span>
+</code></pre></div></li> <li><strong><a href=https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html>Dynamic inventory file:</a></strong> If you use Amazon Web Services EC2, maintaining an inventory file might not be the best approach, because hosts may come and go over time, be managed by external applications, or you might even be using AWS autoscaling. For this reason, you can use the <a href=https://raw.githubusercontent.com/ansible/ansible/devel/contrib/inventory/ec2.py>EC2 external inventory</a> script. You can use this script in one of two ways: <ul> <li>The easiest is to use Ansible’s <code>-i</code> command line option and specify the path to the script after marking it executable: <div class=highlight><pre><span></span><code>    $ ansible -i ec2.py -u ubuntu us-east-1d -m ping
+</code></pre></div></li> <li>The second option is to copy the script to <code>/etc/ansible/hosts</code> and <code>chmod +x</code> it. You must also copy the ec2.ini file to <code>/etc/ansible/ec2.ini</code>. Then you can run ansible as you would normally.</li> </ul> </li> </ul> </li> <li>The inventory file can include inventory specific parameters like non-standard SSH port numbers or aliases using <code>&lt;name&gt; ansible_host=&lt;IP address&gt;</code>.</li> <li>Default Ansible inventory is located in <code>/etc/ansible/hosts</code></li> <li>Reference a different inventory by using <code>-i &lt;path&gt;</code> in CLI. <div class=highlight><pre><span></span><code>$ ansible --list-hosts all -i hosts-dev 
+hosts <span class=o>(</span><span class=m>4</span><span class=o>)</span>:
+    <span class=m>54</span>.152.194.112
+    <span class=m>3</span>.211.181.182
+    lb
+    control
+</code></pre></div></li> </ul> <h2 id=ansible-configuration>Ansible Configuration<a class=headerlink href=#ansible-configuration title="Permanent link">&para;</a></h2> <p>We might need to configure our local Ansible environment with global <a href=https://docs.ansible.com/ansible/latest/reference_appendices/config.html#ansible-configuration-settings>specific properties</a> associated with our setup. - This can be done by creating a configuration file (ansible.cfg) to control the local Ansible environmental settings. - Configuration file will search in the following order: - <code>ANSIBLE_CONFIG</code> (environment variable if set) - <code>ansible.cfg</code> (in the current directory) - <code>~/.ansible.cfg</code> (in the home directory) - <code>/etc/ansible/ansible.cfg</code> (in the default ansible directory) - The ansible.cfg file contains important information like the location of the inventory file, default SSH key to use, default remote users to use with SSH and more.</p> <p><a href=https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html>Patterns</a> can be used to targeted hosts and groups. Here are some examples: <div class=highlight><pre><span></span><code>$ ansible --list-hosts all
+    hosts <span class=o>(</span><span class=m>4</span><span class=o>)</span>:
+        app1
+        app2
+        lb
+        control
+$ ansible --list-hosts app*
+    hosts <span class=o>(</span><span class=m>2</span><span class=o>)</span>:
+        app1
+        app2
+$ ansible --list-hosts <span class=s2>&quot;*&quot;</span>
+    hosts <span class=o>(</span><span class=m>4</span><span class=o>)</span>:
+        app1
+        app2
+        lb
+        control
+$ ansible --list-hosts webservers:loadbalancers
+    hosts <span class=o>(</span><span class=m>3</span><span class=o>)</span>:
+        app1
+        app2
+        lb
+$ ansible --list-hosts <span class=se>\!</span>control
+    hosts <span class=o>(</span><span class=m>3</span><span class=o>)</span>:
+        app1
+        app2
+        lb
+$ ansible --list-hosts webservers:<span class=se>\!</span>app1
+    hosts <span class=o>(</span><span class=m>1</span><span class=o>)</span>:
+        app2
+$ ansible --list-hosts webservers<span class=o>[</span><span class=m>0</span><span class=o>]</span>
+    hosts <span class=o>(</span><span class=m>1</span><span class=o>)</span>:
+        app1
+</code></pre></div></p> <h2 id=ansible-tasks>Ansible Tasks<a class=headerlink href=#ansible-tasks title="Permanent link">&para;</a></h2> <ul> <li>Tasks are a way to run adhoc commands against our inventory in a one-line single executable. </li> <li>Tasks are the basic building blocks of Ansible's execution and configuration. </li> <li>Running <code>AdHoc commands</code> are great for troubleshooting and quick testing against the inventory.</li> <li><a href=https://docs.ansible.com/ansible/latest/modules/modules_by_category.html>Ansible modules</a></li> <li><a href=https://docs.ansible.com/ansible/latest/cli/ansible.html>Ansible command</a></li> <li>Commands consist of command, options and host-pattern. As the remote user and other configuration settings are not specified, it will result in ping failure. <div class=highlight><pre><span></span><code>    $ ansible options &lt;host-pattern&gt; 
+    $ ansible -m ping all
+    <span class=c1># ansible &lt;module-flag&gt; &lt;module-name&gt; &lt;inventory&gt;</span>
+
+        app1 <span class=p>|</span> UNREACHABLE! <span class=o>=</span>&gt; <span class=o>{</span>
+        <span class=s2>&quot;changed&quot;</span>: false,
+        <span class=s2>&quot;msg&quot;</span>: <span class=s2>&quot;Failed to connect to the host via ssh: pradeepgorthi@54.152.194.112: Permission denied (publickey).&quot;</span>,
+        <span class=s2>&quot;unreachable&quot;</span>: <span class=nb>true</span>
+    <span class=o>}</span>
+    app2 <span class=p>|</span> UNREACHABLE! <span class=o>=</span>&gt; <span class=o>{</span>
+        <span class=s2>&quot;changed&quot;</span>: false,
+        <span class=s2>&quot;msg&quot;</span>: <span class=s2>&quot;Failed to connect to the host via ssh: pradeepgorthi@3.211.181.182: Permission denied (publickey).&quot;</span>,
+        <span class=s2>&quot;unreachable&quot;</span>: <span class=nb>true</span>
+    <span class=o>}</span>
+    lb <span class=p>|</span> UNREACHABLE! <span class=o>=</span>&gt; <span class=o>{</span>
+        <span class=s2>&quot;changed&quot;</span>: false,
+        <span class=s2>&quot;msg&quot;</span>: <span class=s2>&quot;Failed to connect to the host via ssh: pradeepgorthi@54.89.101.67: Permission denied (publickey).&quot;</span>,
+        <span class=s2>&quot;unreachable&quot;</span>: <span class=nb>true</span>
+    <span class=o>}</span>
+
+    control <span class=p>|</span> <span class=nv>SUCCESS</span> <span class=o>=</span>&gt; <span class=o>{</span>
+        <span class=s2>&quot;ansible_facts&quot;</span>: <span class=o>{</span>
+            <span class=s2>&quot;discovered_interpreter_python&quot;</span>: <span class=s2>&quot;/usr/bin/python&quot;</span>
+        <span class=o>}</span>,
+        <span class=s2>&quot;changed&quot;</span>: false,
+        <span class=s2>&quot;ping&quot;</span>: <span class=s2>&quot;pong&quot;</span>
+    <span class=o>}</span>
+</code></pre></div></li> <li>The results returned will give the important information about the execution on the end hosts.</li> <li> <p>After adding the <code>remote_user</code>, <code>private_key_file</code> and <code>host_key_checking</code> information in ansible.cfg file, the pings are successful as it now knows which user and ssh keypair to use when logging in. <div class=highlight><pre><span></span><code>$ ansible -m ping all 
+
+    control <span class=p>|</span> <span class=nv>SUCCESS</span> <span class=o>=</span>&gt; <span class=o>{</span>
+        <span class=s2>&quot;ansible_facts&quot;</span>: <span class=o>{</span>
+            <span class=s2>&quot;discovered_interpreter_python&quot;</span>: <span class=s2>&quot;/usr/bin/python&quot;</span>
+        <span class=o>}</span>,
+        <span class=s2>&quot;changed&quot;</span>: false,
+        <span class=s2>&quot;ping&quot;</span>: <span class=s2>&quot;pong&quot;</span>
+    <span class=o>}</span>
+
+    lb <span class=p>|</span> <span class=nv>SUCCESS</span> <span class=o>=</span>&gt; <span class=o>{</span>
+        <span class=s2>&quot;ansible_facts&quot;</span>: <span class=o>{</span>
+            <span class=s2>&quot;discovered_interpreter_python&quot;</span>: <span class=s2>&quot;/usr/bin/python&quot;</span>
+        <span class=o>}</span>,
+        <span class=s2>&quot;changed&quot;</span>: false,
+        <span class=s2>&quot;ping&quot;</span>: <span class=s2>&quot;pong&quot;</span>
+    <span class=o>}</span>
+
+    app1 <span class=p>|</span> <span class=nv>SUCCESS</span> <span class=o>=</span>&gt; <span class=o>{</span>
+        <span class=s2>&quot;ansible_facts&quot;</span>: <span class=o>{</span>
+            <span class=s2>&quot;discovered_interpreter_python&quot;</span>: <span class=s2>&quot;/usr/bin/python&quot;</span>
+        <span class=o>}</span>,
+        <span class=s2>&quot;changed&quot;</span>: false,
+        <span class=s2>&quot;ping&quot;</span>: <span class=s2>&quot;pong&quot;</span>
+    <span class=o>}</span>
+
+    app2 <span class=p>|</span> <span class=nv>SUCCESS</span> <span class=o>=</span>&gt; <span class=o>{</span>
+        <span class=s2>&quot;ansible_facts&quot;</span>: <span class=o>{</span>
+            <span class=s2>&quot;discovered_interpreter_python&quot;</span>: <span class=s2>&quot;/usr/bin/python&quot;</span>
+        <span class=o>}</span>,
+        <span class=s2>&quot;changed&quot;</span>: false,
+        <span class=s2>&quot;ping&quot;</span>: <span class=s2>&quot;pong&quot;</span>
+<span class=o>}</span>
+</code></pre></div></p> </li> <li> <p>We can run shell commands using the following: <div class=highlight><pre><span></span><code>$ ansible -m shell -a <span class=s2>&quot;uname&quot;</span> webservers:loadbalancers
+
+    app1 <span class=p>|</span> CHANGED <span class=p>|</span> <span class=nv>rc</span><span class=o>=</span><span class=m>0</span> &gt;&gt;
+    Linux
+
+    app2 <span class=p>|</span> CHANGED <span class=p>|</span> <span class=nv>rc</span><span class=o>=</span><span class=m>0</span> &gt;&gt;
+    Linux
+
+    lb <span class=p>|</span> CHANGED <span class=p>|</span> <span class=nv>rc</span><span class=o>=</span><span class=m>0</span> &gt;&gt;
+    Linux
+    <span class=c1># rc translates to Return code which is 0 -&gt; successful.</span>
+    <span class=c1># As a command ran on the remote node, status is shown as CHANGED.</span>
+</code></pre></div></p> </li> </ul> <h2 id=playbooks>Playbooks<a class=headerlink href=#playbooks title="Permanent link">&para;</a></h2> <ul> <li>Playbooks are a way to combine ordered processess and manage configuration needed to build out a remote system. </li> <li>Makes configuration management easy and gives us the ability to deploy a multi-machine setup.</li> <li>Playbooks can declare configurations and orchestrate steps and can ensure our remote system is configured as expected when run. </li> <li>The written tasks in playbook can be run synchronously or asynchronously.</li> <li>Gives us the ability to infra as code and manage in source control. </li> </ul> <p>To contruct a system using playbooks: - Package Management - packages the system needs. - package manager - patching - Example playbook: <div class=highlight><pre><span></span><code><span class=nn>---</span>
+  <span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">loadbalancers</span>
+    <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Install apache</span>
+      <span class=nt>yum</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">name=httpd state=latest</span>
+</code></pre></div> - Configuration - configure the system with necessary application files/configuration files needed. - copy files or folders from control machine to nodes - edit configuration files - Example playbook: <div class=highlight><pre><span></span><code><span class=nn>---</span>
+  <span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">loadbalancers</span>
+    <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Copy config file</span>
+      <span class=nt>copy</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">src=./config.cfg dest=/etc/config.cfg</span>
+
+  <span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">webservers</span>
+    <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Sync folders</span>
+      <span class=nt>synchronize</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">src=./app dest=/var/www/html/app</span>
+</code></pre></div> - Service Handlers - we can create service handlers to start, stop or restart out system when changes are made. - command - service - handlers - Example playbook: <div class=highlight><pre><span></span><code><span class=nn>---</span>
+  <span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">loadbalancers</span>
+    <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Configure port number</span>
+      <span class=nt>lineinfile</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">path=/etc/config.cfg regexp=&#39;^port&#39; line=&#39;port=80&#39;</span>
+      <span class=nt>notify</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Restart apache</span>
+<span class=c1># apache will be restarted only if the line is changed to port=80</span>
+    <span class=nt>handlers</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Restart apache</span>
+      <span class=nt>service</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">name=httpd status=restarted</span>
+</code></pre></div></p> <p>To do <code>yum update</code>: <div class=highlight><pre><span></span><code><span class=c1># yum-update.yml</span>
+
+<span class=nn>---</span>
+  <span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">webservers:loadbalancers</span>
+    <span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">true</span> <span class=c1># to become sudo</span>
+    <span class=nt>tasks</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Updating yum packages</span>
+        <span class=nt>yum</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">name=* state=latest</span>
+</code></pre></div></p> <p>To install <code>apache</code> and <code>php</code>: <div class=highlight><pre><span></span><code><span class=c1># install-services.yml</span>
+
+<span class=nn>---</span>
+<span class=c1># install-services.yml</span>
+
+<span class=nn>---</span>
+  <span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">loadbalancers</span>
+    <span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class=nt>tasks</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Installing apache</span>
+        <span class=nt>yum</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">name=httpd state=present</span> <span class=c1># It will check the system to see if apache is already installed, if it is nothing will be done and if it is not, apache will be installed.</span>
+      <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure apache starts</span>
+        <span class=nt>service</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">name=httpd state=started enabled=yes</span>
+
+  <span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">webservers</span>
+    <span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class=nt>tasks</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Installing services</span>
+        <span class=nt>yum</span><span class=p>:</span> 
+          <span class=nt>name</span><span class=p>:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">httpd</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">php</span>
+          <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+      <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure apache starts</span>
+        <span class=nt>service</span><span class=p>:</span> 
+          <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">httpd</span> 
+          <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">started</span> <span class=c1># start httpd service</span>
+          <span class=nt>enabled</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span> <span class=c1># to configure it to start on every boot</span>
+</code></pre></div></p> <div class=highlight><pre><span></span><code>$ ansible-playbook playbooks/install-services.yml 
+
+PLAY <span class=o>[</span>loadbalancers<span class=o>]</span> ***********************************************************************************************************************************************************
+
+TASK <span class=o>[</span>Gathering Facts<span class=o>]</span> *********************************************************************************************************************************************************
+ok: <span class=o>[</span>lb<span class=o>]</span>
+
+TASK <span class=o>[</span>Installing apache<span class=o>]</span> *******************************************************************************************************************************************************
+ok: <span class=o>[</span>lb<span class=o>]</span>
+
+TASK <span class=o>[</span>Ensure apache starts<span class=o>]</span> ****************************************************************************************************************************************************
+changed: <span class=o>[</span>lb<span class=o>]</span>
+
+PLAY <span class=o>[</span>webservers<span class=o>]</span> **************************************************************************************************************************************************************
+
+TASK <span class=o>[</span>Gathering Facts<span class=o>]</span> *********************************************************************************************************************************************************
+ok: <span class=o>[</span>app1<span class=o>]</span>
+ok: <span class=o>[</span>app2<span class=o>]</span>
+
+TASK <span class=o>[</span>Installing services<span class=o>]</span> *****************************************************************************************************************************************************
+ok: <span class=o>[</span>app1<span class=o>]</span>
+ok: <span class=o>[</span>app2<span class=o>]</span>
+
+TASK <span class=o>[</span>Ensure apache starts<span class=o>]</span> ****************************************************************************************************************************************************
+changed: <span class=o>[</span>app1<span class=o>]</span>
+changed: <span class=o>[</span>app2<span class=o>]</span>
+
+PLAY RECAP *********************************************************************************************************************************************************************
+app1                       : <span class=nv>ok</span><span class=o>=</span><span class=m>3</span>    <span class=nv>changed</span><span class=o>=</span><span class=m>1</span>    <span class=nv>unreachable</span><span class=o>=</span><span class=m>0</span>    <span class=nv>failed</span><span class=o>=</span><span class=m>0</span>    <span class=nv>skipped</span><span class=o>=</span><span class=m>0</span>    <span class=nv>rescued</span><span class=o>=</span><span class=m>0</span>    <span class=nv>ignored</span><span class=o>=</span><span class=m>0</span>   
+app2                       : <span class=nv>ok</span><span class=o>=</span><span class=m>3</span>    <span class=nv>changed</span><span class=o>=</span><span class=m>1</span>    <span class=nv>unreachable</span><span class=o>=</span><span class=m>0</span>    <span class=nv>failed</span><span class=o>=</span><span class=m>0</span>    <span class=nv>skipped</span><span class=o>=</span><span class=m>0</span>    <span class=nv>rescued</span><span class=o>=</span><span class=m>0</span>    <span class=nv>ignored</span><span class=o>=</span><span class=m>0</span>   
+lb                         : <span class=nv>ok</span><span class=o>=</span><span class=m>3</span>    <span class=nv>changed</span><span class=o>=</span><span class=m>1</span>    <span class=nv>unreachable</span><span class=o>=</span><span class=m>0</span>    <span class=nv>failed</span><span class=o>=</span><span class=m>0</span>    <span class=nv>skipped</span><span class=o>=</span><span class=m>0</span>    <span class=nv>rescued</span><span class=o>=</span><span class=m>0</span>    <span class=nv>ignored</span><span class=o>=</span><span class=m>0</span>   
+</code></pre></div> <p>To upload files to node servers:</p> <div class=highlight><pre><span></span><code><span class=c1># setup-app.yml</span>
+
+<span class=nn>---</span>
+  <span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">webservers</span>
+    <span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class=nt>tasks</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Upload index file</span>
+        <span class=nt>copy</span><span class=p>:</span> 
+          <span class=nt>src</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">../index.php</span>
+          <span class=nt>dest</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/var/www/html</span>
+          <span class=nt>mode</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">0755</span>
+
+      <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Configure php.ini file</span>
+        <span class=nt>lineinfile</span><span class=p>:</span> <span class=c1># Change a line in a config file matching the regex to the line value.</span>
+          <span class=nt>path</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/php.ini</span>
+          <span class=nt>regexp</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">^short_open_tag</span>
+          <span class=nt>line</span><span class=p>:</span> <span class=s>&#39;short_open_tag=Off&#39;</span>
+        <span class=nt>notify</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restart-apache</span>
+
+      <span class=c1># restart apache</span>
+    <span class=nt>handlers</span><span class=p>:</span>  <span class=c1># Declaring restart apache task as a handler and adding notify in configure task.</span>
+      <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restart-apache</span>
+        <span class=nt>service</span><span class=p>:</span> 
+          <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">httpd</span> 
+          <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restarted</span>
+</code></pre></div> <p>Load balance playbook using the template file: <div class=highlight><pre><span></span><code><span class=c1># setup-lb.yml</span>
+
+<span class=nn>---</span>
+  <span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">loadbalancers</span>
+    <span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class=nt>tasks</span><span class=p>:</span> 
+      <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Creating template</span>
+        <span class=nt>template</span><span class=p>:</span> 
+          <span class=nt>src</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">../config/lb-config.j2</span>
+          <span class=nt>dest</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/httpd/conf.d/lb.conf</span>
+          <span class=nt>owner</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">bin</span>
+          <span class=nt>group</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">wheel</span>
+          <span class=nt>mode</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">064</span>
+        <span class=nt>notify</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restart apache</span>
+
+    <span class=nt>handlers</span><span class=p>:</span>  <span class=c1># Declaring restart apache task as a handler and adding notify in configure task.</span>
+      <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restart apache</span>
+        <span class=nt>service</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">name=httpd state=restarted</span>
+</code></pre></div> Template file to be used by Ansible to dynamically configure the Loadbalancer: <div class=highlight><pre><span></span><code><span class=x># Loadbalancer config that can be read by Ansible is written in Jinja2</span>
+
+<span class=x>ProxyRequests off</span>
+<span class=x>&lt;Proxy balancer://webcluster &gt;</span>
+<span class=x>  </span><span class=cp>{%</span> <span class=k>for</span> <span class=nv>hosts</span> <span class=k>in</span> <span class=nv>groups</span><span class=o>[</span><span class=s1>&#39;webservers&#39;</span><span class=o>]</span> <span class=cp>%}</span><span class=x></span>
+<span class=x>    BalancerMember http://</span><span class=cp>{{</span><span class=nv>hostvars</span><span class=o>[</span><span class=nv>hosts</span><span class=o>][</span><span class=s1>&#39;ansible_host&#39;</span><span class=o>]</span><span class=cp>}}</span><span class=x></span>
+<span class=x>  </span><span class=cp>{%</span> <span class=k>endfor</span> <span class=cp>%}</span><span class=x></span>
+<span class=x>    ProxySet lbmethod=byrequests</span>
+<span class=x>&lt;/Proxy&gt;</span>
+</code></pre></div></p> <p>Running all playbooks in a single file from start to finish for a cleaner approach.</p> <div class=highlight><pre><span></span><code><span class=c1># all-playbooks.yml</span>
+
+<span class=nn>---</span>
+  <span class="p p-Indicator">-</span> <span class=nt>import_playbook</span><span class=p>:</span>  <span class="l l-Scalar l-Scalar-Plain">yum-update.yml</span>
+  <span class="p p-Indicator">-</span> <span class=nt>import_playbook</span><span class=p>:</span>  <span class="l l-Scalar l-Scalar-Plain">install-services.yml</span>
+  <span class="p p-Indicator">-</span> <span class=nt>import_playbook</span><span class=p>:</span>  <span class="l l-Scalar l-Scalar-Plain">setup-app.yml</span>
+  <span class="p p-Indicator">-</span> <span class=nt>import_playbook</span><span class=p>:</span>  <span class="l l-Scalar l-Scalar-Plain">setup-lb.yml</span>
+</code></pre></div> <p>To check status of httpd service:</p> <div class=highlight><pre><span></span><code><span class=c1># check-status.yml</span>
+
+<span class=nn>---</span>
+  <span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">webservers:loadbalancers</span>
+    <span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class=nt>tasks</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Check apache status</span>
+        <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">service httpd status</span>
+</code></pre></div> <p>Ansible provides variables and metadata about the host that we interact with when running playbooks. - During the TASK[Gathering facts] step, variables get populated. - Gathers useful facts about the host and can be used in playbooks. - Use the <code>status</code> module to see all of the facts gathered during TASK[Gathering facts] step. - Uses jinja2 templating to evaluate these expressions. </p> <ul> <li>Example Adhoc command: <div class=highlight><pre><span></span><code>    $ ansible -m setup app1 
+<span class=c1># Gives all the variables associated with it and we can use them in playbooks</span>
+</code></pre></div></li> </ul> <details><summary>$ ansible -m setup app1</summary><div class=highlight><pre><span></span><code>    <span class=err>app</span><span class=mi>1</span> <span class=err>|</span> <span class=err>SUCCESS</span> <span class=err>=&gt;</span> <span class=p>{</span>
+        <span class=nt>&quot;ansible_facts&quot;</span><span class=p>:</span> <span class=p>{</span>
+            <span class=nt>&quot;ansible_all_ipv4_addresses&quot;</span><span class=p>:</span> <span class=p>[</span>
+                <span class=s2>&quot;172.31.94.190&quot;</span>
+            <span class=p>],</span>
+            <span class=nt>&quot;ansible_all_ipv6_addresses&quot;</span><span class=p>:</span> <span class=p>[</span>
+                <span class=s2>&quot;fe80::10f3:50ff:fea3:9151&quot;</span>
+            <span class=p>],</span>
+            <span class=nt>&quot;ansible_apparmor&quot;</span><span class=p>:</span> <span class=p>{</span>
+                <span class=nt>&quot;status&quot;</span><span class=p>:</span> <span class=s2>&quot;disabled&quot;</span>
+            <span class=p>},</span>
+            <span class=nt>&quot;ansible_architecture&quot;</span><span class=p>:</span> <span class=s2>&quot;x86_64&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_bios_date&quot;</span><span class=p>:</span> <span class=s2>&quot;08/24/2006&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_bios_version&quot;</span><span class=p>:</span> <span class=s2>&quot;4.2.amazon&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_cmdline&quot;</span><span class=p>:</span> <span class=p>{</span>
+                <span class=nt>&quot;console&quot;</span><span class=p>:</span> <span class=s2>&quot;ttyS0&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;nvme_core.io_timeout&quot;</span><span class=p>:</span> <span class=s2>&quot;4294967295&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;root&quot;</span><span class=p>:</span> <span class=s2>&quot;LABEL=/&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;selinux&quot;</span><span class=p>:</span> <span class=s2>&quot;0&quot;</span>
+            <span class=p>},</span>
+            <span class=nt>&quot;ansible_date_time&quot;</span><span class=p>:</span> <span class=p>{</span>
+                <span class=nt>&quot;date&quot;</span><span class=p>:</span> <span class=s2>&quot;2019-12-17&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;day&quot;</span><span class=p>:</span> <span class=s2>&quot;17&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;epoch&quot;</span><span class=p>:</span> <span class=s2>&quot;1576552252&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;hour&quot;</span><span class=p>:</span> <span class=s2>&quot;03&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;iso8601&quot;</span><span class=p>:</span> <span class=s2>&quot;2019-12-17T03:10:52Z&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;iso8601_basic&quot;</span><span class=p>:</span> <span class=s2>&quot;20191217T031052467561&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;iso8601_basic_short&quot;</span><span class=p>:</span> <span class=s2>&quot;20191217T031052&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;iso8601_micro&quot;</span><span class=p>:</span> <span class=s2>&quot;2019-12-17T03:10:52.467633Z&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;minute&quot;</span><span class=p>:</span> <span class=s2>&quot;10&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;month&quot;</span><span class=p>:</span> <span class=s2>&quot;12&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;second&quot;</span><span class=p>:</span> <span class=s2>&quot;52&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;time&quot;</span><span class=p>:</span> <span class=s2>&quot;03:10:52&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;tz&quot;</span><span class=p>:</span> <span class=s2>&quot;UTC&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;tz_offset&quot;</span><span class=p>:</span> <span class=s2>&quot;+0000&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;weekday&quot;</span><span class=p>:</span> <span class=s2>&quot;Tuesday&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;weekday_number&quot;</span><span class=p>:</span> <span class=s2>&quot;2&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;weeknumber&quot;</span><span class=p>:</span> <span class=s2>&quot;50&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;year&quot;</span><span class=p>:</span> <span class=s2>&quot;2019&quot;</span>
+            <span class=p>},</span>
+            <span class=nt>&quot;ansible_default_ipv4&quot;</span><span class=p>:</span> <span class=p>{</span>
+                <span class=nt>&quot;address&quot;</span><span class=p>:</span> <span class=s2>&quot;172.31.94.190&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;alias&quot;</span><span class=p>:</span> <span class=s2>&quot;eth0&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;broadcast&quot;</span><span class=p>:</span> <span class=s2>&quot;172.31.95.255&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;gateway&quot;</span><span class=p>:</span> <span class=s2>&quot;172.31.80.1&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;interface&quot;</span><span class=p>:</span> <span class=s2>&quot;eth0&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;macaddress&quot;</span><span class=p>:</span> <span class=s2>&quot;12:f3:50:a3:91:51&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;mtu&quot;</span><span class=p>:</span> <span class=mi>9001</span><span class=p>,</span>
+                <span class=nt>&quot;netmask&quot;</span><span class=p>:</span> <span class=s2>&quot;255.255.240.0&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;network&quot;</span><span class=p>:</span> <span class=s2>&quot;172.31.80.0&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;type&quot;</span><span class=p>:</span> <span class=s2>&quot;ether&quot;</span>
+            <span class=p>},</span>
+            <span class=nt>&quot;ansible_default_ipv6&quot;</span><span class=p>:</span> <span class=p>{},</span>
+            <span class=nt>&quot;ansible_device_links&quot;</span><span class=p>:</span> <span class=p>{</span>
+                <span class=nt>&quot;ids&quot;</span><span class=p>:</span> <span class=p>{},</span>
+                <span class=nt>&quot;labels&quot;</span><span class=p>:</span> <span class=p>{</span>
+                    <span class=nt>&quot;xvda1&quot;</span><span class=p>:</span> <span class=p>[</span>
+                        <span class=s2>&quot;\\x2f&quot;</span>
+                    <span class=p>]</span>
+                <span class=p>},</span>
+                <span class=nt>&quot;masters&quot;</span><span class=p>:</span> <span class=p>{},</span>
+                <span class=nt>&quot;uuids&quot;</span><span class=p>:</span> <span class=p>{</span>
+                    <span class=nt>&quot;xvda1&quot;</span><span class=p>:</span> <span class=p>[</span>
+                        <span class=s2>&quot;1ade993f-5854-45a8-ae15-3d49e5fcbe67&quot;</span>
+                    <span class=p>]</span>
+                <span class=p>}</span>
+            <span class=p>},</span>
+            <span class=nt>&quot;ansible_devices&quot;</span><span class=p>:</span> <span class=p>{</span>
+                <span class=nt>&quot;xvda&quot;</span><span class=p>:</span> <span class=p>{</span>
+                    <span class=nt>&quot;holders&quot;</span><span class=p>:</span> <span class=p>[],</span>
+                    <span class=nt>&quot;host&quot;</span><span class=p>:</span> <span class=s2>&quot;&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;links&quot;</span><span class=p>:</span> <span class=p>{</span>
+                        <span class=nt>&quot;ids&quot;</span><span class=p>:</span> <span class=p>[],</span>
+                        <span class=nt>&quot;labels&quot;</span><span class=p>:</span> <span class=p>[],</span>
+                        <span class=nt>&quot;masters&quot;</span><span class=p>:</span> <span class=p>[],</span>
+                        <span class=nt>&quot;uuids&quot;</span><span class=p>:</span> <span class=p>[]</span>
+                    <span class=p>},</span>
+                    <span class=nt>&quot;model&quot;</span><span class=p>:</span> <span class=kc>null</span><span class=p>,</span>
+                    <span class=nt>&quot;partitions&quot;</span><span class=p>:</span> <span class=p>{</span>
+                        <span class=nt>&quot;xvda1&quot;</span><span class=p>:</span> <span class=p>{</span>
+                            <span class=nt>&quot;holders&quot;</span><span class=p>:</span> <span class=p>[],</span>
+                            <span class=nt>&quot;links&quot;</span><span class=p>:</span> <span class=p>{</span>
+                                <span class=nt>&quot;ids&quot;</span><span class=p>:</span> <span class=p>[],</span>
+                                <span class=nt>&quot;labels&quot;</span><span class=p>:</span> <span class=p>[</span>
+                                    <span class=s2>&quot;\\x2f&quot;</span>
+                                <span class=p>],</span>
+                                <span class=nt>&quot;masters&quot;</span><span class=p>:</span> <span class=p>[],</span>
+                                <span class=nt>&quot;uuids&quot;</span><span class=p>:</span> <span class=p>[</span>
+                                    <span class=s2>&quot;1ade993f-5854-45a8-ae15-3d49e5fcbe67&quot;</span>
+                                <span class=p>]</span>
+                            <span class=p>},</span>
+                            <span class=nt>&quot;sectors&quot;</span><span class=p>:</span> <span class=s2>&quot;16773087&quot;</span><span class=p>,</span>
+                            <span class=nt>&quot;sectorsize&quot;</span><span class=p>:</span> <span class=mi>512</span><span class=p>,</span>
+                            <span class=nt>&quot;size&quot;</span><span class=p>:</span> <span class=s2>&quot;8.00 GB&quot;</span><span class=p>,</span>
+                            <span class=nt>&quot;start&quot;</span><span class=p>:</span> <span class=s2>&quot;4096&quot;</span><span class=p>,</span>
+                            <span class=nt>&quot;uuid&quot;</span><span class=p>:</span> <span class=s2>&quot;1ade993f-5854-45a8-ae15-3d49e5fcbe67&quot;</span>
+                        <span class=p>}</span>
+                    <span class=p>},</span>
+                    <span class=nt>&quot;removable&quot;</span><span class=p>:</span> <span class=s2>&quot;0&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;rotational&quot;</span><span class=p>:</span> <span class=s2>&quot;0&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;sas_address&quot;</span><span class=p>:</span> <span class=kc>null</span><span class=p>,</span>
+                    <span class=nt>&quot;sas_device_handle&quot;</span><span class=p>:</span> <span class=kc>null</span><span class=p>,</span>
+                    <span class=nt>&quot;scheduler_mode&quot;</span><span class=p>:</span> <span class=s2>&quot;noop&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;sectors&quot;</span><span class=p>:</span> <span class=s2>&quot;16777216&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;sectorsize&quot;</span><span class=p>:</span> <span class=s2>&quot;512&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;size&quot;</span><span class=p>:</span> <span class=s2>&quot;8.00 GB&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;support_discard&quot;</span><span class=p>:</span> <span class=s2>&quot;0&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;vendor&quot;</span><span class=p>:</span> <span class=kc>null</span><span class=p>,</span>
+                    <span class=nt>&quot;virtual&quot;</span><span class=p>:</span> <span class=mi>1</span>
+                <span class=p>}</span>
+            <span class=p>},</span>
+            <span class=nt>&quot;ansible_distribution&quot;</span><span class=p>:</span> <span class=s2>&quot;Amazon&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_distribution_file_parsed&quot;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_distribution_file_path&quot;</span><span class=p>:</span> <span class=s2>&quot;/etc/system-release&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_distribution_file_variety&quot;</span><span class=p>:</span> <span class=s2>&quot;Amazon&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_distribution_major_version&quot;</span><span class=p>:</span> <span class=s2>&quot;2018&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_distribution_release&quot;</span><span class=p>:</span> <span class=s2>&quot;NA&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_distribution_version&quot;</span><span class=p>:</span> <span class=s2>&quot;NA&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_dns&quot;</span><span class=p>:</span> <span class=p>{</span>
+                <span class=nt>&quot;nameservers&quot;</span><span class=p>:</span> <span class=p>[</span>
+                    <span class=s2>&quot;172.31.0.2&quot;</span>
+                <span class=p>],</span>
+                <span class=nt>&quot;options&quot;</span><span class=p>:</span> <span class=p>{</span>
+                    <span class=nt>&quot;attempts&quot;</span><span class=p>:</span> <span class=s2>&quot;5&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;timeout&quot;</span><span class=p>:</span> <span class=s2>&quot;2&quot;</span>
+                <span class=p>},</span>
+                <span class=nt>&quot;search&quot;</span><span class=p>:</span> <span class=p>[</span>
+                    <span class=s2>&quot;ec2.internal&quot;</span>
+                <span class=p>]</span>
+            <span class=p>},</span>
+            <span class=nt>&quot;ansible_domain&quot;</span><span class=p>:</span> <span class=s2>&quot;ec2.internal&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_effective_group_id&quot;</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_effective_user_id&quot;</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_env&quot;</span><span class=p>:</span> <span class=p>{</span>
+                <span class=nt>&quot;AWS_AUTO_SCALING_HOME&quot;</span><span class=p>:</span> <span class=s2>&quot;/opt/aws/apitools/as&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;AWS_CLOUDWATCH_HOME&quot;</span><span class=p>:</span> <span class=s2>&quot;/opt/aws/apitools/mon&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;AWS_ELB_HOME&quot;</span><span class=p>:</span> <span class=s2>&quot;/opt/aws/apitools/elb&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;AWS_PATH&quot;</span><span class=p>:</span> <span class=s2>&quot;/opt/aws&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;EC2_AMITOOL_HOME&quot;</span><span class=p>:</span> <span class=s2>&quot;/opt/aws/amitools/ec2&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;EC2_HOME&quot;</span><span class=p>:</span> <span class=s2>&quot;/opt/aws/apitools/ec2&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;HOME&quot;</span><span class=p>:</span> <span class=s2>&quot;/home/ec2-user&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;JAVA_HOME&quot;</span><span class=p>:</span> <span class=s2>&quot;/usr/lib/jvm/jre&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;LANG&quot;</span><span class=p>:</span> <span class=s2>&quot;en_US.UTF-8&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;LESSOPEN&quot;</span><span class=p>:</span> <span class=s2>&quot;||/usr/bin/lesspipe.sh %s&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;LESS_TERMCAP_mb&quot;</span><span class=p>:</span> <span class=s2>&quot;\u001b[01;31m&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;LESS_TERMCAP_md&quot;</span><span class=p>:</span> <span class=s2>&quot;\u001b[01;38;5;208m&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;LESS_TERMCAP_me&quot;</span><span class=p>:</span> <span class=s2>&quot;\u001b[0m&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;LESS_TERMCAP_se&quot;</span><span class=p>:</span> <span class=s2>&quot;\u001b[0m&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;LESS_TERMCAP_ue&quot;</span><span class=p>:</span> <span class=s2>&quot;\u001b[0m&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;LESS_TERMCAP_us&quot;</span><span class=p>:</span> <span class=s2>&quot;\u001b[04;38;5;111m&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;LOGNAME&quot;</span><span class=p>:</span> <span class=s2>&quot;ec2-user&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;MAIL&quot;</span><span class=p>:</span> <span class=s2>&quot;/var/mail/ec2-user&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;PATH&quot;</span><span class=p>:</span> <span class=s2>&quot;/usr/local/bin:/bin:/usr/bin:/opt/aws/bin&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;PWD&quot;</span><span class=p>:</span> <span class=s2>&quot;/home/ec2-user&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;SHELL&quot;</span><span class=p>:</span> <span class=s2>&quot;/bin/bash&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;SHLVL&quot;</span><span class=p>:</span> <span class=s2>&quot;2&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;SSH_CLIENT&quot;</span><span class=p>:</span> <span class=s2>&quot;24.187.17.118 60904 22&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;SSH_CONNECTION&quot;</span><span class=p>:</span> <span class=s2>&quot;24.187.17.118 60904 172.31.94.190 22&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;SSH_TTY&quot;</span><span class=p>:</span> <span class=s2>&quot;/dev/pts/0&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;TERM&quot;</span><span class=p>:</span> <span class=s2>&quot;xterm-256color&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;USER&quot;</span><span class=p>:</span> <span class=s2>&quot;ec2-user&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;_&quot;</span><span class=p>:</span> <span class=s2>&quot;/usr/bin/python&quot;</span>
+            <span class=p>},</span>
+            <span class=nt>&quot;ansible_eth0&quot;</span><span class=p>:</span> <span class=p>{</span>
+                <span class=nt>&quot;active&quot;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+                <span class=nt>&quot;device&quot;</span><span class=p>:</span> <span class=s2>&quot;eth0&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;features&quot;</span><span class=p>:</span> <span class=p>{</span>
+                    <span class=nt>&quot;esp_hw_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;esp_tx_csum_hw_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;fcoe_mtu&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;generic_receive_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;on&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;generic_segmentation_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;on&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;highdma&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;hw_tc_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;l2_fwd_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;large_receive_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;loopback&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;netns_local&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;ntuple_filters&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;receive_hashing&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;rx_all&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;rx_checksumming&quot;</span><span class=p>:</span> <span class=s2>&quot;on [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;rx_fcs&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;rx_udp_tunnel_port_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;rx_vlan_filter&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;rx_vlan_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;rx_vlan_stag_filter&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;rx_vlan_stag_hw_parse&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;scatter_gather&quot;</span><span class=p>:</span> <span class=s2>&quot;on&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tcp_segmentation_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;on&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_checksum_fcoe_crc&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_checksum_ip_generic&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_checksum_ipv4&quot;</span><span class=p>:</span> <span class=s2>&quot;on [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_checksum_ipv6&quot;</span><span class=p>:</span> <span class=s2>&quot;off [requested on]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_checksum_sctp&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_checksumming&quot;</span><span class=p>:</span> <span class=s2>&quot;on&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_esp_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_fcoe_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_gre_csum_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_gre_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_gso_partial&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_gso_robust&quot;</span><span class=p>:</span> <span class=s2>&quot;on [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_ipxip4_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_ipxip6_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_lockless&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_nocache_copy&quot;</span><span class=p>:</span> <span class=s2>&quot;off&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_scatter_gather&quot;</span><span class=p>:</span> <span class=s2>&quot;on&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_scatter_gather_fraglist&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_sctp_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_tcp6_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [requested on]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_tcp_ecn_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_tcp_mangleid_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_tcp_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;on&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_udp_tnl_csum_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_udp_tnl_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_vlan_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_vlan_stag_hw_insert&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;udp_fragmentation_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;off&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;vlan_challenged&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span>
+                <span class=p>},</span>
+                <span class=nt>&quot;hw_timestamp_filters&quot;</span><span class=p>:</span> <span class=p>[],</span>
+                <span class=nt>&quot;ipv4&quot;</span><span class=p>:</span> <span class=p>{</span>
+                    <span class=nt>&quot;address&quot;</span><span class=p>:</span> <span class=s2>&quot;172.31.94.190&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;broadcast&quot;</span><span class=p>:</span> <span class=s2>&quot;172.31.95.255&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;netmask&quot;</span><span class=p>:</span> <span class=s2>&quot;255.255.240.0&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;network&quot;</span><span class=p>:</span> <span class=s2>&quot;172.31.80.0&quot;</span>
+                <span class=p>},</span>
+                <span class=nt>&quot;ipv6&quot;</span><span class=p>:</span> <span class=p>[</span>
+                    <span class=p>{</span>
+                        <span class=nt>&quot;address&quot;</span><span class=p>:</span> <span class=s2>&quot;fe80::10f3:50ff:fea3:9151&quot;</span><span class=p>,</span>
+                        <span class=nt>&quot;prefix&quot;</span><span class=p>:</span> <span class=s2>&quot;64&quot;</span><span class=p>,</span>
+                        <span class=nt>&quot;scope&quot;</span><span class=p>:</span> <span class=s2>&quot;link&quot;</span>
+                    <span class=p>}</span>
+                <span class=p>],</span>
+                <span class=nt>&quot;macaddress&quot;</span><span class=p>:</span> <span class=s2>&quot;12:f3:50:a3:91:51&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;module&quot;</span><span class=p>:</span> <span class=s2>&quot;xen_netfront&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;mtu&quot;</span><span class=p>:</span> <span class=mi>9001</span><span class=p>,</span>
+                <span class=nt>&quot;pciid&quot;</span><span class=p>:</span> <span class=s2>&quot;vif-0&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;promisc&quot;</span><span class=p>:</span> <span class=kc>false</span><span class=p>,</span>
+                <span class=nt>&quot;timestamping&quot;</span><span class=p>:</span> <span class=p>[</span>
+                    <span class=s2>&quot;rx_software&quot;</span><span class=p>,</span>
+                    <span class=s2>&quot;software&quot;</span>
+                <span class=p>],</span>
+                <span class=nt>&quot;type&quot;</span><span class=p>:</span> <span class=s2>&quot;ether&quot;</span>
+            <span class=p>},</span>
+            <span class=nt>&quot;ansible_fibre_channel_wwn&quot;</span><span class=p>:</span> <span class=p>[],</span>
+            <span class=nt>&quot;ansible_fips&quot;</span><span class=p>:</span> <span class=kc>false</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_form_factor&quot;</span><span class=p>:</span> <span class=s2>&quot;Other&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_fqdn&quot;</span><span class=p>:</span> <span class=s2>&quot;ip-172-31-94-190.ec2.internal&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_hostname&quot;</span><span class=p>:</span> <span class=s2>&quot;ip-172-31-94-190&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_hostnqn&quot;</span><span class=p>:</span> <span class=s2>&quot;&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_interfaces&quot;</span><span class=p>:</span> <span class=p>[</span>
+                <span class=s2>&quot;lo&quot;</span><span class=p>,</span>
+                <span class=s2>&quot;eth0&quot;</span>
+            <span class=p>],</span>
+            <span class=nt>&quot;ansible_is_chroot&quot;</span><span class=p>:</span> <span class=kc>false</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_iscsi_iqn&quot;</span><span class=p>:</span> <span class=s2>&quot;&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_kernel&quot;</span><span class=p>:</span> <span class=s2>&quot;4.14.62-65.117.amzn1.x86_64&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_kernel_version&quot;</span><span class=p>:</span> <span class=s2>&quot;#1 SMP Fri Aug 10 20:03:52 UTC 2018&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_lo&quot;</span><span class=p>:</span> <span class=p>{</span>
+                <span class=nt>&quot;active&quot;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+                <span class=nt>&quot;device&quot;</span><span class=p>:</span> <span class=s2>&quot;lo&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;features&quot;</span><span class=p>:</span> <span class=p>{</span>
+                    <span class=nt>&quot;esp_hw_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;esp_tx_csum_hw_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;fcoe_mtu&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;generic_receive_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;on&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;generic_segmentation_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;on&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;highdma&quot;</span><span class=p>:</span> <span class=s2>&quot;on [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;hw_tc_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;l2_fwd_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;large_receive_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;loopback&quot;</span><span class=p>:</span> <span class=s2>&quot;on [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;netns_local&quot;</span><span class=p>:</span> <span class=s2>&quot;on [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;ntuple_filters&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;receive_hashing&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;rx_all&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;rx_checksumming&quot;</span><span class=p>:</span> <span class=s2>&quot;on [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;rx_fcs&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;rx_udp_tunnel_port_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;rx_vlan_filter&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;rx_vlan_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;rx_vlan_stag_filter&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;rx_vlan_stag_hw_parse&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;scatter_gather&quot;</span><span class=p>:</span> <span class=s2>&quot;on&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tcp_segmentation_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;on&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_checksum_fcoe_crc&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_checksum_ip_generic&quot;</span><span class=p>:</span> <span class=s2>&quot;on [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_checksum_ipv4&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_checksum_ipv6&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_checksum_sctp&quot;</span><span class=p>:</span> <span class=s2>&quot;on [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_checksumming&quot;</span><span class=p>:</span> <span class=s2>&quot;on&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_esp_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_fcoe_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_gre_csum_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_gre_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_gso_partial&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_gso_robust&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_ipxip4_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_ipxip6_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_lockless&quot;</span><span class=p>:</span> <span class=s2>&quot;on [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_nocache_copy&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_scatter_gather&quot;</span><span class=p>:</span> <span class=s2>&quot;on [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_scatter_gather_fraglist&quot;</span><span class=p>:</span> <span class=s2>&quot;on [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_sctp_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;on&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_tcp6_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;on&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_tcp_ecn_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;on&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_tcp_mangleid_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;on&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_tcp_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;on&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_udp_tnl_csum_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_udp_tnl_segmentation&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_vlan_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;tx_vlan_stag_hw_insert&quot;</span><span class=p>:</span> <span class=s2>&quot;off [fixed]&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;udp_fragmentation_offload&quot;</span><span class=p>:</span> <span class=s2>&quot;off&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;vlan_challenged&quot;</span><span class=p>:</span> <span class=s2>&quot;on [fixed]&quot;</span>
+                <span class=p>},</span>
+                <span class=nt>&quot;hw_timestamp_filters&quot;</span><span class=p>:</span> <span class=p>[],</span>
+                <span class=nt>&quot;ipv4&quot;</span><span class=p>:</span> <span class=p>{</span>
+                    <span class=nt>&quot;address&quot;</span><span class=p>:</span> <span class=s2>&quot;127.0.0.1&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;broadcast&quot;</span><span class=p>:</span> <span class=s2>&quot;host&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;netmask&quot;</span><span class=p>:</span> <span class=s2>&quot;255.0.0.0&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;network&quot;</span><span class=p>:</span> <span class=s2>&quot;127.0.0.0&quot;</span>
+                <span class=p>},</span>
+                <span class=nt>&quot;ipv6&quot;</span><span class=p>:</span> <span class=p>[</span>
+                    <span class=p>{</span>
+                        <span class=nt>&quot;address&quot;</span><span class=p>:</span> <span class=s2>&quot;::1&quot;</span><span class=p>,</span>
+                        <span class=nt>&quot;prefix&quot;</span><span class=p>:</span> <span class=s2>&quot;128&quot;</span><span class=p>,</span>
+                        <span class=nt>&quot;scope&quot;</span><span class=p>:</span> <span class=s2>&quot;host&quot;</span>
+                    <span class=p>}</span>
+                <span class=p>],</span>
+                <span class=nt>&quot;mtu&quot;</span><span class=p>:</span> <span class=mi>65536</span><span class=p>,</span>
+                <span class=nt>&quot;promisc&quot;</span><span class=p>:</span> <span class=kc>false</span><span class=p>,</span>
+                <span class=nt>&quot;timestamping&quot;</span><span class=p>:</span> <span class=p>[</span>
+                    <span class=s2>&quot;tx_software&quot;</span><span class=p>,</span>
+                    <span class=s2>&quot;rx_software&quot;</span><span class=p>,</span>
+                    <span class=s2>&quot;software&quot;</span>
+                <span class=p>],</span>
+                <span class=nt>&quot;type&quot;</span><span class=p>:</span> <span class=s2>&quot;loopback&quot;</span>
+            <span class=p>},</span>
+            <span class=nt>&quot;ansible_local&quot;</span><span class=p>:</span> <span class=p>{},</span>
+            <span class=nt>&quot;ansible_lsb&quot;</span><span class=p>:</span> <span class=p>{},</span>
+            <span class=nt>&quot;ansible_machine&quot;</span><span class=p>:</span> <span class=s2>&quot;x86_64&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_machine_id&quot;</span><span class=p>:</span> <span class=s2>&quot;fef67c45adfb1d65225893255df2b04b&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_memfree_mb&quot;</span><span class=p>:</span> <span class=mi>224</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_memory_mb&quot;</span><span class=p>:</span> <span class=p>{</span>
+                <span class=nt>&quot;nocache&quot;</span><span class=p>:</span> <span class=p>{</span>
+                    <span class=nt>&quot;free&quot;</span><span class=p>:</span> <span class=mi>868</span><span class=p>,</span>
+                    <span class=nt>&quot;used&quot;</span><span class=p>:</span> <span class=mi>117</span>
+                <span class=p>},</span>
+                <span class=nt>&quot;real&quot;</span><span class=p>:</span> <span class=p>{</span>
+                    <span class=nt>&quot;free&quot;</span><span class=p>:</span> <span class=mi>224</span><span class=p>,</span>
+                    <span class=nt>&quot;total&quot;</span><span class=p>:</span> <span class=mi>985</span><span class=p>,</span>
+                    <span class=nt>&quot;used&quot;</span><span class=p>:</span> <span class=mi>761</span>
+                <span class=p>},</span>
+                <span class=nt>&quot;swap&quot;</span><span class=p>:</span> <span class=p>{</span>
+                    <span class=nt>&quot;cached&quot;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span>
+                    <span class=nt>&quot;free&quot;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span>
+                    <span class=nt>&quot;total&quot;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span>
+                    <span class=nt>&quot;used&quot;</span><span class=p>:</span> <span class=mi>0</span>
+                <span class=p>}</span>
+            <span class=p>},</span>
+            <span class=nt>&quot;ansible_memtotal_mb&quot;</span><span class=p>:</span> <span class=mi>985</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_mounts&quot;</span><span class=p>:</span> <span class=p>[</span>
+                <span class=p>{</span>
+                    <span class=nt>&quot;block_available&quot;</span><span class=p>:</span> <span class=mi>1632826</span><span class=p>,</span>
+                    <span class=nt>&quot;block_size&quot;</span><span class=p>:</span> <span class=mi>4096</span><span class=p>,</span>
+                    <span class=nt>&quot;block_total&quot;</span><span class=p>:</span> <span class=mi>2030953</span><span class=p>,</span>
+                    <span class=nt>&quot;block_used&quot;</span><span class=p>:</span> <span class=mi>398127</span><span class=p>,</span>
+                    <span class=nt>&quot;device&quot;</span><span class=p>:</span> <span class=s2>&quot;/dev/xvda1&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;fstype&quot;</span><span class=p>:</span> <span class=s2>&quot;ext4&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;inode_available&quot;</span><span class=p>:</span> <span class=mi>483722</span><span class=p>,</span>
+                    <span class=nt>&quot;inode_total&quot;</span><span class=p>:</span> <span class=mi>524288</span><span class=p>,</span>
+                    <span class=nt>&quot;inode_used&quot;</span><span class=p>:</span> <span class=mi>40566</span><span class=p>,</span>
+                    <span class=nt>&quot;mount&quot;</span><span class=p>:</span> <span class=s2>&quot;/&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;options&quot;</span><span class=p>:</span> <span class=s2>&quot;rw,noatime,data=ordered&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;size_available&quot;</span><span class=p>:</span> <span class=mi>6688055296</span><span class=p>,</span>
+                    <span class=nt>&quot;size_total&quot;</span><span class=p>:</span> <span class=mi>8318783488</span><span class=p>,</span>
+                    <span class=nt>&quot;uuid&quot;</span><span class=p>:</span> <span class=s2>&quot;1ade993f-5854-45a8-ae15-3d49e5fcbe67&quot;</span>
+                <span class=p>}</span>
+            <span class=p>],</span>
+            <span class=nt>&quot;ansible_nodename&quot;</span><span class=p>:</span> <span class=s2>&quot;ip-172-31-94-190&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_os_family&quot;</span><span class=p>:</span> <span class=s2>&quot;RedHat&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_pkg_mgr&quot;</span><span class=p>:</span> <span class=s2>&quot;yum&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_proc_cmdline&quot;</span><span class=p>:</span> <span class=p>{</span>
+                <span class=nt>&quot;console&quot;</span><span class=p>:</span> <span class=p>[</span>
+                    <span class=s2>&quot;tty1&quot;</span><span class=p>,</span>
+                    <span class=s2>&quot;ttyS0&quot;</span>
+                <span class=p>],</span>
+                <span class=nt>&quot;nvme_core.io_timeout&quot;</span><span class=p>:</span> <span class=s2>&quot;4294967295&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;root&quot;</span><span class=p>:</span> <span class=s2>&quot;LABEL=/&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;selinux&quot;</span><span class=p>:</span> <span class=s2>&quot;0&quot;</span>
+            <span class=p>},</span>
+            <span class=nt>&quot;ansible_processor&quot;</span><span class=p>:</span> <span class=p>[</span>
+                <span class=s2>&quot;0&quot;</span><span class=p>,</span>
+                <span class=s2>&quot;GenuineIntel&quot;</span><span class=p>,</span>
+                <span class=s2>&quot;Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz&quot;</span>
+            <span class=p>],</span>
+            <span class=nt>&quot;ansible_processor_cores&quot;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_processor_count&quot;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_processor_threads_per_core&quot;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_processor_vcpus&quot;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_product_name&quot;</span><span class=p>:</span> <span class=s2>&quot;HVM domU&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_product_serial&quot;</span><span class=p>:</span> <span class=s2>&quot;NA&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_product_uuid&quot;</span><span class=p>:</span> <span class=s2>&quot;NA&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_product_version&quot;</span><span class=p>:</span> <span class=s2>&quot;4.2.amazon&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_python&quot;</span><span class=p>:</span> <span class=p>{</span>
+                <span class=nt>&quot;executable&quot;</span><span class=p>:</span> <span class=s2>&quot;/usr/bin/python&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;has_sslcontext&quot;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+                <span class=nt>&quot;type&quot;</span><span class=p>:</span> <span class=s2>&quot;CPython&quot;</span><span class=p>,</span>
+                <span class=nt>&quot;version&quot;</span><span class=p>:</span> <span class=p>{</span>
+                    <span class=nt>&quot;major&quot;</span><span class=p>:</span> <span class=mi>2</span><span class=p>,</span>
+                    <span class=nt>&quot;micro&quot;</span><span class=p>:</span> <span class=mi>16</span><span class=p>,</span>
+                    <span class=nt>&quot;minor&quot;</span><span class=p>:</span> <span class=mi>7</span><span class=p>,</span>
+                    <span class=nt>&quot;releaselevel&quot;</span><span class=p>:</span> <span class=s2>&quot;final&quot;</span><span class=p>,</span>
+                    <span class=nt>&quot;serial&quot;</span><span class=p>:</span> <span class=mi>0</span>
+                <span class=p>},</span>
+                <span class=nt>&quot;version_info&quot;</span><span class=p>:</span> <span class=p>[</span>
+                    <span class=mi>2</span><span class=p>,</span>
+                    <span class=mi>7</span><span class=p>,</span>
+                    <span class=mi>16</span><span class=p>,</span>
+                    <span class=s2>&quot;final&quot;</span><span class=p>,</span>
+                    <span class=mi>0</span>
+                <span class=p>]</span>
+            <span class=p>},</span>
+            <span class=nt>&quot;ansible_python_version&quot;</span><span class=p>:</span> <span class=s2>&quot;2.7.16&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_real_group_id&quot;</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_real_user_id&quot;</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_selinux&quot;</span><span class=p>:</span> <span class=p>{</span>
+                <span class=nt>&quot;status&quot;</span><span class=p>:</span> <span class=s2>&quot;Missing selinux Python library&quot;</span>
+            <span class=p>},</span>
+            <span class=nt>&quot;ansible_selinux_python_present&quot;</span><span class=p>:</span> <span class=kc>false</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_service_mgr&quot;</span><span class=p>:</span> <span class=s2>&quot;upstart&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_ssh_host_key_dsa_public&quot;</span><span class=p>:</span> <span class=s2>&quot;AAAAB3NzaC1kc3MAAACBAKmcc4NBxWTiOqX/jdg01Ywl1xYmHKFES13l3gPDstl1jOkFkCjJTZhY1hnCywOXC/yYWd1dlBAf3U1rnrGsEWG98/gGHamBsR6ykuPe2pxI9znh46V1xYpRpY1RfjZZ/8D7aEPHXIBDpCsUxHlF41gvX2EhVpIIioJeOwF5uz8zAAAAFQCRBwQz9E5URC/umtsp+si9VNsGjwAAAIBpxNzHbhGIab4+YpLc1Mt1EucWH202OcaYPHN8Rzyxx0BMp4Pqh0yvlAo8tfwOzDUxVYCPimSzXKRHwobeXy/hmv9DMekUT+DYFFSpDYTQn23rurihuHxTM3StGourHhq3iTk00B+X1qKF69V9O1HwPKR8VYbQnSNgnJ81NdJN6AAAAIAc+TnOyu3TXLHw0IXJEPmUqi2sOBgHNEWbtqEybhFIJKmXGrfYF6CPJLlwdtd0rIR3iPz0du1CKvBXAKY50+y29v8gDHTQdYbnDLeYxqpMf+xFEjfuSU3rmbRA/ealoG3P+dpR5DhhOuIN1beRMZFarArqtMBmTRiCqAioRIEz5A==&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_ssh_host_key_ecdsa_public&quot;</span><span class=p>:</span> <span class=s2>&quot;AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI95vsHxkXdL4JjueQ/F8E7tfr5dUhH8kdvnnXiu0QvEKo8wJVV6cBGnBKuvckEesAoOc+55QWwn8RviHp/LfyU=&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_ssh_host_key_ed25519_public&quot;</span><span class=p>:</span> <span class=s2>&quot;AAAAC3NzaC1lZDI1NTE5AAAAIBCcSbXTmYudwPkmhmShysni/n0CRfdcPvY9l6NN095B&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_ssh_host_key_rsa_public&quot;</span><span class=p>:</span> <span class=s2>&quot;AAAAB3NzaC1yc2EAAAADAQABAAABAQDn03D+cJVjB7XOMu62K7xTTwoYNeMWa2lSmgoFJSlxvCYw9eCqlt1XPFAAoHmlYvBhPmCXATu2v6f1XWQRaD4VYR1uopDh6Ku9WhBOyYk5FGkJWgyM5Vm+TTrd6Btx5d/+w8tWUIT1BQ4V0pQYSeYRwZilfs+AA8mYRFrlf6+Bqvzn1hGGlRnC5PD4JTbjCT6ys22Il1RSIwWYHtx+zHfCJTrcP8qUcYB9mftJspWrwyOSw1zTCQBs8yQazlxLlzy3XsGK8zgJEtA5vQvosibPGYckfp/TM7SIYzY/pLz2IhQiaeHwdmInlvvSssUlJ6taTBiLga7LDQDmDH7G9sLn&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_swapfree_mb&quot;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_swaptotal_mb&quot;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_system&quot;</span><span class=p>:</span> <span class=s2>&quot;Linux&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_system_capabilities&quot;</span><span class=p>:</span> <span class=p>[</span>
+                <span class=s2>&quot;&quot;</span>
+            <span class=p>],</span>
+            <span class=nt>&quot;ansible_system_capabilities_enforced&quot;</span><span class=p>:</span> <span class=s2>&quot;True&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_system_vendor&quot;</span><span class=p>:</span> <span class=s2>&quot;Xen&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_uptime_seconds&quot;</span><span class=p>:</span> <span class=mi>11917</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_user_dir&quot;</span><span class=p>:</span> <span class=s2>&quot;/home/ec2-user&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_user_gecos&quot;</span><span class=p>:</span> <span class=s2>&quot;EC2 Default User&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_user_gid&quot;</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_user_id&quot;</span><span class=p>:</span> <span class=s2>&quot;ec2-user&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_user_shell&quot;</span><span class=p>:</span> <span class=s2>&quot;/bin/bash&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_user_uid&quot;</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_userspace_architecture&quot;</span><span class=p>:</span> <span class=s2>&quot;x86_64&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_userspace_bits&quot;</span><span class=p>:</span> <span class=s2>&quot;64&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_virtualization_role&quot;</span><span class=p>:</span> <span class=s2>&quot;guest&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;ansible_virtualization_type&quot;</span><span class=p>:</span> <span class=s2>&quot;xen&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;discovered_interpreter_python&quot;</span><span class=p>:</span> <span class=s2>&quot;/usr/bin/python&quot;</span><span class=p>,</span>
+            <span class=nt>&quot;gather_subset&quot;</span><span class=p>:</span> <span class=p>[</span>
+                <span class=s2>&quot;all&quot;</span>
+            <span class=p>],</span>
+            <span class=nt>&quot;module_setup&quot;</span><span class=p>:</span> <span class=kc>true</span>
+        <span class=p>},</span>
+        <span class=nt>&quot;changed&quot;</span><span class=p>:</span> <span class=kc>false</span>
+    <span class=p>}</span>
+</code></pre></div> </details> <ul> <li> <p>Example playbook: <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Add webserver info</span>
+  <span class=nt>copy</span><span class=p>:</span> 
+    <span class=nt>dest</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/var/www/html/info.php</span>
+    <span class=nt>content</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>ansible_hostname</span><span class=nv> </span><span class=s>}}&quot;</span>
+</code></pre></div></p> </li> <li> <p>We can create local variables within the playbooks. </p> <ul> <li>Create playbook variables using <code>vars</code> to create key/value pairs and dictionary/map of variables. </li> <li>Can reference variables directly in playbooks. </li> <li>Can create variable files and import them into the playbooks.</li> <li>Example playbook: <div class=highlight><pre><span></span><code><span class=nt>vars</span><span class=p>:</span>
+    <span class=nt>html_path</span><span class=p>:</span> <span class=s>&quot;/var/www/html&quot;</span>
+    <span class=nt>new_var</span><span class=p>:</span> <span class=s>&quot;repeated</span><span class=nv> </span><span class=s>information&quot;</span>
+
+<span class=nt>tasks</span><span class=p>:</span>
+  <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Add webserver information</span>
+    <span class=nt>copy</span><span class=p>:</span>
+      <span class=nt>dest</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>html_path</span><span class=nv> </span><span class=s>}}/info.php&quot;</span>
+      <span class=nt>content</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>new_var</span><span class=nv> </span><span class=s>}}&quot;</span>
+</code></pre></div></li> </ul> </li> <li> <p>Ansible also gives us the ability to <code>register</code> variables from tasks that run to get information about its execution. </p> <ul> <li>Create variables from info returned from tasks ran using <code>register</code>.</li> <li>Call registered variables for later use. </li> <li>Use <code>debug</code> module anytime to see variables and debug our playbooks.</li> <li>Example playbook: <div class=highlight><pre><span></span><code><span class=nt>vars</span><span class=p>:</span>
+    <span class=nt>html_path</span><span class=p>:</span> <span class=s>&quot;/var/www/html&quot;</span>
+
+<span class=nt>tasks</span><span class=p>:</span>
+  <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">See directory contents</span>
+    <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ls -la {{ html_path }}</span>
+    <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">dir_contents</span>  <span class=c1># Output/information of execution of the above command is stored in this variable</span>
+
+  <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Debug dir contents</span>
+    <span class=nt>debug</span><span class=p>:</span>
+      <span class=nt>msg</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>dir_contents</span><span class=nv> </span><span class=s>}}&quot;</span>
+</code></pre></div></li> </ul> </li> <li> <p><a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html>Variables</a> can also be stored and used from command line, variables in external files or in inventory files. </p> </li> </ul> <h2 id=roles>Roles<a class=headerlink href=#roles title="Permanent link">&para;</a></h2> <ul> <li>Ansible provides <a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html>roles framework</a> that makes each part of variables, tasks, templates and modules fully independent. </li> <li>Helps group tasks together in a way that is self containing.</li> <li>Clean and predefined directory structure.</li> <li>Break up the configurations into files. </li> <li>Re-use code by others who need similar configurations. </li> <li>Easy to modify and reduces syntax errors. </li> <li>Ansible <a href=https://galaxy.ansible.com/ >helps in creating</a> the directory structure using <code>ansible-galaxy init &lt;dir_path&gt;</code></li> </ul> <details><summary>ansible-galaxy init |dir_path|</summary><div class=highlight><pre><span></span><code>$ ansible-galaxy init roles/webservers
+    roles/
+    └── webservers
+        ├── README.md
+        ├── defaults
+        │   └── main.yml
+        ├── files
+        ├── handlers
+        │   └── main.yml
+        ├── meta
+        │   └── main.yml
+        ├── tasks
+        │   └── main.yml
+        ├── templates
+        ├── tests
+        │   ├── inventory
+        │   └── test.yml
+        └── vars
+            └── main.yml
+
+    .
+    ├── ansible.cfg
+    ├── hosts-dev
+    ├── index.php
+    ├── roles
+    │   └── webservers
+    │       ├── README.md
+    │       ├── defaults
+    │       │   └── main.yml
+    │       ├── files
+    │       │   └── index.php
+    │       ├── handlers
+    │       │   └── main.yml
+    │       ├── meta
+    │       │   └── main.yml
+    │       ├── tasks
+    │       │   └── main.yml
+    │       ├── templates
+    │       ├── tests
+    │       │   ├── inventory
+    │       │   └── test.yml
+    │       └── vars
+    │           └── main.yml
+    └── setup-app.yml
+
+    # ansible.cfg
+
+    [defaults]
+    inventory = ./hosts-dev
+    remote_user = ec2-user
+    private_key_file = ~/.ssh/ansible-2020.pem
+    host_key_checking = False
+
+
+    # hosts-dev
+
+    [webservers]
+    app1 ansible_host=54.152.194.112
+    app2 ansible_host=3.211.181.182
+
+    [loadbalancers]
+    lb ansible_host=54.89.101.67
+
+    [local] 
+    control ansible_connection=local
+    # above 2 lines code is the way Ansible communicates back to the control host and so this is important
+
+
+    # index.php
+
+    &lt;?php
+        echo &quot;&lt;h1&gt;Hello, World! This is my Ansible page.&lt;/h1&gt;&quot;;
+    ?&gt;
+
+
+    # setup-app.yml
+
+    ---
+    - hosts: webservers
+        become: true
+        roles:
+        - webservers
+</code></pre></div> </details> <h2 id=check-mode-dry-run>Check Mode (Dry run)<a class=headerlink href=#check-mode-dry-run title="Permanent link">&para;</a></h2> <ul> <li>Reports changes that Ansible would have to make on the end hosts rather than applying the changes. </li> <li>Commands are run without affecting the remote system and reports changes.</li> <li>Great for one node at a time and used for basic configuration management use cases. <div class=highlight><pre><span></span><code>$ ansible-playbook setup-app.yml --check
+</code></pre></div></li> </ul> <h2 id=error-handling-in-playbooks>Error Handling in playbooks<a class=headerlink href=#error-handling-in-playbooks title="Permanent link">&para;</a></h2> <ul> <li>Change the default behavior of Ansible when certain events happen that may or may not need to report as a failure or changed status.</li> <li>Sometimes non-zero exit code is fine.</li> <li>Sometimes commands might not need to report a changed status. </li> <li>Explicitly force Ansible to ignore errors or changes that occur. </li> </ul> <div class="admonition note"> <p><em>Shell Module and Command Module always return a changed status when run and even when no changes are made to the node server</em></p> </div> <div class=highlight><pre><span></span><code><span class=c1># check-status.yml</span>
+<span class=nn>---</span>
+  <span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">webservers:loadbalancers</span>
+    <span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class=nt>tasks</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Check apache status</span>
+        <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">service httpd status</span>
+        <span class=nt>changed_when</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> <span class=c1># Ignores if changes occur</span>
+
+      <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">this will not fail</span>
+        <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/bin/false</span> <span class=c1># always returns non-zero exit code (fail status)</span>
+        <span class=nt>ignore_errors</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span> <span class=c1># Ignore errors</span>
+</code></pre></div> <h2 id=tags>Tags<a class=headerlink href=#tags title="Permanent link">&para;</a></h2> <ul> <li>Assigning tags to specific tasks in playbooks allows you to only call certain tasks in a very long playbook. </li> <li>It only runs specific parts of a playbook rather than all of the plays.</li> <li>Add tags to any tasks and re-use if needed. </li> <li>Specify the tags you want to run (or not to) on the command line. </li> <li>After adding <code>tags: &lt;tag_name&gt;</code> to any of the tasks, it can be called (or not) using: <div class=highlight><pre><span></span><code>$ ansible-playbook setup-app.yml --tags &lt;tag_name&gt;
+$ ansible-playbook setup-app.yml --skip-tags &lt;tag_name&gt;
+</code></pre></div></li> </ul> <h2 id=ansible-vault>Ansible Vault<a class=headerlink href=#ansible-vault title="Permanent link">&para;</a></h2> <ul> <li>Ansible vault is a way to keep sensitive information in encrypted files and not plain text in playbooks. </li> <li>Keeps passwords, keys and other sensitive variables in encrypted vault files. </li> <li>Vault files can be shared through source control. </li> <li>Password protected and default cipher is AES. </li> <li>Encrypted data file can be created using: <div class=highlight><pre><span></span><code>$ ansible-vault create secret-variables.yml <span class=c1># create encrypted file</span>
+$ ansible-vault edit secret-variables.yml <span class=c1># edit encrypted file</span>
+$ ansible-playbook setup-app.yml --ask-vault-pass <span class=c1># prompt for password to use the encrypted secret variables file</span>
+</code></pre></div></li> </ul> <hr> <div class=md-source-date> <small> Last update: December 17, 2019 </small> </div> </article> </div> </div> </main> <!-- Application footer --> <footer class=md-footer> <!-- Link to previous and/or next page --> <div class=md-footer-nav> <nav class="md-footer-nav__inner md-grid"> <!-- Link to previous page --> <a href=../../CKAD/exam-prep/ title="About the exam" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel=prev> <div class="md-flex__cell md-flex__cell--shrink"> <i class="md-icon md-icon--arrow-back
+                    md-footer-nav__button"></i> </div> <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title"> <span class=md-flex__ellipsis> <span class=md-footer-nav__direction> Previous </span> About the exam </span> </div> </a> <!-- Link to next page --> <a href=../deployment-processes/ title="Deployment Processes" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel=next> <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title"> <span class=md-flex__ellipsis> <span class=md-footer-nav__direction> Next </span> Deployment Processes </span> </div> <div class="md-flex__cell md-flex__cell--shrink"> <i class="md-icon md-icon--arrow-forward
+                    md-footer-nav__button"></i> </div> </a> </nav> </div> <!-- Further information --> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <!-- Copyright and theme information --> <div class=md-footer-copyright> </div> <!-- Social links --> <div class=md-footer-social> <link rel=stylesheet href=../../assets/fonts/font-awesome.css> <a href=https://github.com/deepgorthi target=_blank class="md-footer-social__link fa fa-github"></a> <a href=https://twitter.com/deepgorthi target=_blank class="md-footer-social__link fa fa-twitter"></a> <a href=https://linkedin.com/in/deepgorthi target=_blank class="md-footer-social__link fa fa-linkedin"></a> <a href=https://resume.deepgorthi.com target=_blank class="md-footer-social__link fa fa-address-book"></a> <a href=https://deepgorthi.com target=_blank class="md-footer-social__link fa fa-globe"></a> </div> </div> </div> </footer> </div> <script src=../../assets/javascripts/vendor.d710d30a.min.js></script> <script src=../../assets/javascripts/bundle.5f27aba8.min.js></script><script id=__lang type=application/json>{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script> <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.27c6a5e6.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script> </body> </html>

@@ -1,0 +1,364 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="All things DevOps, Infrastructure, Linux and networking"><link href=https://docs.deepgorthi.com/DevOps/docker-basics/ rel=canonical><meta name=author content="Pradeep Gorthi"><link rel="shortcut icon" href=../../assets/images/favicon.png><meta name=generator content="mkdocs-1.1.2, mkdocs-material-5.2.2"><title>Docker Basics - Docs | Pradeep Gorthi</title><link rel=stylesheet href=../../assets/stylesheets/main.a2408e81.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.a46bcfb3.min.css><meta name=theme-color content=#ff7043><link href=https://fonts.gstatic.com rel=preconnect crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style><link rel="preconnect dns-prefetch" href=https://www.google-analytics.com><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-153019680-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview")})</script><script async src=https://www.google-analytics.com/analytics.js></script><style>
+html {scroll-behavior: smooth;}
+</style><meta name=robots content=noindex></head> <body dir=ltr data-md-color-scheme data-md-color-primary=deep-orange data-md-color-accent=deep-orange> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#docker-basics class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header-nav md-grid" aria-label=Header> <a href=https://docs.deepgorthi.com title="Docs | Pradeep Gorthi" class="md-header-nav__button md-logo" aria-label="Docs | Pradeep Gorthi"> <img src=../../assets/images/icon.png alt=logo> </a> <label class="md-header-nav__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header-nav__title data-md-component=header-title> <div class=md-header-nav__ellipsis> <span class="md-header-nav__topic md-ellipsis"> Docs | Pradeep Gorthi </span> <span class="md-header-nav__topic md-ellipsis"> Docker Basics </span> </div> </div> <label class="md-header-nav__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear data-md-component=search-reset tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> <div class=md-header-nav__source> <a href=https://deepgorthi.com target=_blank title="Go to repository" class=md-source data-md-source> <div class=md-source__repository> DeepGorthi.com </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://docs.deepgorthi.com title="Docs | Pradeep Gorthi" class="md-nav__button md-logo" aria-label="Docs | Pradeep Gorthi"> <img src=../../assets/images/icon.png alt=logo> </a> Docs | Pradeep Gorthi </label> <div class=md-nav__source> <a href=https://deepgorthi.com target=_blank title="Go to repository" class=md-source data-md-source> <div class=md-source__repository> DeepGorthi.com </div> </a> </div> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. title=Home class=md-nav__link> Home </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-2 type=checkbox id=nav-2> <label class=md-nav__link for=nav-2> AWS <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=AWS data-md-level=1> <label class=md-nav__title for=nav-2> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> AWS </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../AWS/aws-developer-cert/ title="AWS Certfied Developer Associate (DVA-C01)" class=md-nav__link> AWS Certfied Developer Associate (DVA-C01) </a> </li> <li class=md-nav__item> <a href=../../AWS/aws-ecs/ title="Amazon Elastic Container Service" class=md-nav__link> Amazon Elastic Container Service </a> </li> <li class=md-nav__item> <a href=../../AWS/awslogs/ title=AWSLogs class=md-nav__link> AWSLogs </a> </li> <li class=md-nav__item> <a href=../../AWS/ec2-security-groups-notes/ title="EC2 Security Groups" class=md-nav__link> EC2 Security Groups </a> </li> <li class=md-nav__item> <a href=../../AWS/elk-on-ecs/ title="ELK stack on AWS ECS" class=md-nav__link> ELK stack on AWS ECS </a> </li> <li class=md-nav__item> <a href=../../AWS/lambda-programming-model/ title="Lambda Programming Model" class=md-nav__link> Lambda Programming Model </a> </li> <li class=md-nav__item> <a href=../../AWS/python-boto3/ title="Python Boto3" class=md-nav__link> Python Boto3 </a> </li> <li class=md-nav__item> <a href=../../AWS/vpc-best-practices/ title="VPC Best Practices" class=md-nav__link> VPC Best Practices </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-3 type=checkbox id=nav-3> <label class=md-nav__link for=nav-3> CKAD <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=CKAD data-md-level=1> <label class=md-nav__title for=nav-3> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> CKAD </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../CKAD/Containers/ title=Container class=md-nav__link> Container </a> </li> <li class=md-nav__item> <a href=../../CKAD/exam-prep/ title="About the exam" class=md-nav__link> About the exam </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-4 type=checkbox id=nav-4 checked> <label class=md-nav__link for=nav-4> DevOps <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=DevOps data-md-level=1> <label class=md-nav__title for=nav-4> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> DevOps </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../ansible/ title=Ansible class=md-nav__link> Ansible </a> </li> <li class=md-nav__item> <a href=../deployment-processes/ title="Deployment Processes" class=md-nav__link> Deployment Processes </a> </li> <li class=md-nav__item> <a href=../devops-handbook-summary/ title="DevOps Handbook Summary" class=md-nav__link> DevOps Handbook Summary </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> Docker Basics <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg> </span> </label> <a href=./ title="Docker Basics" class="md-nav__link md-nav__link--active"> Docker Basics </a> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Table of contents </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=#install-with-script class=md-nav__link> Install with script </a> </li> <li class=md-nav__item> <a href=#install class=md-nav__link> Install </a> </li> <li class=md-nav__item> <a href=#dockerhub-and-docker-repository class=md-nav__link> DockerHub and Docker repository </a> </li> <li class=md-nav__item> <a href=#dockerfile class=md-nav__link> Dockerfile </a> </li> <li class=md-nav__item> <a href=#building-docker-image class=md-nav__link> Building Docker image </a> </li> <li class=md-nav__item> <a href=#running-the-container class=md-nav__link> Running the Container </a> </li> <li class=md-nav__item> <a href=#removing-containers-rm class=md-nav__link> Removing Containers (rm) </a> </li> <li class=md-nav__item> <a href=#removing-images class=md-nav__link> Removing Images </a> </li> <li class=md-nav__item> <a href=#pushing-image-to-docker-repo class=md-nav__link> Pushing image to Docker repo </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../docker-deepdive/ title="Docker Deepdive" class=md-nav__link> Docker Deepdive </a> </li> <li class=md-nav__item> <a href=../docker-tidbits/ title="Docker Tidbits" class=md-nav__link> Docker Tidbits </a> </li> <li class=md-nav__item> <a href=../git-commands-to-know/ title="Git commands to know" class=md-nav__link> Git commands to know </a> </li> <li class=md-nav__item> <a href=../git-process/ title="Git Process" class=md-nav__link> Git Process </a> </li> <li class=md-nav__item> <a href=../google-sre-book-danluu-notes/ title="Notes on Google SRE" class=md-nav__link> Notes on Google SRE </a> </li> <li class=md-nav__item> <a href=../k8s/ title=Kubernetes class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../sre-overview/ title="SRE Overview" class=md-nav__link> SRE Overview </a> </li> <li class=md-nav__item> <a href=../terraform-basics/ title="Terraform Basics" class=md-nav__link> Terraform Basics </a> </li> <li class=md-nav__item> <a href=../twelve-factor-app/ title="Twelve Factor App" class=md-nav__link> Twelve Factor App </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-5 type=checkbox id=nav-5> <label class=md-nav__link for=nav-5> Interview Notes <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label="Interview Notes" data-md-level=1> <label class=md-nav__title for=nav-5> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Interview Notes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Interview%20Notes/ansible/ title=Ansible class=md-nav__link> Ansible </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/aws/ title=AWS class=md-nav__link> AWS </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/behavorial-questions/ title="Behavorial Questions" class=md-nav__link> Behavorial Questions </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/docker/ title=Docker class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/jenkins/ title=Jenkins class=md-nav__link> Jenkins </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/k8s/ title=Kubernetes class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/python/ title=Python class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/terraform/ title=Terraform class=md-nav__link> Terraform </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-6 type=checkbox id=nav-6> <label class=md-nav__link for=nav-6> Linux <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Linux data-md-level=1> <label class=md-nav__title for=nav-6> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Linux </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Linux/support/ title="Support Documentation" class=md-nav__link> Support Documentation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-7 type=checkbox id=nav-7> <label class=md-nav__link for=nav-7> Projects <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Projects data-md-level=1> <label class=md-nav__title for=nav-7> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Projects </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Projects/project1-ci-cd-pipeline-website/ title="CI/CD Pipeline for Website" class=md-nav__link> CI/CD Pipeline for Website </a> </li> <li class=md-nav__item> <a href=../../Projects/project2-elk-aws-ecs/ title="ELK on AWS ECS" class=md-nav__link> ELK on AWS ECS </a> </li> <li class=md-nav__item> <a href=../../Projects/project3-video-sharing/ title="Video Sharing Website" class=md-nav__link> Video Sharing Website </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-8 type=checkbox id=nav-8> <label class=md-nav__link for=nav-8> Python <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Python data-md-level=1> <label class=md-nav__title for=nav-8> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Python </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Python/key-points/ title=Notes class=md-nav__link> Notes </a> </li> <li class=md-nav__item> <a href=../../Python/oops-python/ title="Python Object-Oriented Programming" class=md-nav__link> Python Object-Oriented Programming </a> </li> <li class=md-nav__item> <a href=../../Python/python-virtual-env/ title="VirtualEnv for Python" class=md-nav__link> VirtualEnv for Python </a> </li> <li class=md-nav__item> <a href=../../Python/python-webscraper/ title="Web Scraping" class=md-nav__link> Web Scraping </a> </li> <li class=md-nav__item> <a href=../../Python/useful-python-code/ title="Useful Python Code" class=md-nav__link> Useful Python Code </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-9 type=checkbox id=nav-9> <label class=md-nav__link for=nav-9> Support <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Support data-md-level=1> <label class=md-nav__title for=nav-9> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Support </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Support/grav-website/ title="Grav Website Setup" class=md-nav__link> Grav Website Setup </a> </li> <li class=md-nav__item> <a href=../../Support/hugo-website/ title="Hugo Website Setup" class=md-nav__link> Hugo Website Setup </a> </li> <li class=md-nav__item> <a href=../../Support/jekyll-website/ title="Jekyll Website Setup" class=md-nav__link> Jekyll Website Setup </a> </li> <li class=md-nav__item> <a href=../../Support/mac-setup/ title="MacOS Setup" class=md-nav__link> MacOS Setup </a> </li> <li class=md-nav__item> <a href=../../Support/mkdocs-website/ title="MkDocs Website Setup" class=md-nav__link> MkDocs Website Setup </a> </li> <li class=md-nav__item> <a href=../../Support/ssh-key-pair/ title="SSH Key pair" class=md-nav__link> SSH Key pair </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Table of contents </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=#install-with-script class=md-nav__link> Install with script </a> </li> <li class=md-nav__item> <a href=#install class=md-nav__link> Install </a> </li> <li class=md-nav__item> <a href=#dockerhub-and-docker-repository class=md-nav__link> DockerHub and Docker repository </a> </li> <li class=md-nav__item> <a href=#dockerfile class=md-nav__link> Dockerfile </a> </li> <li class=md-nav__item> <a href=#building-docker-image class=md-nav__link> Building Docker image </a> </li> <li class=md-nav__item> <a href=#running-the-container class=md-nav__link> Running the Container </a> </li> <li class=md-nav__item> <a href=#removing-containers-rm class=md-nav__link> Removing Containers (rm) </a> </li> <li class=md-nav__item> <a href=#removing-images class=md-nav__link> Removing Images </a> </li> <li class=md-nav__item> <a href=#pushing-image-to-docker-repo class=md-nav__link> Pushing image to Docker repo </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content> <article class="md-content__inner md-typeset"> <h1 id=docker-basics>Docker Basics<a class=headerlink href=#docker-basics title="Permanent link">&para;</a></h1> <h2 id=install-with-script>Install with script<a class=headerlink href=#install-with-script title="Permanent link">&para;</a></h2> <p><a href=https://get.docker.com/ >Link to script</a> <div class=highlight><pre><span></span><code><span class=c1># Install steps can be skipped by using this script</span>
+    $ wget https://get.docker.com <span class=p>|</span>sh
+</code></pre></div></p> <h2 id=install>Install<a class=headerlink href=#install title="Permanent link">&para;</a></h2> <div class=highlight><pre><span></span><code><span class=c1># Install Dependencies</span>
+    $ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+<span class=c1># Add docker repo</span>
+    $ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+<span class=c1># Install Docker community edition</span>
+    $ sudo yum install docker-ce
+<span class=c1># Enable Docker service and start Docker</span>
+    $ sudo systemctl <span class=nb>enable</span> docker
+    $ sudo systemctl start docker
+</code></pre></div> <details><summary>$ sudo docker run hello-world</summary><div class=highlight><pre><span></span><code><span class=c1># Run docker container &#39;hello-world&#39;</span>
+    $ sudo docker run hello-world
+        Unable to find image <span class=s1>&#39;hello-world:latest&#39;</span> locally
+        latest: Pulling from library/hello-world
+        1b930d010525: Pull <span class=nb>complete</span>
+        Digest: sha256:4fe721ccc2e8dc7362278a29dc660d833570ec2682f4e4194f4ee23e415e1064
+        Status: Downloaded newer image <span class=k>for</span> hello-world:latest
+
+        Hello from Docker!
+        This message shows that your installation appears to be working correctly.
+
+        To generate this message, Docker took the following steps:
+        <span class=m>1</span>. The Docker client contacted the Docker daemon.
+        <span class=m>2</span>. The Docker daemon pulled the <span class=s2>&quot;hello-world&quot;</span> image from the Docker Hub.
+            <span class=o>(</span>amd64<span class=o>)</span>
+        <span class=m>3</span>. The Docker daemon created a new container from that image which runs the
+            executable that produces the output you are currently reading.
+        <span class=m>4</span>. The Docker daemon streamed that output to the Docker client, which sent it
+            to your terminal.
+
+        To try something more ambitious, you can run an Ubuntu container with:
+        $ docker run -it ubuntu bash
+
+        Share images, automate workflows, and more with a free Docker ID:
+        https://hub.docker.com/
+
+        For more examples and ideas, visit:
+        https://docs.docker.com/get-started/
+</code></pre></div> </details> <div class=highlight><pre><span></span><code><span class=c1># Giving cloud_user permissions to run docker by adding it to docker group</span>
+    $ sudo usermod -a -G docker cloud_user
+    $ <span class=nb>exit</span>
+    $ docker container run hello-world
+</code></pre></div> <h2 id=dockerhub-and-docker-repository>DockerHub and Docker repository<a class=headerlink href=#dockerhub-and-docker-repository title="Permanent link">&para;</a></h2> <ul> <li><code>DockerHub</code> is analogous to <code>GitHub</code> where our code/docker-image is stored either privately or publicly.</li> <li><code>Docker repo</code> is analogous to <code>RedHat repo</code> where it can either be created privately in an organization or use a public repo when needed.</li> </ul> <p>Show docker images can be done either by <code>images</code> or <code>image ls</code> docker commands: <div class=highlight><pre><span></span><code><span class=c1># Deprecated</span>
+$ docker images
+    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+    ubuntu              <span class=m>16</span>.04               56bab49eef2e        <span class=m>2</span> weeks ago         123MB
+    hello-world         latest              fce289e99eb9        <span class=m>11</span> months ago       <span class=m>1</span>.84kB
+<span class=c1>#New command</span>
+$ docker image ls
+    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+    ubuntu              <span class=m>16</span>.04               56bab49eef2e        <span class=m>2</span> weeks ago         123MB
+    hello-world         latest              fce289e99eb9        <span class=m>11</span> months ago       <span class=m>1</span>.84kB
+</code></pre></div></p> <p>Pull docker image: <div class=highlight><pre><span></span><code>$ docker pull ubuntu:16.04
+    <span class=m>16</span>.04: Pulling from library/ubuntu
+    976a760c94fc: Extracting <span class=o>[===============================================</span>&gt;   <span class=o>]</span>  <span class=m>41</span>.75MB/44.15MB
+    c58992f3c37b: Download <span class=nb>complete</span>
+    0ca0e5e7f12e: Download <span class=nb>complete</span>
+    f2a274cc00ca: Download <span class=nb>complete</span>
+</code></pre></div></p> <details><summary>Ubuntu 16.04 dockerfile</summary><div class=highlight><pre><span></span><code><span class=k>FROM</span> <span class=s>scratch</span>
+<span class=k>ADD</span> ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /
+<span class=c># delete all the apt list files since they&#39;re big and get stale quickly</span>
+<span class=k>RUN</span> rm -rf /var/lib/apt/lists/*
+<span class=c># this forces &quot;apt-get update&quot; in dependent images, which is also good</span>
+<span class=c># (see also https://bugs.launchpad.net/cloud-images/+bug/1699913)</span>
+
+<span class=c># a few minor docker-specific tweaks</span>
+<span class=c># see https://github.com/docker/docker/blob/9a9fc01af8fb5d98b8eec0740716226fadb3735c/contrib/mkimage/debootstrap</span>
+<span class=k>RUN</span> <span class=nb>set</span> -xe <span class=se>\</span>
+    <span class=se>\</span>
+# https://github.com/docker/docker/blob/9a9fc01af8fb5d98b8eec0740716226fadb3735c/contrib/mkimage/debootstrap#L40-L48
+    <span class=o>&amp;&amp;</span> <span class=nb>echo</span> <span class=s1>&#39;#!/bin/sh&#39;</span> &gt; /usr/sbin/policy-rc.d <span class=se>\</span>
+    <span class=o>&amp;&amp;</span> <span class=nb>echo</span> <span class=s1>&#39;exit 101&#39;</span> &gt;&gt; /usr/sbin/policy-rc.d <span class=se>\</span>
+    <span class=o>&amp;&amp;</span> chmod +x /usr/sbin/policy-rc.d <span class=se>\</span>
+    <span class=se>\</span>
+# https://github.com/docker/docker/blob/9a9fc01af8fb5d98b8eec0740716226fadb3735c/contrib/mkimage/debootstrap#L54-L56
+    <span class=o>&amp;&amp;</span> dpkg-divert --local --rename --add /sbin/initctl <span class=se>\</span>
+    <span class=o>&amp;&amp;</span> cp -a /usr/sbin/policy-rc.d /sbin/initctl <span class=se>\</span>
+    <span class=o>&amp;&amp;</span> sed -i <span class=s1>&#39;s/^exit.*/exit 0/&#39;</span> /sbin/initctl <span class=se>\</span>
+    <span class=se>\</span>
+# https://github.com/docker/docker/blob/9a9fc01af8fb5d98b8eec0740716226fadb3735c/contrib/mkimage/debootstrap#L71-L78
+    <span class=o>&amp;&amp;</span> <span class=nb>echo</span> <span class=s1>&#39;force-unsafe-io&#39;</span> &gt; /etc/dpkg/dpkg.cfg.d/docker-apt-speedup <span class=se>\</span>
+    <span class=se>\</span>
+# https://github.com/docker/docker/blob/9a9fc01af8fb5d98b8eec0740716226fadb3735c/contrib/mkimage/debootstrap#L85-L105
+    <span class=o>&amp;&amp;</span> <span class=nb>echo</span> <span class=s1>&#39;DPkg::Post-Invoke { &quot;rm -f /var/cache/apt/archives/*.deb /var/cache/apt/archives/partial/*.deb /var/cache/apt/*.bin || true&quot;; };&#39;</span> &gt; /etc/apt/apt.conf.d/docker-clean <span class=se>\</span>
+    <span class=o>&amp;&amp;</span> <span class=nb>echo</span> <span class=s1>&#39;APT::Update::Post-Invoke { &quot;rm -f /var/cache/apt/archives/*.deb /var/cache/apt/archives/partial/*.deb /var/cache/apt/*.bin || true&quot;; };&#39;</span> &gt;&gt; /etc/apt/apt.conf.d/docker-clean <span class=se>\</span>
+    <span class=o>&amp;&amp;</span> <span class=nb>echo</span> <span class=s1>&#39;Dir::Cache::pkgcache &quot;&quot;; Dir::Cache::srcpkgcache &quot;&quot;;&#39;</span> &gt;&gt; /etc/apt/apt.conf.d/docker-clean <span class=se>\</span>
+    <span class=se>\</span>
+# https://github.com/docker/docker/blob/9a9fc01af8fb5d98b8eec0740716226fadb3735c/contrib/mkimage/debootstrap#L109-L115
+    <span class=o>&amp;&amp;</span> <span class=nb>echo</span> <span class=s1>&#39;Acquire::Languages &quot;none&quot;;&#39;</span> &gt; /etc/apt/apt.conf.d/docker-no-languages <span class=se>\</span>
+    <span class=se>\</span>
+# https://github.com/docker/docker/blob/9a9fc01af8fb5d98b8eec0740716226fadb3735c/contrib/mkimage/debootstrap#L118-L130
+    <span class=o>&amp;&amp;</span> <span class=nb>echo</span> <span class=s1>&#39;Acquire::GzipIndexes &quot;true&quot;; Acquire::CompressionTypes::Order:: &quot;gz&quot;;&#39;</span> &gt; /etc/apt/apt.conf.d/docker-gzip-indexes <span class=se>\</span>
+    <span class=se>\</span>
+# https://github.com/docker/docker/blob/9a9fc01af8fb5d98b8eec0740716226fadb3735c/contrib/mkimage/debootstrap#L134-L151
+    <span class=o>&amp;&amp;</span> <span class=nb>echo</span> <span class=s1>&#39;Apt::AutoRemove::SuggestsImportant &quot;false&quot;;&#39;</span> &gt; /etc/apt/apt.conf.d/docker-autoremove-suggests
+
+<span class=c># make systemd-detect-virt return &quot;docker&quot;</span>
+<span class=c># See: https://github.com/systemd/systemd/blob/aa0c34279ee40bce2f9681b496922dedbadfca19/src/basic/virt.c#L434</span>
+<span class=k>RUN</span> mkdir -p /run/systemd <span class=o>&amp;&amp;</span> <span class=nb>echo</span> <span class=s1>&#39;docker&#39;</span> &gt; /run/systemd/container
+
+<span class=k>CMD</span> <span class=p>[</span><span class=s2>&quot;/bin/bash&quot;</span><span class=p>]</span>
+</code></pre></div> </details> <p>To run the docker image, <div class=highlight><pre><span></span><code><span class=c1># deprecated</span>
+    $ docker run ubuntu:16.04
+    $ docker run &lt;ImageID&gt;
+
+<span class=c1># New command</span>
+    $ docker container run ubuntu:16.04
+</code></pre></div></p> <h2 id=dockerfile>Dockerfile<a class=headerlink href=#dockerfile title="Permanent link">&para;</a></h2> <p>As an example, building a docker image with Ubuntu 16.04 as the base OS image, update the image to latest patches and install python3 on top of it. </p> <details><summary>Sample Dockerfile</summary><div class=highlight><pre><span></span><code><span class=k>FROM</span> <span class=s>ubuntu:16.04</span>
+<span class=k>LABEL</span> <span class=nv>maintainer</span><span class=o>=</span><span class=s2>&quot;deepgorthi@gmail.com&quot;</span>
+<span class=k>RUN</span> apt-get update
+<span class=k>RUN</span> apt-get install -y python3
+</code></pre></div> </details> <h2 id=building-docker-image>Building Docker image<a class=headerlink href=#building-docker-image title="Permanent link">&para;</a></h2> <p>To build the docker image, we need to run <div class=highlight><pre><span></span><code><span class=c1># &#39;.&#39; specifies to look for the dockerfile in the current directory</span>
+$ docker image build .
+</code></pre></div> If the name of the dockerfile is different, we can build the image by doing <div class=highlight><pre><span></span><code>$ docker image build &lt;docker file name&gt;
+</code></pre></div></p> <details><summary>Build output</summary><div class=highlight><pre><span></span><code>$ docker image build .
+    Sending build context to Docker daemon  <span class=m>2</span>.048kB
+    Step <span class=m>1</span>/4 : FROM ubuntu:16.04
+    ---&gt; 56bab49eef2e
+    Step <span class=m>2</span>/4 : LABEL <span class=nv>maintainer</span><span class=o>=</span><span class=s2>&quot;deepgorthi@gmail.com&quot;</span>
+    ---&gt; Running in d76d48fb3f92
+    Removing intermediate container d76d48fb3f92
+    ---&gt; 03b3755c4237
+    Step <span class=m>3</span>/4 : RUN apt-get update
+    ---&gt; Running in 6b1995d3f8d0
+    Get:1 http://archive.ubuntu.com/ubuntu xenial InRelease <span class=o>[</span><span class=m>247</span> kB<span class=o>]</span>
+    Get:2 http://security.ubuntu.com/ubuntu xenial-security InRelease <span class=o>[</span><span class=m>109</span> kB<span class=o>]</span>
+    Get:3 http://archive.ubuntu.com/ubuntu xenial-updates InRelease <span class=o>[</span><span class=m>109</span> kB<span class=o>]</span>
+    Get:4 http://security.ubuntu.com/ubuntu xenial-security/main amd64 Packages <span class=o>[</span><span class=m>1019</span> kB<span class=o>]</span>
+    Get:5 http://archive.ubuntu.com/ubuntu xenial-backports InRelease <span class=o>[</span><span class=m>107</span> kB<span class=o>]</span>
+    Get:6 http://archive.ubuntu.com/ubuntu xenial/main amd64 Packages <span class=o>[</span><span class=m>1558</span> kB<span class=o>]</span>
+    Get:7 http://security.ubuntu.com/ubuntu xenial-security/restricted amd64 Packages <span class=o>[</span><span class=m>12</span>.7 kB<span class=o>]</span>
+    Get:8 http://security.ubuntu.com/ubuntu xenial-security/universe amd64 Packages <span class=o>[</span><span class=m>593</span> kB<span class=o>]</span>
+    Get:9 http://security.ubuntu.com/ubuntu xenial-security/multiverse amd64 Packages <span class=o>[</span><span class=m>6280</span> B<span class=o>]</span>
+    Get:10 http://archive.ubuntu.com/ubuntu xenial/restricted amd64 Packages <span class=o>[</span><span class=m>14</span>.1 kB<span class=o>]</span>
+    Get:11 http://archive.ubuntu.com/ubuntu xenial/universe amd64 Packages <span class=o>[</span><span class=m>9827</span> kB<span class=o>]</span>
+    Get:12 http://archive.ubuntu.com/ubuntu xenial/multiverse amd64 Packages <span class=o>[</span><span class=m>176</span> kB<span class=o>]</span>
+    Get:13 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 Packages <span class=o>[</span><span class=m>1396</span> kB<span class=o>]</span>
+    Get:14 http://archive.ubuntu.com/ubuntu xenial-updates/restricted amd64 Packages <span class=o>[</span><span class=m>13</span>.1 kB<span class=o>]</span>
+    Get:15 http://archive.ubuntu.com/ubuntu xenial-updates/universe amd64 Packages <span class=o>[</span><span class=m>996</span> kB<span class=o>]</span>
+    Get:16 http://archive.ubuntu.com/ubuntu xenial-updates/multiverse amd64 Packages <span class=o>[</span><span class=m>19</span>.3 kB<span class=o>]</span>
+    Get:17 http://archive.ubuntu.com/ubuntu xenial-backports/main amd64 Packages <span class=o>[</span><span class=m>7942</span> B<span class=o>]</span>
+    Get:18 http://archive.ubuntu.com/ubuntu xenial-backports/universe amd64 Packages <span class=o>[</span><span class=m>8807</span> B<span class=o>]</span>
+    Fetched <span class=m>16</span>.2 MB in 3s <span class=o>(</span><span class=m>4134</span> kB/s<span class=o>)</span>
+    Reading package lists...
+    Removing intermediate container 6b1995d3f8d0
+    ---&gt; 33e4e45672d8
+    Step <span class=m>4</span>/4 : RUN apt-get install -y python3
+    ---&gt; Running in ac8388b43a00
+    Reading package lists...
+    Building dependency tree...
+    Reading state information...
+    The following additional packages will be installed:
+    dh-python file libexpat1 libmagic1 libmpdec2 libpython3-stdlib
+    libpython3.5-minimal libpython3.5-stdlib libsqlite3-0 libssl1.0.0
+    mime-support python3-minimal python3.5 python3.5-minimal
+    Suggested packages:
+    libdpkg-perl python3-doc python3-tk python3-venv python3.5-venv
+    python3.5-doc binutils binfmt-support
+    The following NEW packages will be installed:
+    dh-python file libexpat1 libmagic1 libmpdec2 libpython3-stdlib
+    libpython3.5-minimal libpython3.5-stdlib libsqlite3-0 libssl1.0.0
+    mime-support python3 python3-minimal python3.5 python3.5-minimal
+    <span class=m>0</span> upgraded, <span class=m>15</span> newly installed, <span class=m>0</span> to remove and <span class=m>4</span> not upgraded.
+    Need to get <span class=m>6436</span> kB of archives.
+    After this operation, <span class=m>33</span>.2 MB of additional disk space will be used.
+    Get:1 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libssl1.0.0 amd64 <span class=m>1</span>.0.2g-1ubuntu4.15 <span class=o>[</span><span class=m>1084</span> kB<span class=o>]</span>
+    Get:2 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython3.5-minimal amd64 <span class=m>3</span>.5.2-2ubuntu0~16.04.9 <span class=o>[</span><span class=m>524</span> kB<span class=o>]</span>
+    Get:3 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libexpat1 amd64 <span class=m>2</span>.1.0-7ubuntu0.16.04.5 <span class=o>[</span><span class=m>71</span>.5 kB<span class=o>]</span>
+    Get:4 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 python3.5-minimal amd64 <span class=m>3</span>.5.2-2ubuntu0~16.04.9 <span class=o>[</span><span class=m>1593</span> kB<span class=o>]</span>
+    Get:5 http://archive.ubuntu.com/ubuntu xenial/main amd64 python3-minimal amd64 <span class=m>3</span>.5.1-3 <span class=o>[</span><span class=m>23</span>.3 kB<span class=o>]</span>
+    Get:6 http://archive.ubuntu.com/ubuntu xenial/main amd64 mime-support all <span class=m>3</span>.59ubuntu1 <span class=o>[</span><span class=m>31</span>.0 kB<span class=o>]</span>
+    Get:7 http://archive.ubuntu.com/ubuntu xenial/main amd64 libmpdec2 amd64 <span class=m>2</span>.4.2-1 <span class=o>[</span><span class=m>82</span>.6 kB<span class=o>]</span>
+    Get:8 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libsqlite3-0 amd64 <span class=m>3</span>.11.0-1ubuntu1.3 <span class=o>[</span><span class=m>397</span> kB<span class=o>]</span>
+    Get:9 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython3.5-stdlib amd64 <span class=m>3</span>.5.2-2ubuntu0~16.04.9 <span class=o>[</span><span class=m>2137</span> kB<span class=o>]</span>
+    Get:10 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 python3.5 amd64 <span class=m>3</span>.5.2-2ubuntu0~16.04.9 <span class=o>[</span><span class=m>165</span> kB<span class=o>]</span>
+    Get:11 http://archive.ubuntu.com/ubuntu xenial/main amd64 libpython3-stdlib amd64 <span class=m>3</span>.5.1-3 <span class=o>[</span><span class=m>6818</span> B<span class=o>]</span>
+    Get:12 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 dh-python all <span class=m>2</span>.20151103ubuntu1.2 <span class=o>[</span><span class=m>73</span>.9 kB<span class=o>]</span>
+    Get:13 http://archive.ubuntu.com/ubuntu xenial/main amd64 python3 amd64 <span class=m>3</span>.5.1-3 <span class=o>[</span><span class=m>8710</span> B<span class=o>]</span>
+    Get:14 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libmagic1 amd64 <span class=m>1</span>:5.25-2ubuntu1.3 <span class=o>[</span><span class=m>216</span> kB<span class=o>]</span>
+    Get:15 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 file amd64 <span class=m>1</span>:5.25-2ubuntu1.3 <span class=o>[</span><span class=m>21</span>.3 kB<span class=o>]</span>
+    debconf: delaying package configuration, since apt-utils is not installed
+    Fetched <span class=m>6436</span> kB in 2s <span class=o>(</span><span class=m>3013</span> kB/s<span class=o>)</span>
+    Selecting previously unselected package libssl1.0.0:amd64.
+    <span class=o>(</span>Reading database ... <span class=m>4781</span> files and directories currently installed.<span class=o>)</span>
+    Preparing to unpack .../libssl1.0.0_1.0.2g-1ubuntu4.15_amd64.deb ...
+    Unpacking libssl1.0.0:amd64 <span class=o>(</span><span class=m>1</span>.0.2g-1ubuntu4.15<span class=o>)</span> ...
+    Selecting previously unselected package libpython3.5-minimal:amd64.
+    Preparing to unpack .../libpython3.5-minimal_3.5.2-2ubuntu0~16.04.9_amd64.deb ...
+    Unpacking libpython3.5-minimal:amd64 <span class=o>(</span><span class=m>3</span>.5.2-2ubuntu0~16.04.9<span class=o>)</span> ...
+    Selecting previously unselected package libexpat1:amd64.
+    Preparing to unpack .../libexpat1_2.1.0-7ubuntu0.16.04.5_amd64.deb ...
+    Unpacking libexpat1:amd64 <span class=o>(</span><span class=m>2</span>.1.0-7ubuntu0.16.04.5<span class=o>)</span> ...
+    Selecting previously unselected package python3.5-minimal.
+    Preparing to unpack .../python3.5-minimal_3.5.2-2ubuntu0~16.04.9_amd64.deb ...
+    Unpacking python3.5-minimal <span class=o>(</span><span class=m>3</span>.5.2-2ubuntu0~16.04.9<span class=o>)</span> ...
+    Selecting previously unselected package python3-minimal.
+    Preparing to unpack .../python3-minimal_3.5.1-3_amd64.deb ...
+    Unpacking python3-minimal <span class=o>(</span><span class=m>3</span>.5.1-3<span class=o>)</span> ...
+    Selecting previously unselected package mime-support.
+    Preparing to unpack .../mime-support_3.59ubuntu1_all.deb ...
+    Unpacking mime-support <span class=o>(</span><span class=m>3</span>.59ubuntu1<span class=o>)</span> ...
+    Selecting previously unselected package libmpdec2:amd64.
+    Preparing to unpack .../libmpdec2_2.4.2-1_amd64.deb ...
+    Unpacking libmpdec2:amd64 <span class=o>(</span><span class=m>2</span>.4.2-1<span class=o>)</span> ...
+    Selecting previously unselected package libsqlite3-0:amd64.
+    Preparing to unpack .../libsqlite3-0_3.11.0-1ubuntu1.3_amd64.deb ...
+    Unpacking libsqlite3-0:amd64 <span class=o>(</span><span class=m>3</span>.11.0-1ubuntu1.3<span class=o>)</span> ...
+    Selecting previously unselected package libpython3.5-stdlib:amd64.
+    Preparing to unpack .../libpython3.5-stdlib_3.5.2-2ubuntu0~16.04.9_amd64.deb ...
+    Unpacking libpython3.5-stdlib:amd64 <span class=o>(</span><span class=m>3</span>.5.2-2ubuntu0~16.04.9<span class=o>)</span> ...
+    Selecting previously unselected package python3.5.
+    Preparing to unpack .../python3.5_3.5.2-2ubuntu0~16.04.9_amd64.deb ...
+    Unpacking python3.5 <span class=o>(</span><span class=m>3</span>.5.2-2ubuntu0~16.04.9<span class=o>)</span> ...
+    Selecting previously unselected package libpython3-stdlib:amd64.
+    Preparing to unpack .../libpython3-stdlib_3.5.1-3_amd64.deb ...
+    Unpacking libpython3-stdlib:amd64 <span class=o>(</span><span class=m>3</span>.5.1-3<span class=o>)</span> ...
+    Selecting previously unselected package dh-python.
+    Preparing to unpack .../dh-python_2.20151103ubuntu1.2_all.deb ...
+    Unpacking dh-python <span class=o>(</span><span class=m>2</span>.20151103ubuntu1.2<span class=o>)</span> ...
+    Processing triggers <span class=k>for</span> libc-bin <span class=o>(</span><span class=m>2</span>.23-0ubuntu11<span class=o>)</span> ...
+    Setting up libssl1.0.0:amd64 <span class=o>(</span><span class=m>1</span>.0.2g-1ubuntu4.15<span class=o>)</span> ...
+    debconf: unable to initialize frontend: Dialog
+    debconf: <span class=o>(</span>TERM is not set, so the dialog frontend is not usable.<span class=o>)</span>
+    debconf: falling back to frontend: Readline
+    debconf: unable to initialize frontend: Readline
+    debconf: <span class=o>(</span>Can<span class=err>&#39;</span>t locate Term/ReadLine.pm in @INC <span class=o>(</span>you may need to install the Term::ReadLine module<span class=o>)</span> <span class=o>(</span>@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.22.1 /usr/local/share/perl/5.22.1 /usr/lib/x86_64-linux-gnu/perl5/5.22 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.22 /usr/share/perl/5.22 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base .<span class=o>)</span> at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line <span class=m>7</span>.<span class=o>)</span>
+    debconf: falling back to frontend: Teletype
+    Setting up libpython3.5-minimal:amd64 <span class=o>(</span><span class=m>3</span>.5.2-2ubuntu0~16.04.9<span class=o>)</span> ...
+    Setting up libexpat1:amd64 <span class=o>(</span><span class=m>2</span>.1.0-7ubuntu0.16.04.5<span class=o>)</span> ...
+    Setting up python3.5-minimal <span class=o>(</span><span class=m>3</span>.5.2-2ubuntu0~16.04.9<span class=o>)</span> ...
+    Setting up python3-minimal <span class=o>(</span><span class=m>3</span>.5.1-3<span class=o>)</span> ...
+    Processing triggers <span class=k>for</span> libc-bin <span class=o>(</span><span class=m>2</span>.23-0ubuntu11<span class=o>)</span> ...
+    Selecting previously unselected package python3.
+    <span class=o>(</span>Reading database ... <span class=m>5757</span> files and directories currently installed.<span class=o>)</span>
+    Preparing to unpack .../python3_3.5.1-3_amd64.deb ...
+    Unpacking python3 <span class=o>(</span><span class=m>3</span>.5.1-3<span class=o>)</span> ...
+    Selecting previously unselected package libmagic1:amd64.
+    Preparing to unpack .../libmagic1_1%3a5.25-2ubuntu1.3_amd64.deb ...
+    Unpacking libmagic1:amd64 <span class=o>(</span><span class=m>1</span>:5.25-2ubuntu1.3<span class=o>)</span> ...
+    Selecting previously unselected package file.
+    Preparing to unpack .../file_1%3a5.25-2ubuntu1.3_amd64.deb ...
+    Unpacking file <span class=o>(</span><span class=m>1</span>:5.25-2ubuntu1.3<span class=o>)</span> ...
+    Processing triggers <span class=k>for</span> libc-bin <span class=o>(</span><span class=m>2</span>.23-0ubuntu11<span class=o>)</span> ...
+    Setting up mime-support <span class=o>(</span><span class=m>3</span>.59ubuntu1<span class=o>)</span> ...
+    Setting up libmpdec2:amd64 <span class=o>(</span><span class=m>2</span>.4.2-1<span class=o>)</span> ...
+    Setting up libsqlite3-0:amd64 <span class=o>(</span><span class=m>3</span>.11.0-1ubuntu1.3<span class=o>)</span> ...
+    Setting up libpython3.5-stdlib:amd64 <span class=o>(</span><span class=m>3</span>.5.2-2ubuntu0~16.04.9<span class=o>)</span> ...
+    Setting up python3.5 <span class=o>(</span><span class=m>3</span>.5.2-2ubuntu0~16.04.9<span class=o>)</span> ...
+    Setting up libpython3-stdlib:amd64 <span class=o>(</span><span class=m>3</span>.5.1-3<span class=o>)</span> ...
+    Setting up libmagic1:amd64 <span class=o>(</span><span class=m>1</span>:5.25-2ubuntu1.3<span class=o>)</span> ...
+    Setting up file <span class=o>(</span><span class=m>1</span>:5.25-2ubuntu1.3<span class=o>)</span> ...
+    Setting up python3 <span class=o>(</span><span class=m>3</span>.5.1-3<span class=o>)</span> ...
+    running python rtupdate hooks <span class=k>for</span> python3.5...
+    running python post-rtupdate hooks <span class=k>for</span> python3.5...
+    Setting up dh-python <span class=o>(</span><span class=m>2</span>.20151103ubuntu1.2<span class=o>)</span> ...
+    Processing triggers <span class=k>for</span> libc-bin <span class=o>(</span><span class=m>2</span>.23-0ubuntu11<span class=o>)</span> ...
+    Removing intermediate container ac8388b43a00
+    ---&gt; a41c41ef3ce9
+    Successfully built a41c41ef3ce9
+</code></pre></div> </details> <h2 id=running-the-container>Running the Container<a class=headerlink href=#running-the-container title="Permanent link">&para;</a></h2> <p>To run the image in a docker container, <div class=highlight><pre><span></span><code>$ docker image ls
+    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+    &lt;none&gt;              &lt;none&gt;              a41c41ef3ce9        <span class=m>11</span> minutes ago      186MB
+    ubuntu              <span class=m>16</span>.04               56bab49eef2e        <span class=m>2</span> weeks ago         123MB
+    hello-world         latest              fce289e99eb9        <span class=m>11</span> months ago       <span class=m>1</span>.84kB
+
+$ docker container run -i -t --name python-container a41 
+<span class=c1># just enough chars are enough to distinguish between docker images</span>
+<span class=c1># -i is short for --interactive. Keep STDIN open even if unattached.</span>
+<span class=c1># -t is short for--tty. Allocates a pseudo terminal that connects your terminal with the container’s STDIN and STDOUT.</span>
+<span class=c1># You need to specify both -i and -t to then interact with the container through your terminal shell.</span>
+</code></pre></div></p> <p>A container stops after exiting from the command line of that container. </p> <p>List of running containers: <div class=highlight><pre><span></span><code>$ docker container ls
+    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+    e365eb0e4568        a41                 <span class=s2>&quot;/bin/bash&quot;</span>         <span class=m>42</span> seconds ago      Up <span class=m>40</span> seconds                           python-container_v2
+</code></pre></div> List of all stopped and running containers: <div class=highlight><pre><span></span><code>$ docker container ls -a
+    CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS                      PORTS               NAMES
+    e365eb0e4568        a41                 <span class=s2>&quot;/bin/bash&quot;</span>         About a minute ago   Up About a minute                               python-container_v2
+    11087b710633        a41                 <span class=s2>&quot;/bin/bash&quot;</span>         <span class=m>11</span> minutes ago       Exited <span class=o>(</span><span class=m>0</span><span class=o>)</span> <span class=m>4</span> minutes ago                        python-container
+    db3e7658a34b        ubuntu:16.04        <span class=s2>&quot;/bin/bash&quot;</span>         <span class=m>35</span> minutes ago       Exited <span class=o>(</span><span class=m>0</span><span class=o>)</span> <span class=m>34</span> minutes ago                       cool_beaver
+    b6fd3fb58e5a        hello-world         <span class=s2>&quot;/hello&quot;</span>            <span class=m>6</span> hours ago          Exited <span class=o>(</span><span class=m>0</span><span class=o>)</span> <span class=m>6</span> hours ago                          hardcore_pascal
+    167b6f3834e0        hello-world         <span class=s2>&quot;/hello&quot;</span>            <span class=m>6</span> hours ago          Exited <span class=o>(</span><span class=m>0</span><span class=o>)</span> <span class=m>6</span> hours ago                          boring_hellman
+</code></pre></div></p> <p>Starting and stopping a container without running the shell or logging in: <div class=highlight><pre><span></span><code>$ docker container start python-container
+    python-container
+$ docker container ls
+    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+    11087b710633        a41                 <span class=s2>&quot;/bin/bash&quot;</span>         <span class=m>14</span> minutes ago      Up <span class=m>24</span> seconds                           python-container
+$ docker container stop python-container
+    python-container
+$ docker container ls
+    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</code></pre></div></p> <p>After starting up a container using <code>start</code>, to attach to that container, we can run: <div class=highlight><pre><span></span><code>$ docker container attach &lt;container ID&gt;
+root@11087b710633:/#
+</code></pre></div></p> <h2 id=removing-containers-rm>Removing Containers (rm)<a class=headerlink href=#removing-containers-rm title="Permanent link">&para;</a></h2> <div class=highlight><pre><span></span><code>$ docker container ls -a
+    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
+    e365eb0e4568        a41                 <span class=s2>&quot;/bin/bash&quot;</span>         <span class=m>10</span> minutes ago      Exited <span class=o>(</span><span class=m>0</span><span class=o>)</span> <span class=m>6</span> minutes ago                        python-container_v2
+    11087b710633        a41                 <span class=s2>&quot;/bin/bash&quot;</span>         <span class=m>20</span> minutes ago      Exited <span class=o>(</span><span class=m>0</span><span class=o>)</span> <span class=m>7</span> seconds ago                        python-container
+    db3e7658a34b        ubuntu:16.04        <span class=s2>&quot;/bin/bash&quot;</span>         <span class=m>43</span> minutes ago      Exited <span class=o>(</span><span class=m>0</span><span class=o>)</span> <span class=m>43</span> minutes ago                       cool_beaver
+    b6fd3fb58e5a        hello-world         <span class=s2>&quot;/hello&quot;</span>            <span class=m>6</span> hours ago         Exited <span class=o>(</span><span class=m>0</span><span class=o>)</span> <span class=m>6</span> hours ago                          hardcore_pascal
+    167b6f3834e0        hello-world         <span class=s2>&quot;/hello&quot;</span>            <span class=m>6</span> hours ago         Exited <span class=o>(</span><span class=m>0</span><span class=o>)</span> <span class=m>6</span> hours ago                          boring_hellman
+$ docker container rm 167b6f3834e0
+    167b6f3834e0
+$ docker container rm hardcore_pascal
+    hardcore_pascal
+$ docker container rm db3e7658a34b python-container python-container_v2
+    db3e7658a34b
+    python-container
+    python-container_v2
+$ docker container ls -a
+    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</code></pre></div> <h2 id=removing-images>Removing Images<a class=headerlink href=#removing-images title="Permanent link">&para;</a></h2> <div class=highlight><pre><span></span><code>$ docker image ls
+    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+    &lt;none&gt;              &lt;none&gt;              a41c41ef3ce9        <span class=m>34</span> minutes ago      186MB
+    ubuntu              <span class=m>16</span>.04               56bab49eef2e        <span class=m>2</span> weeks ago         123MB
+    hello-world         latest              fce289e99eb9        <span class=m>11</span> months ago       <span class=m>1</span>.84kB
+$ docker image rm fce289e99eb9
+    Untagged: hello-world:latest
+    Untagged: hello-world@sha256:4fe721ccc2e8dc7362278a29dc660d833570ec2682f4e4194f4ee23e415e1064
+    Deleted: sha256:fce289e99eb9bca977dae136fbe2a82b6b7d4c372474c9235adc1741675f587e
+    Deleted: sha256:af0b15c8625bb1938f1d7b17081031f649fd14e6b233688eea3c5483994a66a3
+</code></pre></div> <h2 id=pushing-image-to-docker-repo>Pushing image to Docker repo<a class=headerlink href=#pushing-image-to-docker-repo title="Permanent link">&para;</a></h2> <p>To login to docker: <div class=highlight><pre><span></span><code>$ docker login
+    Login with your Docker ID to push and pull images from Docker Hub. If you don<span class=err>&#39;</span>t have a Docker ID, head over to https://hub.docker.com to create one.
+    Username: deepgorthi
+    Password:
+    WARNING! Your password will be stored unencrypted in /home/cloud_user/.docker/config.json.
+    Configure a credential helper to remove this warning. See
+    https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+    Login Succeeded
+</code></pre></div></p> <p>Tag the image that will be pushed to docker repo and push it: <div class=highlight><pre><span></span><code>$ docker image ls
+    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+    &lt;none&gt;              &lt;none&gt;              a41c41ef3ce9        <span class=m>37</span> minutes ago      186MB
+    ubuntu              <span class=m>16</span>.04               56bab49eef2e        <span class=m>2</span> weeks ago         123MB
+
+$ docker image tag a41c41ef3ce9 deepgorthi/ubu-python3
+
+$ docker image ls
+    REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+    deepgorthi/ubu-python3   latest              a41c41ef3ce9        <span class=m>38</span> minutes ago      186MB
+    ubuntu                   <span class=m>16</span>.04               56bab49eef2e        <span class=m>2</span> weeks ago         123MB
+
+$ docker image push deepgorthi/ubu-python3
+    The push refers to repository <span class=o>[</span>docker.io/deepgorthi/ubu-python3<span class=o>]</span>
+    fc529f7b8eec: Pushed
+    c992de3f99a0: Pushed
+    aa7f8c8d5f39: Mounted from library/ubuntu
+    48817fbd6c92: Mounted from library/ubuntu
+    1b039d138968: Mounted from library/ubuntu
+    7082d7d696f8: Mounted from library/ubuntu
+    latest: digest: sha256:f348584be25aa65a0d266d77eadfeaad955385736462cea5efd68d1a4473760d size: <span class=m>1574</span>
+</code></pre></div></p> <div class="admonition info"> <p class=admonition-title>Links</p> <ul> <li><a href=https://geekflare.com/docker-commands/ >List of Docker commands</a></li> <li><a href=https://www.freecodecamp.org/news/a-beginner-friendly-introduction-to-containers-vms-and-docker-79a9e3e119b/ >VMs, Containers and Docker</a></li> <li>Learn enough useful Docker series<ul> <li><a href=https://towardsdatascience.com/learn-enough-docker-to-be-useful-b7ba70caeb4b>Part 1</a></li> <li><a href=https://towardsdatascience.com/learn-enough-docker-to-be-useful-1c40ea269fa8>Part 2</a></li> <li><a href=https://towardsdatascience.com/learn-enough-docker-to-be-useful-b0b44222eef5>Part 3</a></li> <li><a href=https://towardsdatascience.com/slimming-down-your-docker-images-275f0ca9337e>Part 4</a></li> <li><a href=https://towardsdatascience.com/15-docker-commands-you-should-know-970ea5203421>Part 5</a></li> <li><a href=https://towardsdatascience.com/pump-up-the-volumes-data-in-docker-a21950a8cd8>Part 6</a></li> </ul> </li> </ul> </div> <hr> <div class=md-source-date> <small> Last update: December 24, 2019 </small> </div> </article> </div> </div> </main> <!-- Application footer --> <footer class=md-footer> <!-- Link to previous and/or next page --> <div class=md-footer-nav> <nav class="md-footer-nav__inner md-grid"> <!-- Link to previous page --> <a href=../devops-handbook-summary/ title="DevOps Handbook Summary" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel=prev> <div class="md-flex__cell md-flex__cell--shrink"> <i class="md-icon md-icon--arrow-back
+                    md-footer-nav__button"></i> </div> <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title"> <span class=md-flex__ellipsis> <span class=md-footer-nav__direction> Previous </span> DevOps Handbook Summary </span> </div> </a> <!-- Link to next page --> <a href=../docker-deepdive/ title="Docker Deepdive" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel=next> <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title"> <span class=md-flex__ellipsis> <span class=md-footer-nav__direction> Next </span> Docker Deepdive </span> </div> <div class="md-flex__cell md-flex__cell--shrink"> <i class="md-icon md-icon--arrow-forward
+                    md-footer-nav__button"></i> </div> </a> </nav> </div> <!-- Further information --> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <!-- Copyright and theme information --> <div class=md-footer-copyright> </div> <!-- Social links --> <div class=md-footer-social> <link rel=stylesheet href=../../assets/fonts/font-awesome.css> <a href=https://github.com/deepgorthi target=_blank class="md-footer-social__link fa fa-github"></a> <a href=https://twitter.com/deepgorthi target=_blank class="md-footer-social__link fa fa-twitter"></a> <a href=https://linkedin.com/in/deepgorthi target=_blank class="md-footer-social__link fa fa-linkedin"></a> <a href=https://resume.deepgorthi.com target=_blank class="md-footer-social__link fa fa-address-book"></a> <a href=https://deepgorthi.com target=_blank class="md-footer-social__link fa fa-globe"></a> </div> </div> </div> </footer> </div> <script src=../../assets/javascripts/vendor.d710d30a.min.js></script> <script src=../../assets/javascripts/bundle.5f27aba8.min.js></script><script id=__lang type=application/json>{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script> <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.27c6a5e6.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script> </body> </html>

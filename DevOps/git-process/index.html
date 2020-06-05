@@ -1,0 +1,383 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="All things DevOps, Infrastructure, Linux and networking"><link href=https://docs.deepgorthi.com/DevOps/git-process/ rel=canonical><meta name=author content="Pradeep Gorthi"><link rel="shortcut icon" href=../../assets/images/favicon.png><meta name=generator content="mkdocs-1.1.2, mkdocs-material-5.2.2"><title>Git Process - Docs | Pradeep Gorthi</title><link rel=stylesheet href=../../assets/stylesheets/main.a2408e81.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.a46bcfb3.min.css><meta name=theme-color content=#ff7043><link href=https://fonts.gstatic.com rel=preconnect crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style><link rel="preconnect dns-prefetch" href=https://www.google-analytics.com><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-153019680-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview")})</script><script async src=https://www.google-analytics.com/analytics.js></script><style>
+html {scroll-behavior: smooth;}
+</style><meta name=robots content=noindex></head> <body dir=ltr data-md-color-scheme data-md-color-primary=deep-orange data-md-color-accent=deep-orange> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#git-process class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header-nav md-grid" aria-label=Header> <a href=https://docs.deepgorthi.com title="Docs | Pradeep Gorthi" class="md-header-nav__button md-logo" aria-label="Docs | Pradeep Gorthi"> <img src=../../assets/images/icon.png alt=logo> </a> <label class="md-header-nav__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header-nav__title data-md-component=header-title> <div class=md-header-nav__ellipsis> <span class="md-header-nav__topic md-ellipsis"> Docs | Pradeep Gorthi </span> <span class="md-header-nav__topic md-ellipsis"> Git Process </span> </div> </div> <label class="md-header-nav__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear data-md-component=search-reset tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> <div class=md-header-nav__source> <a href=https://deepgorthi.com target=_blank title="Go to repository" class=md-source data-md-source> <div class=md-source__repository> DeepGorthi.com </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://docs.deepgorthi.com title="Docs | Pradeep Gorthi" class="md-nav__button md-logo" aria-label="Docs | Pradeep Gorthi"> <img src=../../assets/images/icon.png alt=logo> </a> Docs | Pradeep Gorthi </label> <div class=md-nav__source> <a href=https://deepgorthi.com target=_blank title="Go to repository" class=md-source data-md-source> <div class=md-source__repository> DeepGorthi.com </div> </a> </div> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. title=Home class=md-nav__link> Home </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-2 type=checkbox id=nav-2> <label class=md-nav__link for=nav-2> AWS <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=AWS data-md-level=1> <label class=md-nav__title for=nav-2> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> AWS </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../AWS/aws-developer-cert/ title="AWS Certfied Developer Associate (DVA-C01)" class=md-nav__link> AWS Certfied Developer Associate (DVA-C01) </a> </li> <li class=md-nav__item> <a href=../../AWS/aws-ecs/ title="Amazon Elastic Container Service" class=md-nav__link> Amazon Elastic Container Service </a> </li> <li class=md-nav__item> <a href=../../AWS/awslogs/ title=AWSLogs class=md-nav__link> AWSLogs </a> </li> <li class=md-nav__item> <a href=../../AWS/ec2-security-groups-notes/ title="EC2 Security Groups" class=md-nav__link> EC2 Security Groups </a> </li> <li class=md-nav__item> <a href=../../AWS/elk-on-ecs/ title="ELK stack on AWS ECS" class=md-nav__link> ELK stack on AWS ECS </a> </li> <li class=md-nav__item> <a href=../../AWS/lambda-programming-model/ title="Lambda Programming Model" class=md-nav__link> Lambda Programming Model </a> </li> <li class=md-nav__item> <a href=../../AWS/python-boto3/ title="Python Boto3" class=md-nav__link> Python Boto3 </a> </li> <li class=md-nav__item> <a href=../../AWS/vpc-best-practices/ title="VPC Best Practices" class=md-nav__link> VPC Best Practices </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-3 type=checkbox id=nav-3> <label class=md-nav__link for=nav-3> CKAD <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=CKAD data-md-level=1> <label class=md-nav__title for=nav-3> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> CKAD </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../CKAD/Containers/ title=Container class=md-nav__link> Container </a> </li> <li class=md-nav__item> <a href=../../CKAD/exam-prep/ title="About the exam" class=md-nav__link> About the exam </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-4 type=checkbox id=nav-4 checked> <label class=md-nav__link for=nav-4> DevOps <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=DevOps data-md-level=1> <label class=md-nav__title for=nav-4> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> DevOps </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../ansible/ title=Ansible class=md-nav__link> Ansible </a> </li> <li class=md-nav__item> <a href=../deployment-processes/ title="Deployment Processes" class=md-nav__link> Deployment Processes </a> </li> <li class=md-nav__item> <a href=../devops-handbook-summary/ title="DevOps Handbook Summary" class=md-nav__link> DevOps Handbook Summary </a> </li> <li class=md-nav__item> <a href=../docker-basics/ title="Docker Basics" class=md-nav__link> Docker Basics </a> </li> <li class=md-nav__item> <a href=../docker-deepdive/ title="Docker Deepdive" class=md-nav__link> Docker Deepdive </a> </li> <li class=md-nav__item> <a href=../docker-tidbits/ title="Docker Tidbits" class=md-nav__link> Docker Tidbits </a> </li> <li class=md-nav__item> <a href=../git-commands-to-know/ title="Git commands to know" class=md-nav__link> Git commands to know </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> Git Process <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg> </span> </label> <a href=./ title="Git Process" class="md-nav__link md-nav__link--active"> Git Process </a> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Table of contents </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=#initializing-a-repo-and-committing-files class=md-nav__link> Initializing a repo and committing files </a> </li> <li class=md-nav__item> <a href=#committing-changes class=md-nav__link> Committing Changes </a> </li> <li class=md-nav__item> <a href=#working-remotely class=md-nav__link> Working Remotely </a> </li> <li class=md-nav__item> <a href=#undoing-changes class=md-nav__link> Undoing Changes </a> </li> <li class=md-nav__item> <a href=#fixing-merge-conflicts class=md-nav__link> Fixing Merge Conflicts </a> </li> <li class=md-nav__item> <a href=#git-branches class=md-nav__link> Git Branches </a> </li> <li class=md-nav__item> <a href=#finding-bugs class=md-nav__link> Finding Bugs </a> </li> <li class=md-nav__item> <a href=#being-picky-with-git class=md-nav__link> Being picky with Git </a> </li> <li class=md-nav__item> <a href=#re-writing-history-in-git class=md-nav__link> Re-writing History in Git </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../google-sre-book-danluu-notes/ title="Notes on Google SRE" class=md-nav__link> Notes on Google SRE </a> </li> <li class=md-nav__item> <a href=../k8s/ title=Kubernetes class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../sre-overview/ title="SRE Overview" class=md-nav__link> SRE Overview </a> </li> <li class=md-nav__item> <a href=../terraform-basics/ title="Terraform Basics" class=md-nav__link> Terraform Basics </a> </li> <li class=md-nav__item> <a href=../twelve-factor-app/ title="Twelve Factor App" class=md-nav__link> Twelve Factor App </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-5 type=checkbox id=nav-5> <label class=md-nav__link for=nav-5> Interview Notes <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label="Interview Notes" data-md-level=1> <label class=md-nav__title for=nav-5> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Interview Notes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Interview%20Notes/ansible/ title=Ansible class=md-nav__link> Ansible </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/aws/ title=AWS class=md-nav__link> AWS </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/behavorial-questions/ title="Behavorial Questions" class=md-nav__link> Behavorial Questions </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/docker/ title=Docker class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/jenkins/ title=Jenkins class=md-nav__link> Jenkins </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/k8s/ title=Kubernetes class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/python/ title=Python class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/terraform/ title=Terraform class=md-nav__link> Terraform </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-6 type=checkbox id=nav-6> <label class=md-nav__link for=nav-6> Linux <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Linux data-md-level=1> <label class=md-nav__title for=nav-6> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Linux </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Linux/support/ title="Support Documentation" class=md-nav__link> Support Documentation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-7 type=checkbox id=nav-7> <label class=md-nav__link for=nav-7> Projects <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Projects data-md-level=1> <label class=md-nav__title for=nav-7> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Projects </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Projects/project1-ci-cd-pipeline-website/ title="CI/CD Pipeline for Website" class=md-nav__link> CI/CD Pipeline for Website </a> </li> <li class=md-nav__item> <a href=../../Projects/project2-elk-aws-ecs/ title="ELK on AWS ECS" class=md-nav__link> ELK on AWS ECS </a> </li> <li class=md-nav__item> <a href=../../Projects/project3-video-sharing/ title="Video Sharing Website" class=md-nav__link> Video Sharing Website </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-8 type=checkbox id=nav-8> <label class=md-nav__link for=nav-8> Python <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Python data-md-level=1> <label class=md-nav__title for=nav-8> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Python </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Python/key-points/ title=Notes class=md-nav__link> Notes </a> </li> <li class=md-nav__item> <a href=../../Python/oops-python/ title="Python Object-Oriented Programming" class=md-nav__link> Python Object-Oriented Programming </a> </li> <li class=md-nav__item> <a href=../../Python/python-virtual-env/ title="VirtualEnv for Python" class=md-nav__link> VirtualEnv for Python </a> </li> <li class=md-nav__item> <a href=../../Python/python-webscraper/ title="Web Scraping" class=md-nav__link> Web Scraping </a> </li> <li class=md-nav__item> <a href=../../Python/useful-python-code/ title="Useful Python Code" class=md-nav__link> Useful Python Code </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-9 type=checkbox id=nav-9> <label class=md-nav__link for=nav-9> Support <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Support data-md-level=1> <label class=md-nav__title for=nav-9> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Support </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Support/grav-website/ title="Grav Website Setup" class=md-nav__link> Grav Website Setup </a> </li> <li class=md-nav__item> <a href=../../Support/hugo-website/ title="Hugo Website Setup" class=md-nav__link> Hugo Website Setup </a> </li> <li class=md-nav__item> <a href=../../Support/jekyll-website/ title="Jekyll Website Setup" class=md-nav__link> Jekyll Website Setup </a> </li> <li class=md-nav__item> <a href=../../Support/mac-setup/ title="MacOS Setup" class=md-nav__link> MacOS Setup </a> </li> <li class=md-nav__item> <a href=../../Support/mkdocs-website/ title="MkDocs Website Setup" class=md-nav__link> MkDocs Website Setup </a> </li> <li class=md-nav__item> <a href=../../Support/ssh-key-pair/ title="SSH Key pair" class=md-nav__link> SSH Key pair </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Table of contents </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=#initializing-a-repo-and-committing-files class=md-nav__link> Initializing a repo and committing files </a> </li> <li class=md-nav__item> <a href=#committing-changes class=md-nav__link> Committing Changes </a> </li> <li class=md-nav__item> <a href=#working-remotely class=md-nav__link> Working Remotely </a> </li> <li class=md-nav__item> <a href=#undoing-changes class=md-nav__link> Undoing Changes </a> </li> <li class=md-nav__item> <a href=#fixing-merge-conflicts class=md-nav__link> Fixing Merge Conflicts </a> </li> <li class=md-nav__item> <a href=#git-branches class=md-nav__link> Git Branches </a> </li> <li class=md-nav__item> <a href=#finding-bugs class=md-nav__link> Finding Bugs </a> </li> <li class=md-nav__item> <a href=#being-picky-with-git class=md-nav__link> Being picky with Git </a> </li> <li class=md-nav__item> <a href=#re-writing-history-in-git class=md-nav__link> Re-writing History in Git </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content> <article class="md-content__inner md-typeset"> <h1 id=git-process>Git Process<a class=headerlink href=#git-process title="Permanent link">&para;</a></h1> <h2 id=initializing-a-repo-and-committing-files>Initializing a repo and committing files<a class=headerlink href=#initializing-a-repo-and-committing-files title="Permanent link">&para;</a></h2> <p>To store a directory under version control you need to create a repository. With Git you initialise a repository in the top-level directory for a project. As this is a new project, a new repository needs to be created. Use the <code>git init</code> command to create a repository.</p> <p>When a directory is part of a repository it is called a Working Directory. A working directory contains the latest downloaded version from the repository together with any changes that have yet to be committed. You can view which files have changed between your working directory and what's been previously committed to the repository using the command <code>git status</code>.</p> <p>To save, or commit, files into your Git repository you first need to add them to the staging area. Git has three areas, - a working directory - a staging area - the repository itself.</p> <p>Use the command <code>git add &lt;file|directory&gt;</code> to add a file or folder to the staging area.</p> <p>Once a file has been added to the staging area it needs to be committed to the repository. Use <code>git commit -m "&lt;commit message&gt;"</code> to commit the staged file. Each commit is assigned a SHA-1 hash which enables you to refer back to the commit in other commands.</p> <p>The <code>.gitignore</code> should be committed to the repository to ensure the rules apply across different machines.</p> <div class=highlight><pre><span></span><code>Pradeeps-MBP:learning-git pradeepgorthi$ git init
+Initialized empty Git repository in /Users/pradeepgorthi/Documents/github-repos/learning-git/.git/
+Pradeeps-MBP:learning-git pradeepgorthi$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  <span class=o>(</span>use <span class=s2>&quot;git add &lt;file&gt;...&quot;</span> to include in what will be committed<span class=o>)</span>
+
+    Notes.md
+
+nothing added to commit but untracked files present <span class=o>(</span>use <span class=s2>&quot;git add&quot;</span> to track<span class=o>)</span>
+Pradeeps-MBP:learning-git pradeepgorthi$ git add Notes.md
+Pradeeps-MBP:learning-git pradeepgorthi$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  <span class=o>(</span>use <span class=s2>&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage<span class=o>)</span>
+
+    new file:   Notes.md
+
+Pradeeps-MBP:learning-git pradeepgorthi$ git commit -m <span class=s2>&quot;learning git initial commit with commit notes&quot;</span>
+<span class=o>[</span>master <span class=o>(</span>root-commit<span class=o>)</span> 5e7bc28<span class=o>]</span> learning git initial commit with commit notes
+ <span class=m>1</span> file changed, <span class=m>28</span> insertions<span class=o>(</span>+<span class=o>)</span>
+ create mode <span class=m>100644</span> Notes.md
+Pradeeps-MBP:learning-git pradeepgorthi$ git status
+On branch master
+nothing to commit, working tree clean
+</code></pre></div> <hr> <h2 id=committing-changes>Committing Changes<a class=headerlink href=#committing-changes title="Permanent link">&para;</a></h2> <p>As discussed in the previous scenario <code>git status</code> allows us to view the changes in the working directory and staging area compared to the repository.</p> <p>The command <code>git diff</code> enables you to compare changes in the working directory against a previously committed version. By default the command compares the working directory and the HEAD commit.</p> <p>If you wish to compare against an older version then provide the commit hash as a parameter, for example <code>git diff &lt;commit&gt;</code>. Comparing against commits will output the changes for all of the files modified. If you want to compare the changes to a single file then provide the name as an argument such as <code>git diff committed.js</code></p> <div class=highlight><pre><span></span><code>  &gt; git diff
+diff --git a/committed.js b/committed.js
+index 12e7e7c..fc77969 <span class=m>100644</span>
+--- a/committed.js
++++ b/committed.js
+@@ -1 +1 @@
+-console.log<span class=o>(</span><span class=s2>&quot;Committed File&quot;</span><span class=o>)</span>
++console.log<span class=o>(</span><span class=s2>&quot;Demostrating changing a committed file&quot;</span><span class=o>)</span>
+</code></pre></div> <p>As in the previous scenario in order to commit a change it must first be staged using <code>git add</code> command.</p> <p>If you rename or delete files then you need to specify these files in the add command for them to be tracked. Alternatives you can use <code>git mv</code> and <code>git rm</code> for git to perform the action and include update the staging area.</p> <p>Once the changes are in the staging area they will not show in the output from <code>git diff</code>. By default, it will only compare the working directory and not the staging area.</p> <p>To compare the changes in the staging area against the previous commit, provide the staged parameter <code>git diff --staged</code> to ensure that you have correctly staged all your changes.</p> <div class=highlight><pre><span></span><code> &gt; git diff --staged
+diff --git a/committed.js b/committed.js
+index 12e7e7c..fc77969 <span class=m>100644</span>
+--- a/committed.js
++++ b/committed.js
+@@ -1 +1 @@
+-console.log<span class=o>(</span><span class=s2>&quot;Committed File&quot;</span><span class=o>)</span>
++console.log<span class=o>(</span><span class=s2>&quot;Demostrating changing a committed file&quot;</span><span class=o>)</span>
+diff --git a/untracked.js b/untracked.js
+new file mode <span class=m>100644</span>
+index <span class=m>0000000</span>..264a5be
+--- /dev/null
++++ b/untracked.js
+@@ -0,0 +1 @@
++console.log<span class=o>(</span><span class=s2>&quot;Untracked File&quot;</span><span class=o>)</span>
+</code></pre></div> <p>The command <code>git log</code> allows you to view the history of the repository and the commit log.</p> <div class=highlight><pre><span></span><code>  &gt; git log
+commit 8e406ea6214f7c89cd732ed8ee43b4e4ee121e24
+Author: Scrapbook Git Tutorial &lt;git-tutorial@joinscrapbook.com&gt;
+Date:   Wed Sep <span class=m>18</span> <span class=m>15</span>:44:53 <span class=m>2019</span> +0000
+
+    Changed the output message in committed.js
+
+commit 44a3b80bfcdf8a18688cad2149ca8494f7da91a1
+Author: Scrapbook Git Tutorial &lt;git-tutorial@joinscrapbook.com&gt;
+Date:   Wed Sep <span class=m>18</span> <span class=m>15</span>:19:35 <span class=m>2019</span> +0000
+
+    Initial Commit
+</code></pre></div> <p>The format of the log output is very flexible. <div class=highlight><pre><span></span><code>  &gt; git log --pretty<span class=o>=</span>format:<span class=s2>&quot;%h %an %ar - %s&quot;</span>
+8e406ea Scrapbook Git Tutorial <span class=m>2</span> minutes ago - Changed the output message in committed.js
+44a3b80 Scrapbook Git Tutorial <span class=m>27</span> minutes ago - Initial Commit
+</code></pre></div></p> <p>While git log tells you the commit author and message, to view the changes made in the commit you need to use the the command <code>git show</code>. Use <code>git show &lt;commit-hash&gt;</code> to view older changes.</p> <div class=highlight><pre><span></span><code>&gt; git show
+commit 8e406ea6214f7c89cd732ed8ee43b4e4ee121e24
+Author: Scrapbook Git Tutorial &lt;git-tutorial@joinscrapbook.com&gt;
+Date:   Wed Sep <span class=m>18</span> <span class=m>15</span>:44:53 <span class=m>2019</span> +0000
+
+    Changed the output message in committed.js
+
+diff --git a/committed.js b/committed.js
+index 12e7e7c..fc77969 <span class=m>100644</span>
+--- a/committed.js
++++ b/committed.js
+@@ -1 +1 @@
+-console.log<span class=o>(</span><span class=s2>&quot;Committed File&quot;</span><span class=o>)</span>
++console.log<span class=o>(</span><span class=s2>&quot;Demostrating changing a committed file&quot;</span><span class=o>)</span>
+diff --git a/untracked.js b/untracked.js
+new file mode <span class=m>100644</span>
+index <span class=m>0000000</span>..264a5be
+--- /dev/null
++++ b/untracked.js
+@@ -0,0 +1 @@
++console.log<span class=o>(</span><span class=s2>&quot;Untracked File&quot;</span><span class=o>)</span>
+</code></pre></div> <p>Here is an interesting image to refer to when using git.</p> <p><img alt=image src=../img/gitimage.jpg></p> <hr> <h2 id=working-remotely>Working Remotely<a class=headerlink href=#working-remotely title="Permanent link">&para;</a></h2> <p>Remote repositories allow you to share changes from or to your repository. Remote locations are generally a build server, a team members machine or a centralised store such as Github.com.</p> <p>Remotes are added using the <code>git remote</code> command with a friendly name and the remote location, typically a HTTPS URL or a SSH connection.</p> <div class=highlight><pre><span></span><code>  &gt; git remote add test-name /s/remote-project/1
+</code></pre></div> <div class=highlight><pre><span></span><code>usage: git remote <span class=o>[</span>-v <span class=p>|</span> --verbose<span class=o>]</span>
+   or: git remote add <span class=o>[</span>-t &lt;branch&gt;<span class=o>]</span> <span class=o>[</span>-m &lt;master&gt;<span class=o>]</span> <span class=o>[</span>-f<span class=o>]</span> <span class=o>[</span>--tags<span class=p>|</span>--no-tags<span class=o>]</span> <span class=o>[</span>--mirror<span class=o>=</span>&lt;fetch<span class=p>|</span>push&gt;<span class=o>]</span> &lt;name&gt; &lt;url&gt;
+   or: git remote rename &lt;old&gt; &lt;new&gt;
+   or: git remote remove &lt;name&gt;
+   or: git remote set-head &lt;name&gt; <span class=o>(</span>-a <span class=p>|</span> --auto <span class=p>|</span> -d <span class=p>|</span> --delete <span class=p>|</span>&lt;branch&gt;<span class=o>)</span>
+   or: git remote <span class=o>[</span>-v <span class=p>|</span> --verbose<span class=o>]</span> show <span class=o>[</span>-n<span class=o>]</span> &lt;name&gt;
+   or: git remote prune <span class=o>[</span>-n <span class=p>|</span> --dry-run<span class=o>]</span> &lt;name&gt;
+   or: git remote <span class=o>[</span>-v <span class=p>|</span> --verbose<span class=o>]</span> update <span class=o>[</span>-p <span class=p>|</span> --prune<span class=o>]</span> <span class=o>[(</span>&lt;group&gt; <span class=p>|</span> &lt;remote&gt;<span class=o>)</span>...<span class=o>]</span>
+   or: git remote set-branches <span class=o>[</span>--add<span class=o>]</span> &lt;name&gt; &lt;branch&gt;...
+   or: git remote set-url <span class=o>[</span>--push<span class=o>]</span> &lt;name&gt; &lt;newurl&gt; <span class=o>[</span>&lt;oldurl&gt;<span class=o>]</span>
+   or: git remote set-url --add &lt;name&gt; &lt;newurl&gt;
+   or: git remote set-url --delete &lt;name&gt; &lt;url&gt;
+
+    -v, --verbose         be verbose<span class=p>;</span> must be placed before a subcommand
+</code></pre></div> <p>If you use <code>git clone</code>, then the location being cloned will be automatically added as a remote with the name origin.</p> <div class=highlight><pre><span></span><code>Pradeeps-MBP:learning-git pradeepgorthi$ git remote add origin https://github.com/deepgorthi/learning-git.git
+</code></pre></div> <p>When ready to share the commits, you need to push them to a remote repository via <code>git push</code> and it is followed by two parameters. The first parameter is the friendly name of the remote repository we defined in the first step. The second parameter is the name of the branch. By default all git repositories have a master branch where the code is worked on.</p> <div class=highlight><pre><span></span><code>Pradeeps-MBP:learning-git pradeepgorthi$ git push -u origin master
+Username <span class=k>for</span> <span class=s1>&#39;https://github.com&#39;</span>: deepgorthi
+Password <span class=k>for</span> <span class=s1>&#39;https://deepgorthi@github.com&#39;</span>:
+Enumerating objects: <span class=m>6</span>, <span class=k>done</span>.
+Counting objects: <span class=m>100</span>% <span class=o>(</span><span class=m>6</span>/6<span class=o>)</span>, <span class=k>done</span>.
+Delta compression using up to <span class=m>8</span> threads
+Compressing objects: <span class=m>100</span>% <span class=o>(</span><span class=m>4</span>/4<span class=o>)</span>, <span class=k>done</span>.
+Writing objects: <span class=m>100</span>% <span class=o>(</span><span class=m>6</span>/6<span class=o>)</span>, <span class=m>1</span>.62 KiB <span class=p>|</span> <span class=m>1</span>.62 MiB/s, <span class=k>done</span>.
+Total <span class=m>6</span> <span class=o>(</span>delta <span class=m>1</span><span class=o>)</span>, reused <span class=m>0</span> <span class=o>(</span>delta <span class=m>0</span><span class=o>)</span>
+remote: Resolving deltas: <span class=m>100</span>% <span class=o>(</span><span class=m>1</span>/1<span class=o>)</span>, <span class=k>done</span>.
+To https://github.com/deepgorthi/learning-git.git
+ * <span class=o>[</span>new branch<span class=o>]</span>      master -&gt; master
+Branch <span class=s1>&#39;master&#39;</span> <span class=nb>set</span> up to track remote branch <span class=s1>&#39;master&#39;</span> from <span class=s1>&#39;origin&#39;</span>.
+</code></pre></div> <p>A typical Git workflow would be to perform multiple small commits as you complete a task and push to a remote at relevant points, such as when the task is complete, to ensure synchronisation of the code within the team.</p> <p><code>git pull</code> allows you to sync changes from a remote repository into your local version.</p> <p>Use the command <code>git log --grep="#1234"</code> to find all the commits containing <code>#1234</code></p> <p>The command <code>git pull</code> is a combination of two different commands, </p> <blockquote> <p><code>git pull</code> =&gt; <code>git fetch</code> + <code>git merge</code> </p> </blockquote> <p>Fetch downloads the changes from the remote repository into a separate branch named <code>remotes/&lt;remote-name&gt;/&lt;remote-branch-name&gt;</code>. The branch can be accessed using <code>git checkout</code>. Using <code>git fetch</code> is a great way to review the changes without affecting your current branch. The naming format of branches is flexible enough that you can have multiple remotes and branches with the same name and easily switch between them.</p> <div class=highlight><pre><span></span><code>    &gt; git merge remotes/&lt;remote-name&gt;/&lt;remote-branch-name&gt; master
+</code></pre></div> <p>You can view a list of all the remote branches using the command <div class=highlight><pre><span></span><code>    &gt; git branch -r
+</code></pre></div></p> <hr> <h2 id=undoing-changes>Undoing Changes<a class=headerlink href=#undoing-changes title="Permanent link">&para;</a></h2> <p>The command <code>git checkout</code> will replace everything in the working directory to the last committed version. If you want to replace all files then use a dot (.) to indicate the current directory, otherwise list the directories/files separated by spaces.</p> <p>If you're in the middle of a commit and have added files to the staging area but then changed your mind then you'll need to use the <code>git reset</code> command. It will move files back from the staging area to the working directory. If you want to reset all files then use a "." to indicate current directory, otherwise list the files separated by spaces.</p> <div class=highlight><pre><span></span><code>$ git add Notes.md
+$ git add gitimage.jpg
+$ git reset Notes.md
+    Unstaged changes after reset:
+    M   Notes.md
+$ git commit -m <span class=s2>&quot;Adding git image&quot;</span>
+    <span class=o>[</span>master 8eba1eb<span class=o>]</span> Adding git image
+    <span class=m>1</span> file changed, <span class=m>0</span> insertions<span class=o>(</span>+<span class=o>)</span>, <span class=m>0</span> deletions<span class=o>(</span>-<span class=o>)</span>
+    create mode <span class=m>100644</span> gitimage.jpg
+$ git push origin master
+    Enumerating objects: <span class=m>4</span>, <span class=k>done</span>.
+    Counting objects: <span class=m>100</span>% <span class=o>(</span><span class=m>4</span>/4<span class=o>)</span>, <span class=k>done</span>.
+    Delta compression using up to <span class=m>8</span> threads
+    Compressing objects: <span class=m>100</span>% <span class=o>(</span><span class=m>3</span>/3<span class=o>)</span>, <span class=k>done</span>.
+    Writing objects: <span class=m>100</span>% <span class=o>(</span><span class=m>3</span>/3<span class=o>)</span>, <span class=m>25</span>.23 KiB <span class=p>|</span> <span class=m>8</span>.41 MiB/s, <span class=k>done</span>.
+    Total <span class=m>3</span> <span class=o>(</span>delta <span class=m>0</span><span class=o>)</span>, reused <span class=m>0</span> <span class=o>(</span>delta <span class=m>0</span><span class=o>)</span>
+    To https://github.com/deepgorthi/learning-git.git
+    a0d745f..8eba1eb  master -&gt; master
+</code></pre></div> <blockquote> <p><code>git reset --hard</code> =&gt; <code>git reset</code> + <code>git checkout</code></p> </blockquote> <p>The result of <code>git reset --hard</code> will be files removed from staging area and the working directory is taken back to the state of the last commit.</p> <p>Using HEAD will clear the state back to the last commit and using <code>git reset --hard &lt;commit-hash&gt;</code> allows you to go back to any commit state. <code>HEAD</code> is an alias for the last commit-hash of the branch.</p> <p>If you have already committed files but realized you made a mistake then the command <code>git revert</code> allows you to undo the commits. The command will create a new commit which has the inverse affect of the commit being reverted.</p> <p>If you haven't pushed your changes then <code>git reset HEAD~1</code> has the same affect and will remove the last commit.</p> <p>To revert multiple commits at once we use the character <code>~</code> to mean minus. For example, <code>HEAD~2</code> is two commits from the head. This can be combined with the characters <code>...</code> to say between two commits.</p> <p>Use the command <code>git revert HEAD...HEAD~2</code> to revert the commits between HEAD and HEAD~2.</p> <p>The command <code>git log --oneline</code> for a quick overview of the commit history.</p> <hr> <h2 id=fixing-merge-conflicts>Fixing Merge Conflicts<a class=headerlink href=#fixing-merge-conflicts title="Permanent link">&para;</a></h2> <p>The <code>git fetch</code> command downloads changes into a separate branch which can be checked out and merge. During a merge, Git will attempt to automatically combine the commits. When no conflicts exist then the merge will be 'fast-forwarded' and you won't have to do anything. If a conflict does exist, then you will retrieve an error and the repository will be in a merging state.</p> <div class=highlight><pre><span></span><code>  &gt; git fetch
+
+  &gt; git merge origin/master
+Auto-merging staging.txt
+CONFLICT <span class=o>(</span>add/add<span class=o>)</span>: Merge conflict in staging.txt
+Automatic merge failed<span class=p>;</span> fix conflicts and <span class=k>then</span> commit the result.
+</code></pre></div> <p>When a conflict occurs the changes from both the local and remote will appear in the same file in the unix diff format. To read the format, the local changes will appear at the top between <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> and <code>=======</code> with the remote changes being underneath between <code>=======</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; remotes/origin/master</code>.</p> <div class=highlight><pre><span></span><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Fixing Error, Let&#39;s Hope No-One Else Does
+=======
+Fixing Previous Error
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/master
+</code></pre></div> <p>The simplest way to fix a conflict is to pick either the local or remote version using <code>git checkout --ours staging.txt</code> or <code>git checkout --theirs staging.txt</code>. If you need to have more control then you can manually edit the file(s) like normal.</p> <div class=highlight><pre><span></span><code>  &gt; git checkout --theirs staging.txt
+
+  &gt; git add staging.txt
+
+  &gt; git commit
+<span class=o>[</span>master 51ae805<span class=o>]</span> Merge remote-tracking branch <span class=s1>&#39;origin/master&#39;</span>
+</code></pre></div> <p>If you want to revert in the middle of a merge and try again then use the command <code>git reset --hard HEAD;</code> to go back to your previous state.</p> <p>Use <code>git commit --no-edit</code> when you wish to use the default commit message.</p> <p>To simulate a <strong>non-fast forward merge</strong> the following has occurred.</p> <p>1) Developer A pulls the latest changes from Developer B. 2) Developer B commits changes to their local repository. 3) Developer A commits non-conflicting changes to their local repository. 4) Developer A pulls the latest changes from Developer B.</p> <p>In this scenario Git is unable to fast-forward the changes from Developer B because Developer A has made a number of changes.</p> <p>When this happens, Git will attempt to auto-merge the changes. If no conflicts exist then the merge will be completed and a new commit will be created to indicate the merge happening at that point in time.</p> <p>The default commit message for merges is "Merge branch '' of ". These commits can be useful to indicate synchronization points between repositories but also produce a noisy commit log.</p> <div class=highlight><pre><span></span><code>  &gt; git pull --no-edit origin master
+remote: Counting objects: <span class=m>5</span>, <span class=k>done</span>.
+remote: Compressing objects: <span class=m>100</span>% <span class=o>(</span><span class=m>4</span>/4<span class=o>)</span>, <span class=k>done</span>.
+remote: Total <span class=m>4</span> <span class=o>(</span>delta <span class=m>1</span><span class=o>)</span>, reused <span class=m>0</span> <span class=o>(</span>delta <span class=m>0</span><span class=o>)</span>
+Unpacking objects: <span class=m>100</span>% <span class=o>(</span><span class=m>4</span>/4<span class=o>)</span>, <span class=k>done</span>.
+From /s/remote-project/1
+ * branch            master     -&gt; FETCH_HEAD
+   418fe6e..095b88a  master     -&gt; origin/master
+Merge made by the <span class=s1>&#39;recursive&#39;</span> strategy.
+ new-file-6.txt  <span class=p>|</span> <span class=m>1</span> +
+ new-file-6a.txt <span class=p>|</span> <span class=m>1</span> +
+ <span class=m>2</span> files changed, <span class=m>2</span> insertions<span class=o>(</span>+<span class=o>)</span>
+ create mode <span class=m>100644</span> new-file-6.txt
+ create mode <span class=m>100644</span> new-file-6a.txt
+</code></pre></div> <p><strong>Git Rebase</strong></p> <p>The merge commit messages can be useful to indicate synchronization points but they can also produce a lot of noise. For example, if you're working against local branches and haven't pushed then this additional information is meaningless, and confusing, to other developers looking at the repository.</p> <p>To solve this you can use git rebase instead of git merge. A rebase will unwind the changes you've made and replay the changes in the branch, applying your changes as if they happened all on the same branch. The result is a clean history and graph for the merge.</p> <blockquote> <p>From <a href=https://git-scm.com/book/en/v2/Git-Branching-Rebasing#The-Perils-of-Rebasing>git-scm</a>: - The easiest way to integrate the branches, as we’ve already covered, is the merge command. It performs a three-way merge between the two latest branch snapshots (C3 and C4) and the most recent common ancestor of the two (C2), creating a new snapshot (and commit). - However, there is another way: you can take the patch of the change that was introduced in C4 and reapply it on top of C3. In Git, this is called rebasing. With the rebase command, you can take all the changes that were committed on one branch and replay them on a different branch.</p> </blockquote> <p><em>Important:</em> As rebase will replay the changes instead of merging, each commit will have a new hash id. If you, or other developers, have pushed/pulled the repository then changing the history can git to lose commits. As such you shouldn't rebase commits that have been made public, for example pushing commits then rebasing in older commits from a different branch. The result will be previously public commits having different hash ids. More details can be found at <a href=https://git-scm.com/book/ch3-6.html#The-Perils-of-Rebasing>The Perils of Rebasing</a>.</p> <p>This approach also applies when working with remote branches and can be applied when issuing a pull request using: <code>git pull --rebase</code></p> <p><div class=highlight><pre><span></span><code>  &gt; git pull --rebase
+There is no tracking information <span class=k>for</span> the current branch.
+Please specify which branch you want to rebase against.
+See git-pull<span class=o>(</span><span class=m>1</span><span class=o>)</span> <span class=k>for</span> details
+
+    git pull &lt;remote&gt; &lt;branch&gt;
+
+If you wish to <span class=nb>set</span> tracking information <span class=k>for</span> this branch you can <span class=k>do</span> so with:
+
+    git branch --set-upstream-to<span class=o>=</span>origin/&lt;branch&gt; feature/10
+</code></pre></div> This will act as if you had done a pull request before each of your commits.</p> <blockquote> <p>In general, the way to get the best of both worlds is to rebase local changes you’ve made but haven’t shared yet before you push them in order to clean up your story, but never rebase anything you’ve pushed somewhere.</p> </blockquote> <hr> <h2 id=git-branches>Git Branches<a class=headerlink href=#git-branches title="Permanent link">&para;</a></h2> <p>A branch allows you to work in a brand new working directory efficiently. The result is that a single Git repository can have multiple different versions of the code-base, each of which can be swapped between without changing directories.</p> <p>The default branch in Git is called master. When you switch a branch, Git changes the contents of the working directory. This means you don't need to change any configurations or settings to reflect different branches or locations.</p> <p>Branches are created based on another branch, generally master. The command <code>git branch &lt;new branch name&gt; &lt;starting branch&gt;</code> takes an existing branch and creates a separate branch to work in. At this point, both branches are identical. To switch to a branch you use the <code>git checkout &lt;new branch name&gt;</code> command.</p> <p>The above two commands can be combined into a single command by doing <code>git checkout -b &lt;new branch name&gt;</code> which will create and checkout the newly created branch and the starting branch defaults to <code>HEAD</code>. <div class=highlight><pre><span></span><code>&gt; git branch new_branch master
+
+&gt; git checkout new_branch
+    Switched to branch <span class=s1>&#39;new_branch&#39;</span>
+</code></pre></div></p> <p>To list all the branches, use the command <code>git branch</code>.</p> <p>The additional argument -a will include remote branches while including -v will include the HEAD commit message for the branch.</p> <div class=highlight><pre><span></span><code>&gt; git branch -va
+    master       75fa002 First Commit on master
+    new_branch   75fa002 First Commit on master
+    * new_branch_b <span class=m>1296799</span> Commit on branch
+</code></pre></div> <p>A commit has been made to the new branch. To merge this into master, you would first need to checkout the target branch, in this case master, <code>git checkout master</code> and then use <code>git merge &lt;branch-name&gt;</code> command to merge in the commits from a branch.</p> <p><div class=highlight><pre><span></span><code>&gt; git status
+    On branch new_branch
+    nothing to commit, working directory clean
+
+&gt; touch test_file
+
+&gt; git add test_file
+
+&gt; git status
+    On branch new_branch
+    Changes to be committed:
+    <span class=o>(</span>use <span class=s2>&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class=o>)</span>
+
+            new file:   test_file
+
+&gt; git commit -m <span class=s2>&quot;Adding test file to new_branch&quot;</span>
+    <span class=o>[</span>new_branch 0fceb73<span class=o>]</span> Adding <span class=nb>test</span> file to new_branch
+    <span class=m>1</span> file changed, <span class=m>0</span> insertions<span class=o>(</span>+<span class=o>)</span>, <span class=m>0</span> deletions<span class=o>(</span>-<span class=o>)</span>
+    create mode <span class=m>100644</span> test_file
+
+&gt; git checkout master
+    Switched to branch <span class=s1>&#39;master&#39;</span>
+
+&gt; git merge new_branch
+    Updating 75fa002..0fceb73
+    Fast-forward
+    test_file <span class=p>|</span> <span class=m>0</span>
+    <span class=m>1</span> file changed, <span class=m>0</span> insertions<span class=o>(</span>+<span class=o>)</span>, <span class=m>0</span> deletions<span class=o>(</span>-<span class=o>)</span>
+    create mode <span class=m>100644</span> test_file
+</code></pre></div> To push a branch to a remote, use <code>git push &lt;remote_name&gt; &lt;branch_name&gt;</code> <div class=highlight><pre><span></span><code>&gt; git push origin new_branch
+    Counting objects: <span class=m>6</span>, <span class=k>done</span>.
+    Delta compression using up to <span class=m>12</span> threads.
+    Compressing objects: <span class=m>100</span>% <span class=o>(</span><span class=m>3</span>/3<span class=o>)</span>, <span class=k>done</span>.
+    Writing objects: <span class=m>100</span>% <span class=o>(</span><span class=m>6</span>/6<span class=o>)</span>, <span class=m>524</span> bytes <span class=p>|</span> <span class=m>0</span> bytes/s, <span class=k>done</span>.
+    Total <span class=m>6</span> <span class=o>(</span>delta <span class=m>0</span><span class=o>)</span>, reused <span class=m>0</span> <span class=o>(</span>delta <span class=m>0</span><span class=o>)</span>
+    To /s/remote-project/1
+    * <span class=o>[</span>new branch<span class=o>]</span>      new_branch -&gt; new_branch
+</code></pre></div></p> <p>Cleaning up branches is important to remove the amount of noise and confusion. To delete a branch, you need to provide the argument -d like <code>git branch -d &lt;branch_name&gt;</code> <div class=highlight><pre><span></span><code>&gt; git branch -d new_branch
+    Deleted branch new_branch <span class=o>(</span>was 0fceb73<span class=o>)</span>.
+</code></pre></div></p> <hr> <h2 id=finding-bugs>Finding Bugs<a class=headerlink href=#finding-bugs title="Permanent link">&para;</a></h2> <ul> <li><code>git diff</code><ul> <li>This command is the simplest to compare what's changed between commits. It will output the differences between the two commits.</li> </ul> </li> </ul> <div class=highlight><pre><span></span><code>&gt; git diff HEAD~2 HEAD
+    diff --git a/list.html b/list.html
+    index 96e99d0..9f53aec <span class=m>100644</span>
+    --- a/list.html
+    +++ b/list.html
+    @@ -2,4 +2,6 @@
+     &lt;li&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit.&lt;/li&gt;
+     &lt;li&gt;Aliquam tincidunt mauris eu risus.&lt;/li&gt;
+     &lt;li&gt;Vestibulum auctor dapibus neque.&lt;/li&gt;
+    +&lt;li&gt;Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a.&lt;/li&gt;
+    +&lt;li&gt;Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat.&lt;/li&gt;
+     &lt;/ul&gt;
+</code></pre></div> <ul> <li><code>git log</code><ul> <li>While git log helps you see the commit messages but by default it does not output what actually changed.</li> </ul> </li> <li> <p><code>git log --oneline</code></p> <ul> <li>To see the overview of the commits in a short view, use this command. <div class=highlight><pre><span></span><code>  &gt; git log --oneline
+    43a9071 Final Item
+    49f29f0 New Item
+    3c2ef9c Initial commit of the list
+</code></pre></div></li> </ul> </li> <li> <p><code>git log -p</code></p> <ul> <li>To output the commit information with the differences of what changed you need to include the -p prompt <div class=highlight><pre><span></span><code> &gt; git log -p
+    commit 43a9071cd9f4e4e17dbd1f7ee50020373a04dd6f
+    Author: Scrapbook Git Tutorial &lt;git-tutorial@joinscrapbook.com&gt;
+    Date:   Fri Sep <span class=m>20</span> <span class=m>17</span>:34:55 <span class=m>2019</span> +0000
+
+        Final Item
+
+    diff --git a/list.html b/list.html
+    index def310d..9f53aec <span class=m>100644</span>
+    --- a/list.html
+    +++ b/list.html
+    @@ -3,4 +3,5 @@
+     &lt;li&gt;Aliquam tincidunt mauris eu risus.&lt;/li&gt;
+     &lt;li&gt;Vestibulum auctor dapibus neque.&lt;/li&gt;
+     &lt;li&gt;Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a.&lt;/li&gt;
+    +&lt;li&gt;Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat.&lt;/li&gt;
+     &lt;/ul&gt;
+
+    commit 49f29f018078ec090b466edea6d57ba980e06bd3
+    Author: Scrapbook Git Tutorial &lt;git-tutorial@joinscrapbook.com&gt;
+    Date:   Fri Sep <span class=m>20</span> <span class=m>17</span>:34:55 <span class=m>2019</span> +0000
+
+        New Item
+
+    diff --git a/list.html b/list.html
+    index 96e99d0..def310d <span class=m>100644</span>
+    --- a/list.html
+    +++ b/list.html
+    @@ -2,4 +2,5 @@
+     &lt;li&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit.&lt;/li&gt;
+     &lt;li&gt;Aliquam tincidunt mauris eu risus.&lt;/li&gt;
+     &lt;li&gt;Vestibulum auctor dapibus neque.&lt;/li&gt;
+    +&lt;li&gt;Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a.&lt;/li&gt;
+     &lt;/ul&gt;
+
+    commit 3c2ef9c7048a9e98af1679e2b7349cbd53ec17c9
+    Author: Scrapbook Git Tutorial &lt;git-tutorial@joinscrapbook.com&gt;
+    Date:   Fri Sep <span class=m>20</span> <span class=m>17</span>:34:55 <span class=m>2019</span> +0000
+
+        Initial commit of the list
+
+    diff --git a/list.html b/list.html
+    new file mode <span class=m>100644</span>
+    index <span class=m>0000000</span>..96e99d0
+    --- /dev/null
+    +++ b/list.html
+    @@ -0,0 +1,5 @@
+    +&lt;ul&gt;
+    +&lt;li&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit.&lt;/li&gt;
+    +&lt;li&gt;Aliquam tincidunt mauris eu risus.&lt;/li&gt;
+    +&lt;li&gt;Vestibulum auctor dapibus neque.&lt;/li&gt;
+    +&lt;/ul&gt;
+</code></pre></div></li> </ul> </li> <li> <p><code>git log -p -n 2</code></p> <ul> <li>This will output the entire history. You can filter it with a number of different options. The -n <number> specifies a limit of commits to display from the HEAD. Using '2' displays HEAD and HEAD~1.</li> </ul> </li> </ul> <div class=highlight><pre><span></span><code>  &gt; git log -p -n <span class=m>2</span>
+    commit 43a9071cd9f4e4e17dbd1f7ee50020373a04dd6f
+    Author: Scrapbook Git Tutorial &lt;git-tutorial@joinscrapbook.com&gt;
+    Date:   Fri Sep <span class=m>20</span> <span class=m>17</span>:34:55 <span class=m>2019</span> +0000
+
+        Final Item
+
+    diff --git a/list.html b/list.html
+    index def310d..9f53aec <span class=m>100644</span>
+    --- a/list.html
+    +++ b/list.html
+    @@ -3,4 +3,5 @@
+     &lt;li&gt;Aliquam tincidunt mauris eu risus.&lt;/li&gt;
+     &lt;li&gt;Vestibulum auctor dapibus neque.&lt;/li&gt;
+     &lt;li&gt;Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a.&lt;/li&gt;
+    +&lt;li&gt;Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat.&lt;/li&gt;
+     &lt;/ul&gt;
+
+    commit 49f29f018078ec090b466edea6d57ba980e06bd3
+    Author: Scrapbook Git Tutorial &lt;git-tutorial@joinscrapbook.com&gt;
+    Date:   Fri Sep <span class=m>20</span> <span class=m>17</span>:34:55 <span class=m>2019</span> +0000
+
+        New Item
+
+    diff --git a/list.html b/list.html
+    index 96e99d0..def310d <span class=m>100644</span>
+    --- a/list.html
+    +++ b/list.html
+    @@ -2,4 +2,5 @@
+     &lt;li&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit.&lt;/li&gt;
+     &lt;li&gt;Aliquam tincidunt mauris eu risus.&lt;/li&gt;
+     &lt;li&gt;Vestibulum auctor dapibus neque.&lt;/li&gt;
+    +&lt;li&gt;Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a.&lt;/li&gt;
+     &lt;/ul&gt;
+</code></pre></div> <ul> <li><code>git log --grep="Initial"</code><ul> <li>This will output all the commits which include the word "Initial" in their commit message. This is useful if you tag commits with bug-tracking numbers.</li> </ul> </li> </ul> <div class=highlight><pre><span></span><code>  &gt; git log --grep<span class=o>=</span><span class=s2>&quot;Initial&quot;</span>
+    commit 3c2ef9c7048a9e98af1679e2b7349cbd53ec17c9
+    Author: Scrapbook Git Tutorial &lt;git-tutorial@joinscrapbook.com&gt;
+    Date:   Fri Sep <span class=m>20</span> <span class=m>17</span>:34:55 <span class=m>2019</span> +0000
+
+        Initial commit of the list
+</code></pre></div> <ul> <li> <p><code>git bisect</code></p> <ul> <li>This command allows you to do a binary search of the repository looking for which commit introduced the problem and the regression. Git bisect takes a number of steps, execute the steps in order to see the results.</li> <li><strong>Steps</strong><ul> <li>To enter into bisect mode you use the command <code>git bisect start</code>.</li> <li>Once in bisect mode, define your current checkout as bad using <code>git bisect bad</code>. This indicates that it contains the problem you are searching to see when it was introduced.</li> <li>We have defined where a bad commit happened. Now we need to define when the last known good commit was using <code>git bisect good HEAD~5</code>. In this case it was five commits ago.</li> <li>The above step will checkout the commit in-between bad and good commits. You can then check the commit, run tests etc to see if the bug exists. In this example, you can check the contents using <code>`cat list.html</code></li> <li>This commit looks good as everything has correct HTML tags. We tell Git we're happy using <code>git bisect good</code>. This will automatically check out the commit in the middle of the last known good commit, as defined in step 5 and our bad commit.</li> <li>As we did before, we need to check to see if the commit is good or bad using <code>cat list.html</code></li> <li>This commit has missing HTML tags. Using <code>git bisect bad</code> will end the search and output the the related commit id.</li> </ul> </li> <li>The result is that instead of searching five commits, we only searched two. On a much larger timescale, <code>bisect</code> can save you signifant time.</li> </ul> </li> <li> <p><code>git blame</code></p> <ul> <li>It can be useful to know who worked on a certain section of the file to help with improvements in future.</li> <li>This command shows the revision and author who last modified each line of a file.</li> <li>If we know the lines which we're concerned with then we can use the -L parameter to provide a range of lines to output.</li> </ul> </li> </ul> <hr> <h2 id=being-picky-with-git>Being picky with Git<a class=headerlink href=#being-picky-with-git title="Permanent link">&para;</a></h2> <p><strong>Cherry Picking</strong></p> <p>In this scenario, we only care about changes to one of the files but if we merged the branch, then we'd merge all five commits and the unwanted changes. To merge individual commits, we use <code>git cherry-pick &lt;hash-id|ref&gt;</code> command. This behaves in a similar way to <em>merge</em>, if no conflicts exist then the commit will be automatically merged. </p> <p><code>new_branch~3</code> refers to the second-to-last commit in the branch.</p> <div class=highlight><pre><span></span><code>  &gt; git log --pretty<span class=o>=</span>oneline --reverse new_branch
+    f3a03a060cd76c4ebd68ba2a35ad9685f041a9b6 Readme File
+    2be62bb15c92ad4dfc57b62592df09907afc2c5a Initial commit, no items
+    ac4d5aec7ee23de2b6b6756a598dbd5f59f65ac5 Initial list
+    0e2dc8c0428a3fd5e42af547a97c5eb9828b3c4b Creating Second List
+    4b4bcb18289c3adf476a97c328caaacfc0f4a9a8 Adding final items to the list
+
+  &gt; git cherry-pick 2be62bb15c92ad4dfc57b62592df09907afc2c5a
+    <span class=o>[</span>master 902442e<span class=o>]</span> Initial commit, no items
+     <span class=m>1</span> file changed, <span class=m>2</span> insertions<span class=o>(</span>+<span class=o>)</span>
+     create mode <span class=m>100644</span> list.html
+
+  &gt; git cherry-pick ac4d5aec7ee23de2b6b6756a598dbd5f59f65ac5
+    <span class=o>[</span>master 903c134<span class=o>]</span> Initial list
+     <span class=m>1</span> file changed, <span class=m>3</span> insertions<span class=o>(</span>+<span class=o>)</span>
+
+  &gt; git cherry-pick 4b4bcb18289c3adf476a97c328caaacfc0f4a9a8
+    <span class=o>[</span>master e91edc3<span class=o>]</span> Adding final items to the list
+     <span class=m>1</span> file changed, <span class=m>1</span> insertion<span class=o>(</span>+<span class=o>)</span>
+</code></pre></div> <p>Conflicts can be solved in the same way as with merging a branch - either manually fixing the files or selecting theirs or ours via <code>git checkout</code>. You can stop and revert the pick using <code>git cherry-pick --abort</code></p> <p>Once the conflicts have been resolved, you can continue with the cherry pick using the command <code>git cherry-pick --continue</code></p> <hr> <h2 id=re-writing-history-in-git>Re-writing History in Git<a class=headerlink href=#re-writing-history-in-git title="Permanent link">&para;</a></h2> <p>Re-writing the repositories history is done using <code>git rebase -interactive</code>. This has a total of 6 commands that can be used.</p> <div class=highlight><pre><span></span><code>&gt; git rebase --interactive --root
+
+<span class=c1># Commands:</span>
+<span class=c1>#  p, pick = use commit</span>
+<span class=c1>#  r, reword = use commit, but edit the commit message</span>
+<span class=c1>#  e, edit = use commit, but stop for amending</span>
+<span class=c1>#  s, squash = use commit, but meld into previous commit</span>
+<span class=c1>#  f, fixup = like &quot;squash&quot;, but discard this commit&#39;s log message</span>
+<span class=c1>#  x, exec = run command (the rest of the line) using shell</span>
+</code></pre></div> <p>This will open up a file that can be edited in vim. If we want to correct a type in the commit message, we can change <code>pick</code> to <code>reword</code> and that will result in a new vim file opening. Now, we can change the commit message typo and then save it.</p> <div class=highlight><pre><span></span><code>  &gt; git rebase --interactive --root
+    <span class=o>[</span>detached HEAD 9eebea9<span class=o>]</span> Initial commit of the list
+     <span class=m>1</span> file changed, <span class=m>5</span> insertions<span class=o>(</span>+<span class=o>)</span>
+     create mode <span class=m>100644</span> list.html
+    Successfully rebased and updated refs/heads/master
+</code></pre></div> <p><code>git commit --amend</code> can be used to reword the last commit message. </p> <p>If we want to re-order our last two commits, that can be done using HEAD~2 that allows us to modify them. <code>git rebase --interactive HEAD~2</code> -&gt; Using Vim, simply reorder the lines, save &amp; quit, and the commits will match the order.</p> <hr> <hr> <div class=md-source-date> <small> Last update: December 10, 2019 </small> </div> </article> </div> </div> </main> <!-- Application footer --> <footer class=md-footer> <!-- Link to previous and/or next page --> <div class=md-footer-nav> <nav class="md-footer-nav__inner md-grid"> <!-- Link to previous page --> <a href=../git-commands-to-know/ title="Git commands to know" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel=prev> <div class="md-flex__cell md-flex__cell--shrink"> <i class="md-icon md-icon--arrow-back
+                    md-footer-nav__button"></i> </div> <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title"> <span class=md-flex__ellipsis> <span class=md-footer-nav__direction> Previous </span> Git commands to know </span> </div> </a> <!-- Link to next page --> <a href=../google-sre-book-danluu-notes/ title="Notes on Google SRE" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel=next> <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title"> <span class=md-flex__ellipsis> <span class=md-footer-nav__direction> Next </span> Notes on Google SRE </span> </div> <div class="md-flex__cell md-flex__cell--shrink"> <i class="md-icon md-icon--arrow-forward
+                    md-footer-nav__button"></i> </div> </a> </nav> </div> <!-- Further information --> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <!-- Copyright and theme information --> <div class=md-footer-copyright> </div> <!-- Social links --> <div class=md-footer-social> <link rel=stylesheet href=../../assets/fonts/font-awesome.css> <a href=https://github.com/deepgorthi target=_blank class="md-footer-social__link fa fa-github"></a> <a href=https://twitter.com/deepgorthi target=_blank class="md-footer-social__link fa fa-twitter"></a> <a href=https://linkedin.com/in/deepgorthi target=_blank class="md-footer-social__link fa fa-linkedin"></a> <a href=https://resume.deepgorthi.com target=_blank class="md-footer-social__link fa fa-address-book"></a> <a href=https://deepgorthi.com target=_blank class="md-footer-social__link fa fa-globe"></a> </div> </div> </div> </footer> </div> <script src=../../assets/javascripts/vendor.d710d30a.min.js></script> <script src=../../assets/javascripts/bundle.5f27aba8.min.js></script><script id=__lang type=application/json>{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script> <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.27c6a5e6.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script> </body> </html>

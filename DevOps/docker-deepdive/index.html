@@ -1,0 +1,375 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="All things DevOps, Infrastructure, Linux and networking"><link href=https://docs.deepgorthi.com/DevOps/docker-deepdive/ rel=canonical><meta name=author content="Pradeep Gorthi"><link rel="shortcut icon" href=../../assets/images/favicon.png><meta name=generator content="mkdocs-1.1.2, mkdocs-material-5.2.2"><title>Docker Deepdive - Docs | Pradeep Gorthi</title><link rel=stylesheet href=../../assets/stylesheets/main.a2408e81.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.a46bcfb3.min.css><meta name=theme-color content=#ff7043><link href=https://fonts.gstatic.com rel=preconnect crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style><link rel="preconnect dns-prefetch" href=https://www.google-analytics.com><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-153019680-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview")})</script><script async src=https://www.google-analytics.com/analytics.js></script><style>
+html {scroll-behavior: smooth;}
+</style><meta name=robots content=noindex></head> <body dir=ltr data-md-color-scheme data-md-color-primary=deep-orange data-md-color-accent=deep-orange> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#docker-deepdive class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header-nav md-grid" aria-label=Header> <a href=https://docs.deepgorthi.com title="Docs | Pradeep Gorthi" class="md-header-nav__button md-logo" aria-label="Docs | Pradeep Gorthi"> <img src=../../assets/images/icon.png alt=logo> </a> <label class="md-header-nav__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header-nav__title data-md-component=header-title> <div class=md-header-nav__ellipsis> <span class="md-header-nav__topic md-ellipsis"> Docs | Pradeep Gorthi </span> <span class="md-header-nav__topic md-ellipsis"> Docker Deepdive </span> </div> </div> <label class="md-header-nav__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear data-md-component=search-reset tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> <div class=md-header-nav__source> <a href=https://deepgorthi.com target=_blank title="Go to repository" class=md-source data-md-source> <div class=md-source__repository> DeepGorthi.com </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://docs.deepgorthi.com title="Docs | Pradeep Gorthi" class="md-nav__button md-logo" aria-label="Docs | Pradeep Gorthi"> <img src=../../assets/images/icon.png alt=logo> </a> Docs | Pradeep Gorthi </label> <div class=md-nav__source> <a href=https://deepgorthi.com target=_blank title="Go to repository" class=md-source data-md-source> <div class=md-source__repository> DeepGorthi.com </div> </a> </div> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. title=Home class=md-nav__link> Home </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-2 type=checkbox id=nav-2> <label class=md-nav__link for=nav-2> AWS <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=AWS data-md-level=1> <label class=md-nav__title for=nav-2> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> AWS </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../AWS/aws-developer-cert/ title="AWS Certfied Developer Associate (DVA-C01)" class=md-nav__link> AWS Certfied Developer Associate (DVA-C01) </a> </li> <li class=md-nav__item> <a href=../../AWS/aws-ecs/ title="Amazon Elastic Container Service" class=md-nav__link> Amazon Elastic Container Service </a> </li> <li class=md-nav__item> <a href=../../AWS/awslogs/ title=AWSLogs class=md-nav__link> AWSLogs </a> </li> <li class=md-nav__item> <a href=../../AWS/ec2-security-groups-notes/ title="EC2 Security Groups" class=md-nav__link> EC2 Security Groups </a> </li> <li class=md-nav__item> <a href=../../AWS/elk-on-ecs/ title="ELK stack on AWS ECS" class=md-nav__link> ELK stack on AWS ECS </a> </li> <li class=md-nav__item> <a href=../../AWS/lambda-programming-model/ title="Lambda Programming Model" class=md-nav__link> Lambda Programming Model </a> </li> <li class=md-nav__item> <a href=../../AWS/python-boto3/ title="Python Boto3" class=md-nav__link> Python Boto3 </a> </li> <li class=md-nav__item> <a href=../../AWS/vpc-best-practices/ title="VPC Best Practices" class=md-nav__link> VPC Best Practices </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-3 type=checkbox id=nav-3> <label class=md-nav__link for=nav-3> CKAD <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=CKAD data-md-level=1> <label class=md-nav__title for=nav-3> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> CKAD </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../CKAD/Containers/ title=Container class=md-nav__link> Container </a> </li> <li class=md-nav__item> <a href=../../CKAD/exam-prep/ title="About the exam" class=md-nav__link> About the exam </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-4 type=checkbox id=nav-4 checked> <label class=md-nav__link for=nav-4> DevOps <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=DevOps data-md-level=1> <label class=md-nav__title for=nav-4> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> DevOps </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../ansible/ title=Ansible class=md-nav__link> Ansible </a> </li> <li class=md-nav__item> <a href=../deployment-processes/ title="Deployment Processes" class=md-nav__link> Deployment Processes </a> </li> <li class=md-nav__item> <a href=../devops-handbook-summary/ title="DevOps Handbook Summary" class=md-nav__link> DevOps Handbook Summary </a> </li> <li class=md-nav__item> <a href=../docker-basics/ title="Docker Basics" class=md-nav__link> Docker Basics </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> Docker Deepdive <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg> </span> </label> <a href=./ title="Docker Deepdive" class="md-nav__link md-nav__link--active"> Docker Deepdive </a> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Table of contents </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=#vms-vs-containers class=md-nav__link> VMs vs Containers </a> </li> <li class=md-nav__item> <a href=#when-to-use-vms-and-docker class=md-nav__link> When to use VMs and Docker </a> </li> <li class=md-nav__item> <a href=#dockers-architecture class=md-nav__link> Docker's Architecture </a> </li> <li class=md-nav__item> <a href=#images-and-containers class=md-nav__link> Images and Containers </a> </li> <li class=md-nav__item> <a href=#building-docker-image class=md-nav__link> Building Docker image </a> </li> <li class=md-nav__item> <a href=#volumes class=md-nav__link> Volumes </a> </li> <li class=md-nav__item> <a href=#networks class=md-nav__link> Networks </a> </li> <li class=md-nav__item> <a href=#optimizing-docker-images class=md-nav__link> Optimizing Docker Images </a> </li> <li class=md-nav__item> <a href=#docker-compose class=md-nav__link> docker-compose </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../docker-tidbits/ title="Docker Tidbits" class=md-nav__link> Docker Tidbits </a> </li> <li class=md-nav__item> <a href=../git-commands-to-know/ title="Git commands to know" class=md-nav__link> Git commands to know </a> </li> <li class=md-nav__item> <a href=../git-process/ title="Git Process" class=md-nav__link> Git Process </a> </li> <li class=md-nav__item> <a href=../google-sre-book-danluu-notes/ title="Notes on Google SRE" class=md-nav__link> Notes on Google SRE </a> </li> <li class=md-nav__item> <a href=../k8s/ title=Kubernetes class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../sre-overview/ title="SRE Overview" class=md-nav__link> SRE Overview </a> </li> <li class=md-nav__item> <a href=../terraform-basics/ title="Terraform Basics" class=md-nav__link> Terraform Basics </a> </li> <li class=md-nav__item> <a href=../twelve-factor-app/ title="Twelve Factor App" class=md-nav__link> Twelve Factor App </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-5 type=checkbox id=nav-5> <label class=md-nav__link for=nav-5> Interview Notes <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label="Interview Notes" data-md-level=1> <label class=md-nav__title for=nav-5> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Interview Notes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Interview%20Notes/ansible/ title=Ansible class=md-nav__link> Ansible </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/aws/ title=AWS class=md-nav__link> AWS </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/behavorial-questions/ title="Behavorial Questions" class=md-nav__link> Behavorial Questions </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/docker/ title=Docker class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/jenkins/ title=Jenkins class=md-nav__link> Jenkins </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/k8s/ title=Kubernetes class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/python/ title=Python class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../../Interview%20Notes/terraform/ title=Terraform class=md-nav__link> Terraform </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-6 type=checkbox id=nav-6> <label class=md-nav__link for=nav-6> Linux <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Linux data-md-level=1> <label class=md-nav__title for=nav-6> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Linux </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Linux/support/ title="Support Documentation" class=md-nav__link> Support Documentation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-7 type=checkbox id=nav-7> <label class=md-nav__link for=nav-7> Projects <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Projects data-md-level=1> <label class=md-nav__title for=nav-7> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Projects </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Projects/project1-ci-cd-pipeline-website/ title="CI/CD Pipeline for Website" class=md-nav__link> CI/CD Pipeline for Website </a> </li> <li class=md-nav__item> <a href=../../Projects/project2-elk-aws-ecs/ title="ELK on AWS ECS" class=md-nav__link> ELK on AWS ECS </a> </li> <li class=md-nav__item> <a href=../../Projects/project3-video-sharing/ title="Video Sharing Website" class=md-nav__link> Video Sharing Website </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-8 type=checkbox id=nav-8> <label class=md-nav__link for=nav-8> Python <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Python data-md-level=1> <label class=md-nav__title for=nav-8> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Python </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Python/key-points/ title=Notes class=md-nav__link> Notes </a> </li> <li class=md-nav__item> <a href=../../Python/oops-python/ title="Python Object-Oriented Programming" class=md-nav__link> Python Object-Oriented Programming </a> </li> <li class=md-nav__item> <a href=../../Python/python-virtual-env/ title="VirtualEnv for Python" class=md-nav__link> VirtualEnv for Python </a> </li> <li class=md-nav__item> <a href=../../Python/python-webscraper/ title="Web Scraping" class=md-nav__link> Web Scraping </a> </li> <li class=md-nav__item> <a href=../../Python/useful-python-code/ title="Useful Python Code" class=md-nav__link> Useful Python Code </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-9 type=checkbox id=nav-9> <label class=md-nav__link for=nav-9> Support <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Support data-md-level=1> <label class=md-nav__title for=nav-9> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Support </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../Support/grav-website/ title="Grav Website Setup" class=md-nav__link> Grav Website Setup </a> </li> <li class=md-nav__item> <a href=../../Support/hugo-website/ title="Hugo Website Setup" class=md-nav__link> Hugo Website Setup </a> </li> <li class=md-nav__item> <a href=../../Support/jekyll-website/ title="Jekyll Website Setup" class=md-nav__link> Jekyll Website Setup </a> </li> <li class=md-nav__item> <a href=../../Support/mac-setup/ title="MacOS Setup" class=md-nav__link> MacOS Setup </a> </li> <li class=md-nav__item> <a href=../../Support/mkdocs-website/ title="MkDocs Website Setup" class=md-nav__link> MkDocs Website Setup </a> </li> <li class=md-nav__item> <a href=../../Support/ssh-key-pair/ title="SSH Key pair" class=md-nav__link> SSH Key pair </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Table of contents </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=#vms-vs-containers class=md-nav__link> VMs vs Containers </a> </li> <li class=md-nav__item> <a href=#when-to-use-vms-and-docker class=md-nav__link> When to use VMs and Docker </a> </li> <li class=md-nav__item> <a href=#dockers-architecture class=md-nav__link> Docker's Architecture </a> </li> <li class=md-nav__item> <a href=#images-and-containers class=md-nav__link> Images and Containers </a> </li> <li class=md-nav__item> <a href=#building-docker-image class=md-nav__link> Building Docker image </a> </li> <li class=md-nav__item> <a href=#volumes class=md-nav__link> Volumes </a> </li> <li class=md-nav__item> <a href=#networks class=md-nav__link> Networks </a> </li> <li class=md-nav__item> <a href=#optimizing-docker-images class=md-nav__link> Optimizing Docker Images </a> </li> <li class=md-nav__item> <a href=#docker-compose class=md-nav__link> docker-compose </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content> <article class="md-content__inner md-typeset"> <h1 id=docker-deepdive>Docker Deepdive<a class=headerlink href=#docker-deepdive title="Permanent link">&para;</a></h1> <h2 id=vms-vs-containers>VMs vs Containers<a class=headerlink href=#vms-vs-containers title="Permanent link">&para;</a></h2> <p><img alt="VM vs Docker" src=../img/vms-vs-docker.png></p> <ul> <li> <p>Two types of hypervisors:</p> <ul> <li>Type 1: Direct link to infrastructure (Hyperkit on Mac/Hyper-V on Windows). Generally, more efficient than Type 2 due to their direct link to hardware.</li> <li>Type 2: Runs as an app on the Host OS (VMWare/VirtualBox)</li> </ul> </li> <li> <p>While working with VMs, each VM will have its own OS that needs CPU, memory and other resources.</p> </li> <li>While working with containers, the need for separate OS is eliminated by the use of Docker daemon that communicates directly with the Host OS and knows how to assign resources to running docker containers. It also makes sure each container is isolated from Host OS and other containers. </li> <li>VMs take minutes to start while Docker containers take milliseconds. </li> <li>VMs wastes resources by allocating separate OS for each app while Docker containers save resources by using Docker daemon. </li> <li>While VMs <code>isolate systems</code>, Docker containers <code>isolate applications</code>.</li> </ul> <h2 id=when-to-use-vms-and-docker>When to use VMs and Docker<a class=headerlink href=#when-to-use-vms-and-docker title="Permanent link">&para;</a></h2> <p>The setup might be different in development and production environments. If we want to test the Firewall config for Ubuntu OS that is running Docker containers, this cannot be done if we solely rely on containers when the host OS on dev setup might be Windows or Mac OS and not Ubuntu. To solve this issue, we can run a VM in the dev setup which has the containers in it. </p> <table> <thead> <tr> <th align=center>Development Setup</th> <th align=center>Production Setup</th> </tr> </thead> <tbody> <tr> <td align=center><img alt src=../img/docker-dev.png></td> <td align=center><img alt src=../img/docker-prod.png></td> </tr> </tbody> </table> <h2 id=dockers-architecture>Docker's Architecture<a class=headerlink href=#dockers-architecture title="Permanent link">&para;</a></h2> <div class="admonition info"> <p class=admonition-title><a href=https://docs.docker.com/engine/docker-overview/ >Docker Arch source</a></p> </div> <p>Docker is written in Go and takes advantage of several features of the <code>Linux kernel</code> to deliver its functionality.</p> <ul> <li>Because the Docker Engine daemon uses Linux-specific kernel features, you can't run Docker Engine natively on Windows. Instead, you must use the Docker Machine command, docker-machine, to create and attach to a small Linux VM on your machine. This VM hosts Docker Engine for you on your Windows system.</li> </ul> <p>Docker Engine is a client-server application with these major components:</p> <ul> <li>A server which is a type of long-running program called a daemon process (the dockerd command).</li> <li>A REST API which specifies interfaces that programs can use to talk to the daemon and instruct it what to do.</li> <li>A command line interface (CLI) client (the docker command).</li> </ul> <p><img alt src=../img/docker-arch1.png> <img alt src=../img/docker-arch2.png></p> <p><strong>Namespaces:</strong> Docker uses a technology called namespaces to provide the isolated workspace called the container. When you run a container, Docker creates a set of namespaces for that container.These namespaces provide a layer of isolation. Each aspect of a container runs in a separate namespace and its access is limited to that namespace.</p> <p>Docker Engine uses namespaces such as the following on Linux:</p> <ul> <li>The <code>pid</code> namespace: Process isolation (PID: Process ID).</li> <li>The <code>net</code> namespace: Managing network interfaces (NET: Networking).</li> <li>The <code>ipc</code> namespace: Managing access to IPC resources (IPC: InterProcess Communication).</li> <li>The <code>mnt</code> namespace: Managing filesystem mount points (MNT: Mount).</li> <li>The <code>uts</code> namespace: Isolating kernel and version identifiers. (UTS: Unix Timesharing System).</li> </ul> <p><strong>Control groups:</strong> Docker Engine on Linux also relies on another technology called control groups (cgroups). A cgroup limits an application to a specific set of resources. Control groups allow Docker Engine to share available hardware resources to containers and optionally enforce limits and constraints. For example, you can limit the memory available to a specific container.</p> <p><strong>Union file systems:</strong> Union file systems, or UnionFS, are file systems that operate by creating layers, making them very lightweight and fast. Docker Engine uses UnionFS to provide the building blocks for containers. Docker Engine can use multiple UnionFS variants, including AUFS, btrfs, vfs, and DeviceMapper.</p> <p><strong>Container format:</strong> Docker Engine combines the namespaces, control groups, and UnionFS into a wrapper called a container format. The default container format is libcontainer. In the future, Docker may support other container formats by integrating with technologies such as BSD Jails or Solaris Zones.</p> <h2 id=images-and-containers>Images and Containers<a class=headerlink href=#images-and-containers title="Permanent link">&para;</a></h2> <p>A docker image cannot be changed. A new version of the image can be created using the base image. A container and image are not interchangeable. A container is run using the image. </p> <pre><code>The act of running an image is called a container
+Image can be viewed as class
+Container can be seen as instance of that class
+</code></pre> <p>Many containers can be run using a single image. Containers are immutable. Changes are not maintained after stopping a docker container. </p> <p><img alt src=../img/docker-registry.png></p> <p>Automated Builds can be triggered from DockerHub by connecting the account to Github. </p> <pre><code>We can create automated workflows like:
+
+    - pushing code changes to github to trigger a CI task
+    - kick off CI tasks like testing using the CI server
+    - build a new docker image after testing is completed
+    - send a custom webhook to a server
+    - receive the webhook from the server
+    - pull new docker image after receiving the webhook
+    - restart containers with the new docker image
+</code></pre> <p>Two ways to build a Docker image:</p> <ul> <li>Option 1: Run a docker container, make the changes and commit them with <code>docker commit</code></li> <li>Option 2: To use a <code>Dockerfile</code></li> </ul> <p>Commit is rarely used to build a docker image. Dockerfile is superior because of its version control support. </p> <pre><code>Dockerfile is a Blueprint of what the docker image will be.
+</code></pre> <p>The reason why docker images are so efficient is that they use Layers. While pulling the latest image, it compares what has changed between the layers and downloads only the change by using Layers. Building docker images goes with the same logic by using Layers. <img alt src=../img/docker-image-layers.png></p> <h2 id=building-docker-image>Building Docker image<a class=headerlink href=#building-docker-image title="Permanent link">&para;</a></h2> <details class=info><summary>Docker CLI commands</summary><div class=highlight><pre><span></span><code>$ docker --help
+
+Usage:  docker <span class=o>[</span>OPTIONS<span class=o>]</span> COMMAND
+
+A self-sufficient runtime <span class=k>for</span> containers
+
+Options:
+    --config string      Location of client config files <span class=o>(</span>default
+                        <span class=s2>&quot;/Users/pradeepgorthi/.docker&quot;</span><span class=o>)</span>
+-c, --context string     Name of the context to use to connect to the
+                        daemon <span class=o>(</span>overrides DOCKER_HOST env var and
+                        default context <span class=nb>set</span> with <span class=s2>&quot;docker context use&quot;</span><span class=o>)</span>
+-D, --debug              Enable debug mode
+-H, --host list          Daemon socket<span class=o>(</span>s<span class=o>)</span> to connect to
+-l, --log-level string   Set the logging level
+                        <span class=o>(</span><span class=s2>&quot;debug&quot;</span><span class=p>|</span><span class=s2>&quot;info&quot;</span><span class=p>|</span><span class=s2>&quot;warn&quot;</span><span class=p>|</span><span class=s2>&quot;error&quot;</span><span class=p>|</span><span class=s2>&quot;fatal&quot;</span><span class=o>)</span>
+                        <span class=o>(</span>default <span class=s2>&quot;info&quot;</span><span class=o>)</span>
+    --tls                Use TLS<span class=p>;</span> implied by --tlsverify
+    --tlscacert string   Trust certs signed only by this CA <span class=o>(</span>default
+                        <span class=s2>&quot;/Users/pradeepgorthi/.docker/ca.pem&quot;</span><span class=o>)</span>
+    --tlscert string     Path to TLS certificate file <span class=o>(</span>default
+                        <span class=s2>&quot;/Users/pradeepgorthi/.docker/cert.pem&quot;</span><span class=o>)</span>
+    --tlskey string      Path to TLS key file <span class=o>(</span>default
+                        <span class=s2>&quot;/Users/pradeepgorthi/.docker/key.pem&quot;</span><span class=o>)</span>
+    --tlsverify          Use TLS and verify the remote
+-v, --version            Print version information and quit
+
+Management Commands:
+builder     Manage builds
+config      Manage Docker configs
+container   Manage containers
+context     Manage contexts
+image       Manage images
+network     Manage networks
+node        Manage Swarm nodes
+plugin      Manage plugins
+secret      Manage Docker secrets
+service     Manage services
+stack       Manage Docker stacks
+swarm       Manage Swarm
+system      Manage Docker
+trust       Manage trust on Docker images
+volume      Manage volumes
+
+Commands:
+attach      Attach <span class=nb>local</span> standard input, output, and error streams to a running container
+build       Build an image from a Dockerfile
+commit      Create a new image from a container<span class=s1>&#39;s changes</span>
+<span class=s1>cp          Copy files/folders between a container and the local filesystem</span>
+<span class=s1>create      Create a new container</span>
+<span class=s1>diff        Inspect changes to files or directories on a container&#39;</span>s filesystem
+events      Get real <span class=nb>time</span> events from the server
+<span class=nb>exec</span>        Run a <span class=nb>command</span> in a running container
+<span class=nb>export</span>      Export a container<span class=s1>&#39;s filesystem as a tar archive</span>
+<span class=s1>history     Show the history of an image</span>
+<span class=s1>images      List images</span>
+<span class=s1>import      Import the contents from a tarball to create a filesystem image</span>
+<span class=s1>info        Display system-wide information</span>
+<span class=s1>inspect     Return low-level information on Docker objects</span>
+<span class=s1>kill        Kill one or more running containers</span>
+<span class=s1>load        Load an image from a tar archive or STDIN</span>
+<span class=s1>login       Log in to a Docker registry</span>
+<span class=s1>logout      Log out from a Docker registry</span>
+<span class=s1>logs        Fetch the logs of a container</span>
+<span class=s1>pause       Pause all processes within one or more containers</span>
+<span class=s1>port        List port mappings or a specific mapping for the container</span>
+<span class=s1>ps          List containers</span>
+<span class=s1>pull        Pull an image or a repository from a registry</span>
+<span class=s1>push        Push an image or a repository to a registry</span>
+<span class=s1>rename      Rename a container</span>
+<span class=s1>restart     Restart one or more containers</span>
+<span class=s1>rm          Remove one or more containers</span>
+<span class=s1>rmi         Remove one or more images</span>
+<span class=s1>run         Run a command in a new container</span>
+<span class=s1>save        Save one or more images to a tar archive (streamed to STDOUT by default)</span>
+<span class=s1>search      Search the Docker Hub for images</span>
+<span class=s1>start       Start one or more stopped containers</span>
+<span class=s1>stats       Display a live stream of container(s) resource usage statistics</span>
+<span class=s1>stop        Stop one or more running containers</span>
+<span class=s1>tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE</span>
+<span class=s1>top         Display the running processes of a container</span>
+<span class=s1>unpause     Unpause all processes within one or more containers</span>
+<span class=s1>update      Update configuration of one or more containers</span>
+<span class=s1>version     Show the Docker version information</span>
+<span class=s1>wait        Block until one or more containers stop, then print their exit codes</span>
+
+<span class=s1>Run &#39;</span>docker COMMAND --help<span class=err>&#39;</span> <span class=k>for</span> more information on a command.
+</code></pre></div> </details> <p>Sample Docker file: <div class=highlight><pre><span></span><code><span class=k>FROM</span> <span class=s>python:3.8-alpine</span>
+
+<span class=c># Runs a command in the image </span>
+<span class=k>RUN</span> mkdir /app
+<span class=c># Changes Working directory</span>
+<span class=k>WORKDIR</span><span class=s> /app</span>
+
+<span class=k>COPY</span> requirements.txt requirements.txt
+<span class=k>RUN</span> pip3 install -r requirements.txt
+
+<span class=c># Copy all the files in the current/below dir to the destination directory in the image</span>
+<span class=k>COPY</span> . .
+
+<span class=k>LABEL</span> <span class=nv>maintainer</span><span class=o>=</span><span class=s2>&quot;deepgorthi&quot;</span> <span class=se>\</span>
+    <span class=nv>version</span><span class=o>=</span><span class=s2>&quot;1.0&quot;</span>
+
+<span class=c># Default command that will be run when the docker image is ran as opposed to `RUN` which is executed when docker image is in build stage. </span>
+<span class=k>CMD</span> flask run --host<span class=o>=</span><span class=m>0</span>.0.0.0 --port<span class=o>=</span><span class=m>5000</span>
+</code></pre></div></p> <p>Docker image can be built using:</p> <details class=info><summary>docker image build -t |image_name| |project_dir|</summary><div class=highlight><pre><span></span><code>$ docker image build -t web1 .
+Sending build context to Docker daemon  <span class=m>6</span>.144kB
+Step <span class=m>1</span>/8 : FROM python:3.8-alpine
+<span class=m>3</span>.8-alpine: Pulling from library/python
+89d9c30c1d48: Already exists
+910c49c00810: Pull <span class=nb>complete</span>
+66564da92047: Pull <span class=nb>complete</span>
+bb0265c0d9a9: Pull <span class=nb>complete</span>
+b86dfbfbb035: Pull <span class=nb>complete</span>
+Digest: sha256:7f465d82a49e092b609fa97cea8ea761c9aa4fa6cab05f4876150e28bf16bcc3
+Status: Downloaded newer image <span class=k>for</span> python:3.8-alpine
+---&gt; 59acf2b3028c
+Step <span class=m>2</span>/8 : RUN mkdir /app
+---&gt; Running in 35c9bfe4094f
+Removing intermediate container 35c9bfe4094f
+---&gt; 189a38c581b5
+Step <span class=m>3</span>/8 : WORKDIR /app
+---&gt; Running in 548c3c0d8c92
+Removing intermediate container 548c3c0d8c92
+---&gt; 86fed1cc4245
+Step <span class=m>4</span>/8 : COPY requirements.txt requirements.txt
+---&gt; 09f541a26042
+Step <span class=m>5</span>/8 : RUN pip3 install -r requirements.txt
+---&gt; Running in 9dd700237426
+Collecting <span class=nv>Flask</span><span class=o>==</span><span class=m>1</span>.1.1
+Downloading https://files.pythonhosted.org/packages/9b/93/628509b8d5dc749656a9641f4caf13540e2cdec85276964ff8f43bbb1d3b/Flask-1.1.1-py2.py3-none-any.whl <span class=o>(</span>94kB<span class=o>)</span>
+Collecting click&gt;<span class=o>=</span><span class=m>5</span>.1
+Downloading https://files.pythonhosted.org/packages/fa/37/45185cb5abbc30d7257104c434fe0b07e5a195a6847506c074527aa599ec/Click-7.0-py2.py3-none-any.whl <span class=o>(</span>81kB<span class=o>)</span>
+Collecting Werkzeug&gt;<span class=o>=</span><span class=m>0</span>.15
+Downloading https://files.pythonhosted.org/packages/ce/42/3aeda98f96e85fd26180534d36570e4d18108d62ae36f87694b476b83d6f/Werkzeug-0.16.0-py2.py3-none-any.whl <span class=o>(</span>327kB<span class=o>)</span>
+Collecting itsdangerous&gt;<span class=o>=</span><span class=m>0</span>.24
+Downloading https://files.pythonhosted.org/packages/76/ae/44b03b253d6fade317f32c24d100b3b35c2239807046a4c953c7b89fa49e/itsdangerous-1.1.0-py2.py3-none-any.whl
+Collecting Jinja2&gt;<span class=o>=</span><span class=m>2</span>.10.1
+Downloading https://files.pythonhosted.org/packages/65/e0/eb35e762802015cab1ccee04e8a277b03f1d8e53da3ec3106882ec42558b/Jinja2-2.10.3-py2.py3-none-any.whl <span class=o>(</span>125kB<span class=o>)</span>
+Collecting MarkupSafe&gt;<span class=o>=</span><span class=m>0</span>.23
+Downloading https://files.pythonhosted.org/packages/b9/2e/64db92e53b86efccfaea71321f597fa2e1b2bd3853d8ce658568f7a13094/MarkupSafe-1.1.1.tar.gz
+Building wheels <span class=k>for</span> collected packages: MarkupSafe
+Building wheel <span class=k>for</span> MarkupSafe <span class=o>(</span>setup.py<span class=o>)</span>: started
+Building wheel <span class=k>for</span> MarkupSafe <span class=o>(</span>setup.py<span class=o>)</span>: finished with status <span class=s1>&#39;done&#39;</span>
+Created wheel <span class=k>for</span> MarkupSafe: <span class=nv>filename</span><span class=o>=</span>MarkupSafe-1.1.1-cp38-none-any.whl <span class=nv>size</span><span class=o>=</span><span class=m>12629</span> <span class=nv>sha256</span><span class=o>=</span>2ef358e3f930fc77951c40c287a217e2947523c8bed82a87b8b339905517a6bf
+Stored in directory: /root/.cache/pip/wheels/f2/aa/04/0edf07a1b8a5f5f1aed7580fffb69ce8972edc16a505916a77
+Successfully built MarkupSafe
+Installing collected packages: click, Werkzeug, itsdangerous, MarkupSafe, Jinja2, Flask
+Successfully installed Flask-1.1.1 Jinja2-2.10.3 MarkupSafe-1.1.1 Werkzeug-0.16.0 click-7.0 itsdangerous-1.1.0
+Removing intermediate container 9dd700237426
+---&gt; 698e47e5a545
+Step <span class=m>6</span>/8 : COPY . .
+---&gt; bc46e74d6e0d
+Step <span class=m>7</span>/8 : LABEL <span class=nv>maintainer</span><span class=o>=</span><span class=s2>&quot;deepgorthi&quot;</span>     <span class=nv>version</span><span class=o>=</span><span class=s2>&quot;1.0&quot;</span>
+---&gt; Running in 381673955c74
+Removing intermediate container 381673955c74
+---&gt; b38993872302
+Step <span class=m>8</span>/8 : CMD flask run --host<span class=o>=</span><span class=m>0</span>.0.0.0 --port<span class=o>=</span><span class=m>5000</span>
+---&gt; Running in deb8e859481f
+Removing intermediate container deb8e859481f
+---&gt; 6b827d1a1fa1
+Successfully built 6b827d1a1fa1
+Successfully tagged web1:latest
+</code></pre></div> </details> <p>We can inspect the newly built docker image: <div class=highlight><pre><span></span><code>$ docker image inspect web1
+</code></pre></div></p> <p>Deleting docker image: <div class=highlight><pre><span></span><code>$ docker image rm web1
+</code></pre></div></p> <p>To run a container using the web1 docker image: <div class=highlight><pre><span></span><code>$ docker container run -it -p <span class=m>5000</span>:5000 --rm -e <span class=nv>FLASK_APP</span><span class=o>=</span>app.py web1
+    <span class=c1># &#39;-p&#39; -&gt; Port mapping from localhost to docker image</span>
+    <span class=c1># &#39;--rm&#39; -&gt; Deletes the container once it is stopped</span>
+    <span class=c1># &#39;-e&#39; -&gt; ENV variable</span>
+    <span class=c1># and lastly the docker image (web1)</span>
+    <span class=c1># &#39;-d&#39; -&gt; Run the container in detach mode (running in background)</span>
+    <span class=c1># &#39;--restart on-failure&#39; -&gt; restart docker container if it stops unexpectedly, cannot be used with &#39;--rm&#39;</span>
+    <span class=c1># we can use &#39;-p 5000&#39; instead of &#39;-p 5000:5000&#39; to use a random port on localhost</span>
+
+    * Serving Flask app <span class=s2>&quot;app.py&quot;</span>
+    * Environment: production
+    WARNING: This is a development server. Do not use it in a production deployment.
+    Use a production WSGI server instead.
+    * Debug mode: off
+    * Running on http://0.0.0.0:5000/ <span class=o>(</span>Press CTRL+C to quit<span class=o>)</span>
+
+<span class=c1># Checking logs</span>
+$ docker container logs &lt;container_name&gt;
+
+<span class=c1># Checking stats</span>
+$ docker container stats
+
+<span class=c1># Using help for container run commands</span>
+$ docker container run --help
+
+<span class=c1># To run commands in a detached container</span>
+<span class=c1># $ docker container exec -it &lt;container name or ID&gt; &lt;command&gt;</span>
+$ docker container <span class=nb>exec</span> -it web1 sh
+$ docker container <span class=nb>exec</span> -it --user <span class=s2>&quot;</span><span class=k>$(</span>id -u<span class=k>)</span><span class=s2>:</span><span class=k>$(</span>id -g<span class=k>)</span><span class=s2>&quot;</span> web1 touch test.txt <span class=c1># create a file with user and not root</span>
+</code></pre></div></p> <h2 id=volumes>Volumes<a class=headerlink href=#volumes title="Permanent link">&para;</a></h2> <p>When changes are made with the source code, the initial docker image does not reflect the code change. The container needs to be re-run with a newly built image that has the recent code change. </p> <p>To make this easier, we can make use of Docker Volumes where we can mount local machine dir to the container. <div class=highlight><pre><span></span><code>$ docker container run -it -p <span class=m>5000</span>:5000 -e <span class=nv>FLASK_APP</span><span class=o>=</span>app.py --rm --name web1 -e <span class=nv>FLASK_DEBUG</span><span class=o>=</span><span class=m>1</span> -v <span class=s2>&quot;</span><span class=nv>$PWD</span><span class=s2>:/app&quot;</span> web1
+<span class=c1># &#39;-v source:dest&#39; -&gt; This will overwrite the image with the new source code through Dockerfile. </span>
+<span class=c1># This is best for development</span>
+<span class=c1># In prod, the dockerfile will copy the source code at the time of build and bake it into the image without a need for volume mounts. </span>
+</code></pre></div></p> <p><strong>Named Volumes for Persistent Data:</strong> Instead of providing a local path to mount to docker container, we can provide a named volume so that docker can use that to manage the volume. This is perfect for databases. This is for persisting data after a container stops. </p> <div class=highlight><pre><span></span><code>$ docker volume create &lt;vol_name&gt;
+
+$ docker volume ls
+
+$ docker volume inspect &lt;vol_name&gt;
+
+<span class=c1># For Redis image, the db will be at /data</span>
+$ docker container run -it -p <span class=m>5000</span>:5000 -e <span class=nv>FLASK_APP</span><span class=o>=</span>app.py --rm --name web1 -e <span class=nv>FLASK_DEBUG</span><span class=o>=</span><span class=m>1</span> -v vol_name:/data web1
+</code></pre></div> <p><strong>Sharing Data between Containers:</strong> To share data between containers, in Dockerfile, give an instruction with the path to the dir that will be shared with other containers:</p> <div class=highlight><pre><span></span><code><span class=k>VOLUME</span> <span class=p>[</span><span class=s2>&quot;/app/public&quot;</span><span class=p>]</span>
+</code></pre></div> <p>To share data from one container to another, after modifying the Dockerfile for an image, build the image and run the container from that image. Once that is done, run the second container and add <code>--volumes-from &lt;source_container_name&gt;</code> to the <code>docker container</code> command while starting up the second container. This will result in container2 accessing data from container1. Changes on running container1 can be seen immediately in running container2.</p> <h2 id=networks>Networks<a class=headerlink href=#networks title="Permanent link">&para;</a></h2> <p>Docker creates a few networks for us. <div class=highlight><pre><span></span><code>$ docker network ls
+    NETWORK ID          NAME                DRIVER              SCOPE
+    8f87c8b5b9ba        bridge              bridge              <span class=nb>local</span>
+    8674645af790        host                host                <span class=nb>local</span>
+    fba1734c012f        none                null                <span class=nb>local</span>
+
+$ docker network inspect bridge
+</code></pre></div></p> <p>Bridge network is the default network and all containers are automatically added to this network when created. </p> <p>To refer the containers with IP addresses might be a problem when the IP address changes on a reboot. Instead, it is better to use DNS names to refer to Docker contaienrs on a network. If we create our own bridge network with docker, then Docker will configure DNS name for the containers automatically for us. </p> <p>To create a bridge network for automatic DNS: <div class=highlight><pre><span></span><code>$ docker network create --driver bridge &lt;network_name&gt;
+
+<span class=c1># Once the network is created, the containers can be assigned into that network by adding a &#39;--net&#39; tag with the network name</span>
+$ docker container run --rm -itd -p <span class=m>5000</span> -e <span class=nv>FLASK_APP</span><span class=o>=</span>app.py --name web1 -v <span class=s2>&quot;</span><span class=nv>$PWD</span><span class=s2>:/app&quot;</span> --net &lt;network_name&gt; web2
+</code></pre></div></p> <p><code>Bridge</code> network driver can only connect docker containers on the same docker host. If we want to connect over multiple docker hosts, then we need to use <code>overlay</code> network driver.</p> <h2 id=optimizing-docker-images>Optimizing Docker Images<a class=headerlink href=#optimizing-docker-images title="Permanent link">&para;</a></h2> <p>Similar to .gitignore, there is a <code>.dockerignore</code> file to ignore unnecessary files in the image. The starting point of .dockerignore paths is the <code>WORKDIR</code> path set in the Dockerfile. </p> <div class=highlight><pre><span></span><code>.dockerignore
+.git/
+.foo/*          <span class=c1># Allows folder to be included but the contents are ignored</span>
+**/*.swp        <span class=c1># Recursively ignore all files of specific type</span>
+**/*.txt
+!special.txt    <span class=c1># All text files will be ignored because of the previous line but special.txt will be included in the image</span>
+</code></pre></div> <p><strong>Running scripts when a container starts:</strong> We can do this by using <code>ENTRYPOINT</code> instruction in Dockerfile. ENTRYPOINT lets you run custom scripts. They do not add layers to the docker image as the commands are run after the image is ready from Dockerfile. </p> <div class=highlight><pre><span></span><code>$ docker system df
+    TYPE                TOTAL               ACTIVE              SIZE                RECLAIMABLE
+    Images              <span class=m>17</span>                  <span class=m>11</span>                  <span class=m>3</span>.678GB             <span class=m>2</span>.196GB <span class=o>(</span><span class=m>59</span>%<span class=o>)</span>
+    Containers          <span class=m>35</span>                  <span class=m>0</span>                   163MB               163MB <span class=o>(</span><span class=m>100</span>%<span class=o>)</span>
+    Local Volumes       <span class=m>0</span>                   <span class=m>0</span>                   0B                  0B
+    Build Cache         <span class=m>0</span>                   <span class=m>0</span>                   0B                  0B
+
+$ docker system prune -y
+    WARNING! This will remove:
+    - all stopped containers
+    - all networks not used by at least one container
+    - all dangling images
+    - all dangling build cache
+</code></pre></div> <h2 id=docker-compose>docker-compose<a class=headerlink href=#docker-compose title="Permanent link">&para;</a></h2> <p>There is no need to keep docker-compose.yml file in the same dir as the Dockerfiles. We can refer the folder where dockerfiles are placed using <code>build:</code> and specifying the path to directory where Dockerfile is placed. </p> <div class=highlight><pre><span></span><code><span class=nt>version</span><span class=p>:</span> <span class=s>&#39;3&#39;</span>
+
+<span class=nt>services</span><span class=p>:</span>
+  <span class=nt>redis</span><span class=p>:</span>
+    <span class=nt>image</span><span class=p>:</span> <span class=s>&#39;redis:3.2-alpine&#39;</span>
+    <span class=nt>ports</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class=s>&#39;6379:6379&#39;</span>
+    <span class=nt>volumes</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class=s>&#39;redis:/data&#39;</span>
+
+  <span class=nt>web</span><span class=p>:</span>
+    <span class=nt>build</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">.</span>
+    <span class=nt>depends_on</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class=s>&#39;redis&#39;</span>
+    <span class=nt>env_file</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class=s>&#39;.env&#39;</span>
+    <span class=nt>ports</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class=s>&#39;5000:5000&#39;</span>
+    <span class=nt>volumes</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class=s>&#39;.:/app&#39;</span>
+
+<span class=nt>volumes</span><span class=p>:</span>
+  <span class=nt>redis</span><span class=p>:</span> <span class="p p-Indicator">{}</span>
+</code></pre></div> <div class=highlight><pre><span></span><code># .env file
+
+COMPOSE_PROJECT_NAME=web2
+
+PYTHONBUFFERED=true
+FLASK_APP=app.py
+FLASK_DEBUG=1
+</code></pre></div> <details><summary>docker-compose --help</summary><div class=highlight><pre><span></span><code>$ docker-compose --help
+    Define and run multi-container applications with Docker.
+
+    Usage:
+    docker-compose <span class=o>[</span>-f &lt;arg&gt;...<span class=o>]</span> <span class=o>[</span>options<span class=o>]</span> <span class=o>[</span>COMMAND<span class=o>]</span> <span class=o>[</span>ARGS...<span class=o>]</span>
+    docker-compose -h<span class=p>|</span>--help
+
+    Options:
+    -f, --file FILE             Specify an alternate compose file
+                                <span class=o>(</span>default: docker-compose.yml<span class=o>)</span>
+    -p, --project-name NAME     Specify an alternate project name
+                                <span class=o>(</span>default: directory name<span class=o>)</span>
+    --verbose                   Show more output
+    --log-level LEVEL           Set log level <span class=o>(</span>DEBUG, INFO, WARNING, ERROR, CRITICAL<span class=o>)</span>
+    --no-ansi                   Do not print ANSI control characters
+    -v, --version               Print version and <span class=nb>exit</span>
+    -H, --host HOST             Daemon socket to connect to
+
+    --tls                       Use TLS<span class=p>;</span> implied by --tlsverify
+    --tlscacert CA_PATH         Trust certs signed only by this CA
+    --tlscert CLIENT_CERT_PATH  Path to TLS certificate file
+    --tlskey TLS_KEY_PATH       Path to TLS key file
+    --tlsverify                 Use TLS and verify the remote
+    --skip-hostname-check       Don<span class=s1>&#39;t check the daemon&#39;</span>s hostname against the
+                                name specified in the client certificate
+    --project-directory PATH    Specify an alternate working directory
+                                <span class=o>(</span>default: the path of the Compose file<span class=o>)</span>
+    --compatibility             If set, Compose will attempt to convert keys
+                                in v3 files to their non-Swarm equivalent
+
+    Commands:
+    build              Build or rebuild services
+    bundle             Generate a Docker bundle from the Compose file
+    config             Validate and view the Compose file
+    create             Create services
+    down               Stop and remove containers, networks, images, and volumes
+    events             Receive real <span class=nb>time</span> events from containers
+    <span class=nb>exec</span>               Execute a <span class=nb>command</span> in a running container
+    <span class=nb>help</span>               Get <span class=nb>help</span> on a <span class=nb>command</span>
+    images             List images
+    <span class=nb>kill</span>               Kill containers
+    logs               View output from containers
+    pause              Pause services
+    port               Print the public port <span class=k>for</span> a port binding
+    ps                 List containers
+    pull               Pull service images
+    push               Push service images
+    restart            Restart services
+    rm                 Remove stopped containers
+    run                Run a one-off <span class=nb>command</span>
+    scale              Set number of containers <span class=k>for</span> a service
+    start              Start services
+    stop               Stop services
+    top                Display the running processes
+    unpause            Unpause services
+    up                 Create and start containers
+    version            Show the Docker-Compose version information
+</code></pre></div> </details> <p>Running docker-compose file: <div class=highlight><pre><span></span><code><span class=c1># Building image</span>
+$ docker-compose build
+
+<span class=c1># Pulling any required images from Docker repo</span>
+$ docker-compose pull
+
+<span class=c1># Setting up the project</span>
+$ docker-compose up
+
+<span class=c1># All the 3 above commands can be run using</span>
+$ docker-compose up --build
+
+<span class=c1># Logs output</span>
+$ docker-compose logs -f
+
+<span class=c1># Executing a command on a container</span>
+$ docker-compose <span class=nb>exec</span> &lt;service_name&gt; ls -la
+
+<span class=c1># Stopping containers</span>
+$ docker-compose stop
+
+<span class=c1># Removing stopped containers</span>
+$ docker-compose rm
+</code></pre></div></p> <hr> <div class=md-source-date> <small> Last update: December 20, 2019 </small> </div> </article> </div> </div> </main> <!-- Application footer --> <footer class=md-footer> <!-- Link to previous and/or next page --> <div class=md-footer-nav> <nav class="md-footer-nav__inner md-grid"> <!-- Link to previous page --> <a href=../docker-basics/ title="Docker Basics" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel=prev> <div class="md-flex__cell md-flex__cell--shrink"> <i class="md-icon md-icon--arrow-back
+                    md-footer-nav__button"></i> </div> <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title"> <span class=md-flex__ellipsis> <span class=md-footer-nav__direction> Previous </span> Docker Basics </span> </div> </a> <!-- Link to next page --> <a href=../docker-tidbits/ title="Docker Tidbits" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel=next> <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title"> <span class=md-flex__ellipsis> <span class=md-footer-nav__direction> Next </span> Docker Tidbits </span> </div> <div class="md-flex__cell md-flex__cell--shrink"> <i class="md-icon md-icon--arrow-forward
+                    md-footer-nav__button"></i> </div> </a> </nav> </div> <!-- Further information --> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <!-- Copyright and theme information --> <div class=md-footer-copyright> </div> <!-- Social links --> <div class=md-footer-social> <link rel=stylesheet href=../../assets/fonts/font-awesome.css> <a href=https://github.com/deepgorthi target=_blank class="md-footer-social__link fa fa-github"></a> <a href=https://twitter.com/deepgorthi target=_blank class="md-footer-social__link fa fa-twitter"></a> <a href=https://linkedin.com/in/deepgorthi target=_blank class="md-footer-social__link fa fa-linkedin"></a> <a href=https://resume.deepgorthi.com target=_blank class="md-footer-social__link fa fa-address-book"></a> <a href=https://deepgorthi.com target=_blank class="md-footer-social__link fa fa-globe"></a> </div> </div> </div> </footer> </div> <script src=../../assets/javascripts/vendor.d710d30a.min.js></script> <script src=../../assets/javascripts/bundle.5f27aba8.min.js></script><script id=__lang type=application/json>{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script> <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.27c6a5e6.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script> </body> </html>

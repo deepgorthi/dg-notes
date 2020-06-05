@@ -1,0 +1,25 @@
+# setup-app.yml
+
+---
+  - hosts: webservers
+    become: true
+    tasks:
+      - name: Upload index file
+        copy: 
+          src: ../index.php
+          dest: /var/www/html
+          mode: 0755
+
+      - name: Configure php.ini file
+        lineinfile: # Change a line in a config file matching the regex to the line value.
+          path: /etc/php.ini
+          regexp: ^short_open_tag
+          line: 'short_open_tag=Off'
+        notify: restart-apache
+      
+      # restart apache
+    handlers:  # Declaring restart apache task as a handler and adding notify in configure task.
+      - name: restart-apache
+        service: 
+          name: httpd 
+          state: restarted
