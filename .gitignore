@@ -25,3 +25,4 @@ mkdocs-project/site/
 site/
 custom_theme/.DS_Store
 custom_theme/partials/.DS_Store
+docs/AWS/buffer developer notes.md
